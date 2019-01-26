@@ -7,36 +7,50 @@ public class MoveWASD : MonoBehaviour
     public float speed=1;
     Input newIn;
 
-    float degfactor = 360 / (2 * Mathf.PI);
-
-    CharacterController controller;
-
-    
+    bool isFacingLeft;
+    bool isFacingRight;
+    bool isFacingUp;
+    bool isFacingDown;
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        isFacingLeft = false;
+        isFacingRight = false;
+        isFacingUp = true;
+        isFacingDown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float sqrt2 = 1 / Mathf.Sqrt(2);
-        float verticalAxis = Input.GetAxisRaw("Vertical");
-        float horizontalAxis = Input.GetAxisRaw("Horizontal");
-    
-        if (verticalAxis != 0 || horizontalAxis != 0)
-        {
-            int angle = (int)Mathf.Floor(degfactor * Mathf.Atan(-horizontalAxis / verticalAxis));
-            if (verticalAxis < 0)
-                angle += 180;
-            
-            transform.localRotation = Quaternion.Euler(0, 0, angle);
+        float direction = 0;
 
-            //controller.Move(new Vector3(0, speed * Time.deltaTime, 0));
-            if (verticalAxis != 0 && horizontalAxis != 0)
-                controller.Move(new Vector3(sqrt2 * speed * Time.deltaTime * horizontalAxis, sqrt2 * speed * Time.deltaTime * verticalAxis, 0));
-            else controller.Move(new Vector3(speed * Time.deltaTime * horizontalAxis, speed * Time.deltaTime * verticalAxis, 0));
+        if (Input.GetAxis("Horizontal")!=0)
+        {
+            if(Input.GetAxis("Horizontal") < 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 90);
+            }
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 270);
+            }
+            direction = Mathf.Abs(Input.GetAxis("Horizontal") * speed);
+            transform.Translate(0, direction * Time.deltaTime, 0);
+        }
+
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 180);
+            }
+            if (Input.GetAxis("Vertical")  > 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+            direction = Mathf.Abs(Input.GetAxis("Vertical") * speed);
+            transform.Translate(0,direction * Time.deltaTime, 0);
         }
     }
  }
