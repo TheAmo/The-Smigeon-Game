@@ -56,6 +56,9 @@ MonoBehaviour:
   m_MaxSize: {x: 12008, y: 8048}
   vertical: 0
   controlID: 75
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!114 &3
 MonoBehaviour:
@@ -73,6 +76,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     x: 1089
     y: 0
     width: 277
@@ -81,6 +85,8 @@ MonoBehaviour:
   m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 14}
 =======
+=======
+>>>>>>> Stashed changes
     x: 1676
     y: 0
     width: 244
@@ -111,8 +117,13 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     width: 270
     height: 361
+=======
+    width: 316
+    height: 762
+>>>>>>> Stashed changes
 =======
     width: 316
     height: 762
@@ -247,6 +258,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     width: 1089
     height: 635
   m_MinSize: {x: 406, y: 498}
@@ -254,12 +266,17 @@ MonoBehaviour:
   vertical: 1
   controlID: 50
 =======
+=======
+>>>>>>> Stashed changes
     width: 1676
     height: 947
   m_MinSize: {x: 406, y: 348}
   m_MaxSize: {x: 8006, y: 8048}
   vertical: 1
   controlID: 76
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!114 &10
 MonoBehaviour:
@@ -281,6 +298,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     width: 1089
     height: 361
   m_MinSize: {x: 406, y: 224}
@@ -288,12 +306,17 @@ MonoBehaviour:
   vertical: 0
   controlID: 51
 =======
+=======
+>>>>>>> Stashed changes
     width: 1676
     height: 762
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
   controlID: 77
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!114 &11
 MonoBehaviour:
@@ -311,11 +334,14 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     x: 270
     y: 0
     width: 819
     height: 361
 =======
+=======
+>>>>>>> Stashed changes
     x: 316
     y: 0
     width: 1360
@@ -352,6 +378,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     x: 270
     y: 73
     width: 815
@@ -359,6 +386,10 @@ MonoBehaviour:
 =======
     x: 1676
     y: 73
+=======
+    x: 1676
+    y: 73
+>>>>>>> Stashed changes
     width: 242
     height: 927
 >>>>>>> Stashed changes
@@ -556,9 +587,12 @@ MonoBehaviour:
     x: 0
     y: 73
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     width: 268
     height: 341
 =======
+=======
+>>>>>>> Stashed changes
     width: 314
     height: 742
 >>>>>>> Stashed changes
@@ -567,9 +601,15 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: d4fbffff
+=======
+      m_SelectedIDs: 260c0000
+      m_LastClickedID: 3110
+      m_ExpandedIDs: c2fbffff1e0c0000
+>>>>>>> Stashed changes
 =======
       m_SelectedIDs: 260c0000
       m_LastClickedID: 3110
@@ -619,6 +659,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     x: 270
     y: 73
     width: 815
@@ -626,6 +667,10 @@ MonoBehaviour:
 =======
     x: 316
     y: 73
+=======
+    x: 316
+    y: 73
+>>>>>>> Stashed changes
     width: 1356
     height: 742
 >>>>>>> Stashed changes
@@ -637,9 +682,15 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_Position:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_Target: {x: 0.8343317, y: -0.37739155, z: -0.19072336}
     speed: 2
     m_Value: {x: 0.8343317, y: -0.37739155, z: -0.19072336}
+=======
+    m_Target: {x: 85.09979, y: 75.64549, z: 6}
+    speed: 2
+    m_Value: {x: 85.09979, y: 75.64549, z: 6}
+>>>>>>> Stashed changes
 =======
     m_Target: {x: 85.09979, y: 75.64549, z: 6}
     speed: 2
@@ -677,9 +728,15 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_Target: 17.514923
     speed: 2
     m_Value: 17.514923
+=======
+    m_Target: 485.29388
+    speed: 2
+    m_Value: 485.29388
+>>>>>>> Stashed changes
 =======
     m_Target: 485.29388
     speed: 2
