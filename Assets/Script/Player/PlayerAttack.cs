@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : Stats
 {
     public Sprite spriteDefault;
-    public Sprite spriteInteraction;
+    public Sprite spriteAttack;
     private SpriteRenderer spriteRenderer;
 
     List<GameObject> enemy = new List<GameObject>();
@@ -41,15 +41,17 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
         {
-            spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
+            spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
             Vector2 playerPosition = transform.position; 
             foreach (GameObject target in enemy)
             {
                 Destroy(target, 0);
                 enemy.Remove(target);
+                //dealDamage(target.GetComponent<Stats>());
+                break;
             }
         }
-        if(Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
         }

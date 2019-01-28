@@ -55,7 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Ressource\Stat.cs" />
     <Compile Include="Assets\Script\CameraController.cs" />
     <Compile Include="Assets\Script\GoblinAi.cs" />
     <Compile Include="Assets\Script\Player\MoveWASD.cs" />

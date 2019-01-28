@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     public Sprite spriteDefault;
-    public Sprite spriteAttack;
-
+    public Sprite spriteInteraction;
     private SpriteRenderer spriteRenderer;
 
     List<GameObject> interact = new List<GameObject>();
@@ -42,15 +41,16 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F)) //If key is pushed
         {
-            spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
+            spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
             Vector2 playerPosition = transform.position;
             foreach (GameObject target in interact)
             {
                 Destroy(target, 0);
                 interact.Remove(target);
+                break;
             }
         }
-        else
+        if (Input.GetKeyUp(KeyCode.F))
         {
             spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
         }
