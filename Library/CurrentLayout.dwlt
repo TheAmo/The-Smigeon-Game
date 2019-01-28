@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 286
     height: 536
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -265,8 +265,8 @@ MonoBehaviour:
     y: 0
     width: 1211
     height: 536
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -342,19 +342,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Ressource
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Ressource
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Maxime Grenier\Desktop\Smigeonv3\The-Smigeon-Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 60090000
-    m_LastClickedID: 2400
+    m_SelectedIDs: fc2a0000
+    m_LastClickedID: 11004
     m_ExpandedIDs: 00000000600900009e0a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 0000000046430000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -616,9 +616,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 96.8896, y: -7.1712604, z: 1.0703125}
+    m_Target: {x: 91.231964, y: -4.1538577, z: 1.0703125}
     speed: 2
-    m_Value: {x: 96.8896, y: -7.1712604, z: 1.0703125}
+    m_Value: {x: 91.231964, y: -4.1538577, z: 1.0703125}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
