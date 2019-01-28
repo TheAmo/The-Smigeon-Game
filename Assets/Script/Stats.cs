@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stas : MonoBehaviour
+public class Stats : MonoBehaviour
 {
 
     private double attack;
 
-    public Stas() {
+    public Stats() {
 
         }
 

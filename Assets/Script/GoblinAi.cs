@@ -18,7 +18,7 @@ public class GoblinAi : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        updateInterval = Random.Range(1, 3);
+        updateInterval = Random.Range(1.0f, 3.0f);
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class GoblinAi : MonoBehaviour
             time = 0;
 
             verticalAxis = Random.Range(-2.0f, 2.0f);
-            horizontalAxis = Random.Range(-2, 2);
+            horizontalAxis = Random.Range(-2.0f, 2.0f);
 
             if (verticalAxis != 0 || horizontalAxis != 0)
             {
