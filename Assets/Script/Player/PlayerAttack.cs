@@ -42,7 +42,6 @@ public class PlayerAttack : Stats
         if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
         {
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
-            Vector2 playerPosition = transform.position; 
             foreach (GameObject target in enemy)
             {
                 Destroy(target, 0);
