@@ -7,12 +7,13 @@ public class Stats: MonoBehaviour
     public int hp = 10;
     public int ac = 15;
     public int att = 5;
-    public int strenght=10;
-    public int dexterity=10;
-    public int constitution=10;
-    public int intelligence=10;
-    public int wisdom=10;
-    public int charisma=10;
+
+    private int strenght=10;
+    private int dexterity=10;
+    private int constitution=10;
+    private int intelligence=10;
+    private int wisdom=10;
+    private int charisma=10;
 
     public bool getDamage(int damage)
     {
@@ -20,7 +21,6 @@ public class Stats: MonoBehaviour
         Debug.Log("Dealt " + damage+"hp left "+hp);
         if (hp <= 0)
         {
-            Debug.Log("enemy killed");
             return (true);
         }
         else return (false);
