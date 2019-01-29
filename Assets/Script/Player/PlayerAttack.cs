@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : Stats
 {
-    private Stats stats;
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     private SpriteRenderer spriteRenderer;
@@ -45,10 +44,9 @@ public class PlayerAttack : MonoBehaviour
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
             foreach (GameObject target in enemy)
             {
-
+                Destroy(target, 0);
                 enemy.Remove(target);
-                stats.dealDamage(target.GetComponent<Stats>());
-                //Destroy(target, 0);
+                //dealDamage(target.GetComponent<Stats>());
                 break;
             }
         }
