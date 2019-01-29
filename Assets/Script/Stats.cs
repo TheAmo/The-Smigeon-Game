@@ -22,14 +22,17 @@ public class Stats: MonoBehaviour
             Destroy(this, 0);
         }
     }
-    protected void dealDamage(Stats receiver)
+    public void dealDamage(Stats receiver)
     {
+        receiver.getDamage(5);
+        /*
         int roll20 = Random.Range(1, 20)+att;
         if (roll20>=receiver.ac)
         {
             receiver.getDamage(Random.Range(1, 6) + Mathf.FloorToInt((strenght - 10) / 2));
 
         }
+        */
     }
 
 }
