@@ -7,7 +7,7 @@ public class PlayerAttack : Stats
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     private SpriteRenderer spriteRenderer;
-
+    private bool tmpbool;
     List<GameObject> enemy = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -44,9 +44,13 @@ public class PlayerAttack : Stats
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
             foreach (GameObject target in enemy)
             {
-                Destroy(target, 0);
-                enemy.Remove(target);
-                //dealDamage(target.GetComponent<Stats>());
+                //Destroy(target, 0);
+                tmpbool=target.GetComponent<Stats>().getDamage(this.dealDamage());
+                if (tmpbool==true)
+                {
+                    enemy.Remove(target);
+                    Destroy(target, 0);
+                }
                 break;
             }
         }

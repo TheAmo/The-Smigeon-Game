@@ -14,11 +14,8 @@ public class MonsterAi : MonoBehaviour
     private float horizontalAxis;
     private float verticalAxis;
 
-    public int hp;
-    public int att;
-
-
     public int distanceDetection;
+
     // Start is called before the first frame update
     void Start()
     {

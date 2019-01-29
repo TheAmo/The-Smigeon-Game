@@ -14,22 +14,20 @@ public class Stats: MonoBehaviour
     public int wisdom=10;
     public int charisma=10;
 
-    void getDamage(int damage)
+    public bool getDamage(int damage)
     {
-        hp -= damage;
-        if (damage<0)
+        hp = hp - damage;
+        Debug.Log("Dealt " + damage+"hp left "+hp);
+        if (hp <= 0)
         {
-            Destroy(this, 0);
+            Debug.Log("enemy killed");
+            return (true);
         }
+        else return (false);
     }
-    protected void dealDamage(Stats receiver)
+    public int dealDamage()
     {
-        int roll20 = Random.Range(1, 20)+att;
-        if (roll20>=receiver.ac)
-        {
-            receiver.getDamage(Random.Range(1, 6) + Mathf.FloorToInt((strenght - 10) / 2));
-
-        }
+       return(Random.Range(1, 6) + att);
     }
 
 }
