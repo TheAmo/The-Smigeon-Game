@@ -7,29 +7,27 @@ public class Stats: MonoBehaviour
     public int hp = 10;
     public int ac = 15;
     public int att = 5;
-    public int strenght=10;
-    public int dexterity=10;
-    public int constitution=10;
-    public int intelligence=10;
-    public int wisdom=10;
-    public int charisma=10;
 
-    void getDamage(int damage)
+    private int strenght=10;
+    private int dexterity=10;
+    private int constitution=10;
+    private int intelligence=10;
+    private int wisdom=10;
+    private int charisma=10;
+
+    public bool getDamage(int damage)
     {
-        hp -= damage;
-        if (damage<0)
+        hp = hp - damage;
+        Debug.Log("Dealt " + damage+"hp left "+hp);
+        if (hp <= 0)
         {
-            Destroy(this, 0);
+            return (true);
         }
+        else return (false);
     }
-    protected void dealDamage(Stats receiver)
+    public int dealDamage()
     {
-        int roll20 = Random.Range(1, 20)+att;
-        if (roll20>=receiver.ac)
-        {
-            receiver.getDamage(Random.Range(1, 6) + Mathf.FloorToInt((strenght - 10) / 2));
-
-        }
+       return(Random.Range(1, 6) + att);
     }
 
 }

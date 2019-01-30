@@ -6,9 +6,24 @@ public class PlayerAttack : Stats
 {
     public Sprite spriteDefault;
     public Sprite spriteAttack;
+    public Sprite spriteKill;
+    public int attackKnockback;
+
     private SpriteRenderer spriteRenderer;
+    private bool tmpbool;
+    private BoxCollider2D bc2d;
 
     List<GameObject> enemy = new List<GameObject>();
+
+    //To kill the player
+    public void kill()
+    {
+        Destroy(bc2d, 0);
+        spriteRenderer.sprite = spriteKill;
+        spriteRenderer.sortingOrder = 1;
+        Destroy(this.GetComponent<MoveWASD>(), 0);
+        Debug.Log("Player is Dead!!!");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -44,15 +59,19 @@ public class PlayerAttack : Stats
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
             foreach (GameObject target in enemy)
             {
-                Destroy(target, 0);
-                enemy.Remove(target);
-                //dealDamage(target.GetComponent<Stats>());
+                tmpbool=target.GetComponent<Stats>().getDamage(this.dealDamage());
+                target.GetComponent<Rigidbody2D>().AddForce(transform.forward * attackKnockback);//knockback
+                if (tmpbool==true)
+                {
+                    enemy.Remove(target);
+                    target.GetComponent<MonsterAi>().kill();
+                }
                 break;
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+            //spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
         }
     }
 }
