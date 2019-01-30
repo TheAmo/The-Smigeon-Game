@@ -6,11 +6,24 @@ public class PlayerAttack : Stats
 {
     public Sprite spriteDefault;
     public Sprite spriteAttack;
+    public Sprite spriteKill;
     public int attackKnockback;
 
     private SpriteRenderer spriteRenderer;
     private bool tmpbool;
+    private BoxCollider2D bc2d;
+
     List<GameObject> enemy = new List<GameObject>();
+
+    //To kill the player
+    public void kill()
+    {
+        Destroy(bc2d, 0);
+        spriteRenderer.sprite = spriteKill;
+        spriteRenderer.sortingOrder = 1;
+        Destroy(this.GetComponent<MoveWASD>(), 0);
+        Debug.Log("Player is Dead!!!");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +71,7 @@ public class PlayerAttack : Stats
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+            //spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
         }
     }
 }

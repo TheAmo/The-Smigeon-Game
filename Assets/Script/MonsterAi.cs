@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterAi : MonoBehaviour
+public class MonsterAi : Stats
 {  
     public float speed=1;
     public int distanceDetection;
@@ -18,6 +18,7 @@ public class MonsterAi : MonoBehaviour
     public float attackCooldown;
     private float updatetime=0;
     private float attacktime = 0;
+    private bool tmpbool;
 
     private float horizontalAxis;
     private float verticalAxis;
@@ -25,6 +26,8 @@ public class MonsterAi : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
+
+    List<GameObject> playerlist = new List<GameObject>();
 
     // Start is called before the first frame update
 
@@ -44,13 +47,30 @@ public class MonsterAi : MonoBehaviour
     public void kill()
     {
         Destroy(bc2d,0);
-        //Destroy(rb2d,0);
         speed = 0;
         updateInterval = -1;
-        attacktime = -1;
+        attackCooldown = -1;
         distanceDetection = 0;
         spriteRenderer.sprite = spriteKill;
         spriteRenderer.sortingOrder = 1;
+    }
+
+    //Player in range
+    void OnTriggerEnter2D(Collider2D range)
+    {
+        if (range.gameObject.tag == "Player")
+        {
+            playerlist.Add(range.gameObject);
+            Debug.Log("Enemy in range");
+        }
+    }
+    void OnTriggerExit2D(Collider2D range)
+    {
+        if (range.gameObject.tag == "Player")
+        {
+            playerlist.Remove(range.gameObject);
+            Debug.Log("Enemy out of range");
+        }
     }
     // Update is called once per frame
     void Update()
@@ -108,10 +128,26 @@ public class MonsterAi : MonoBehaviour
         //Attack
         attacktime += Time.deltaTime;
 
-        if(attacktime>=attackCooldown && attackCooldown!=-1 && Vector2.Distance(player.position, this.transform.position) < 2)
+        if(attacktime>=attackCooldown && attackCooldown!=-1 && Vector2.Distance(player.position, this.transform.position) < 2 && playerlist.Count > 0)
         {
+            spriteRenderer.sprite = spriteAttack;
             attacktime = 0;
-            Debug.Log("Attack");
+            Debug.Log("fuck "+player.name);
+            
+            foreach (GameObject target in playerlist)
+            {
+                tmpbool = target.GetComponent<Stats>().getDamage(this.dealDamage());
+                if (tmpbool == true)
+                {
+                    playerlist.Remove(target);
+                    target.GetComponent<PlayerAttack>().kill();
+                }
+                break;
+            }
+        }
+        if (attacktime>(attackCooldown/2) && attackCooldown!=-1) //To put back the default sprite
+        {
+            spriteRenderer.sprite = spriteDefault;
         }
     }
 
