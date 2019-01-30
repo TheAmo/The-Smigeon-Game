@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 
 public class PlayerAttack : Stats
 {
@@ -54,7 +55,7 @@ public class PlayerAttack : Stats
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
+        if (Input.GetKeyDown(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill) //If key is pushed
         {
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
             foreach (GameObject target in enemy)
@@ -65,13 +66,16 @@ public class PlayerAttack : Stats
                 {
                     enemy.Remove(target);
                     target.GetComponent<MonsterAi>().kill();
+                    
+                    GameObject.FindGameObjectWithTag("SliderHealth").GetComponent<Slider>().SetValueWithoutNotify(50f);
+
                 }
                 break;
             }
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill)
         {
-            //spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+            spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
         }
     }
 }

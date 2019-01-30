@@ -6,6 +6,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     public Sprite spriteDefault;
     public Sprite spriteInteraction;
+    public Sprite spriteKill;
     private SpriteRenderer spriteRenderer;
 
     List<GameObject> interact = new List<GameObject>();
@@ -39,7 +40,7 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) //If key is pushed
+        if (Input.GetKeyDown(KeyCode.F) && spriteRenderer.sprite != spriteKill) //If key is pushed
         {
             spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
             Vector2 playerPosition = transform.position;
@@ -50,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
                 break;
             }
         }
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.F)&&spriteRenderer.sprite != spriteKill)
         {
             spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
         }
