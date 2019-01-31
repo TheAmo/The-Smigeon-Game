@@ -28,7 +28,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Add(range.gameObject);
             //Debug.Log("Enemy in range");
-        }else if(range.gameObject.tag == "Door")
+        } 
+         else if (range.gameObject.tag.Contains("Door"))
         {
             interact.Add(range.gameObject);
         }
@@ -40,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
             interact.Remove(range.gameObject);
             //Debug.Log("Enemy out of range");
         }
-        else if (range.gameObject.tag == "Door")
+        else if (range.gameObject.tag.Contains("Door"))
         {
             interact.Remove(range.gameObject);
         }
@@ -63,17 +64,24 @@ public class PlayerInteraction : MonoBehaviour
                         
                         target.transform.Translate(0, 2.5f, 0);
                         target.transform.Rotate(0, 0, 90, Space.Self);
-                        i++;
-                        Debug.Log (i);
                     }
                     else
                     {
                         target.transform.Rotate(0, 0, -90, Space.Self);
                         target.transform.Translate(0, -2.5f, 0);
-                        i--;
                     }
                     
-                   // target.transform.SetPositionAndRotation(Vector3.up*2.0f, Quaternion.Euler(0, 0, 90));
+                }else if(target.tag == "Doorh")
+                {
+                    if (target.transform.eulerAngles.z == 90){
+                        target.transform.Rotate(0, 0, -90, Space.Self);
+                        target.transform.Translate(-2.5f, 0, 0);
+                    }
+                    else
+                    {
+                        target.transform.Translate(2.5f, 0, 0);
+                        target.transform.Rotate(0, 0, 90, Space.Self);
+                    }
                 }
                /* Destroy(target, 0);
                 interact.Remove(target);*/

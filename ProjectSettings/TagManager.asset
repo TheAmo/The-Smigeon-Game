@@ -9,6 +9,7 @@ TagManager:
   - Interactable
   - SliderHealth
   - Door
+  - Doorh
   layers:
   - Default
   - TransparentFX
