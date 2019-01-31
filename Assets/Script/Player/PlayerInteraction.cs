@@ -58,8 +58,9 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if(target.tag == "Door")
                 {
-                    if(i == 0)
+                    if(target.transform.eulerAngles.z==0)
                     {
+                        
                         target.transform.Translate(0, 2.5f, 0);
                         target.transform.Rotate(0, 0, 90, Space.Self);
                         i++;
