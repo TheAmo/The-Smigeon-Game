@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     public Sprite spriteInteraction;
     public Sprite spriteKill;
     private SpriteRenderer spriteRenderer;
+    public int i = 0;
 
     List<GameObject> interact = new List<GameObject>();
 
@@ -19,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
             spriteRenderer.sprite = spriteDefault;
     }
 
+
     // Getting the list of ennemy within range
     void OnTriggerEnter2D(Collider2D range)
     {
@@ -26,6 +28,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Add(range.gameObject);
             //Debug.Log("Enemy in range");
+        }else if(range.gameObject.tag == "Door")
+        {
+            interact.Add(range.gameObject);
         }
     }
     void OnTriggerExit2D(Collider2D range)
@@ -35,19 +40,42 @@ public class PlayerInteraction : MonoBehaviour
             interact.Remove(range.gameObject);
             //Debug.Log("Enemy out of range");
         }
+        else if (range.gameObject.tag == "Door")
+        {
+            interact.Remove(range.gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.F) && spriteRenderer.sprite != spriteKill) //If key is pushed
         {
             spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
             Vector2 playerPosition = transform.position;
             foreach (GameObject target in interact)
             {
-                Destroy(target, 0);
-                interact.Remove(target);
+                if(target.tag == "Door")
+                {
+                    if(i == 0)
+                    {
+                        target.transform.Translate(0, 2.5f, 0);
+                        target.transform.Rotate(0, 0, 90, Space.Self);
+                        i++;
+                        Debug.Log (i);
+                    }
+                    else
+                    {
+                        target.transform.Rotate(0, 0, -90, Space.Self);
+                        target.transform.Translate(0, -2.5f, 0);
+                        i--;
+                    }
+                    
+                   // target.transform.SetPositionAndRotation(Vector3.up*2.0f, Quaternion.Euler(0, 0, 90));
+                }
+               /* Destroy(target, 0);
+                interact.Remove(target);*/
                 break;
             }
         }

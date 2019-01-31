@@ -67,7 +67,7 @@ public class PlayerAttack : Stats
                     enemy.Remove(target);
                     target.GetComponent<MonsterAi>().kill();
                     
-                    GameObject.FindGameObjectWithTag("SliderHealth").GetComponent<Slider>().SetValueWithoutNotify(50f);
+                   // GameObject.FindGameObjectWithTag("SliderHealth").GetComponent<Slider>().SetValueWithoutNotify(50f);
 
                 }
                 break;
