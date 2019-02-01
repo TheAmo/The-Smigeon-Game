@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Experimental.UIElements;
 
 public class PlayerAttack : Stats
@@ -8,6 +9,7 @@ public class PlayerAttack : Stats
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     public Sprite spriteKill;
+    public UnityEngine.UI.Slider sliderHealth;
     public int attackKnockback;
 
     private SpriteRenderer spriteRenderer;
@@ -29,6 +31,8 @@ public class PlayerAttack : Stats
     // Start is called before the first frame update
     void Start()
     {
+        sliderHealth = GameObject.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>();
+        sliderHealth.maxValue = hp;
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
             spriteRenderer.sprite = spriteDefault;
@@ -55,6 +59,7 @@ public class PlayerAttack : Stats
     // Update is called once per frame
     void Update()
     {
+        sliderHealth.value = hp;
         if (Input.GetKeyDown(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill) //If key is pushed
         {
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
