@@ -49,12 +49,16 @@ public class Player : Stats
             enemy.Add(range.gameObject);
             //Debug.Log("Enemy in range");
         }
-        if (range.gameObject.tag == "Interactable")
+        else if (range.gameObject.tag == "Interactable")
         {
             interact.Add(range.gameObject);
             //Debug.Log("Enemy in range");
         }
         else if (range.gameObject.tag.Contains("Door"))
+        {
+            interact.Add(range.gameObject);
+        }
+        else if (range.gameObject.tag == ("Blacksmith"))
         {
             interact.Add(range.gameObject);
         }
@@ -66,12 +70,16 @@ public class Player : Stats
             enemy.Remove(range.gameObject);
             //Debug.Log("Enemy out of range");
         }
-        if (range.gameObject.tag == "Interactable")
+        else if (range.gameObject.tag == "Interactable")
         {
             interact.Remove(range.gameObject);
             //Debug.Log("Enemy in range");
         }
         else if (range.gameObject.tag.Contains("Door"))
+        {
+            interact.Remove(range.gameObject);
+        }
+        else if (range.gameObject.tag == ("Blacksmith"))
         {
             interact.Remove(range.gameObject);
         }
@@ -144,6 +152,10 @@ public class Player : Stats
                             target.transform.Translate(2.5f, 0, 0);
                             target.transform.Rotate(0, 0, 90, Space.Self);
                         }
+                    }
+                    else if(target.tag == "Blacksmith")
+                    {
+
                     }
                     /* Destroy(target, 0);
                      interact.Remove(target);*/
