@@ -10,6 +10,7 @@ TagManager:
   - SliderHealth
   - Door
   - Doorh
+  - Blacksmith
   layers:
   - Default
   - TransparentFX
