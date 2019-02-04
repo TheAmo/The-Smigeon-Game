@@ -60,8 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Script\CameraController.cs" />
-    <Compile Include="Assets\Script\MainMenu.cs" />
     <Compile Include="Assets\Script\MonsterAi.cs" />
     <Compile Include="Assets\Script\Player\MoveWASD.cs" />
     <Compile Include="Assets\Script\Player\PlayerAttack.cs" />
