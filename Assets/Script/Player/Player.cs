@@ -6,21 +6,22 @@ using UnityEngine.Experimental.UIElements;
 
 public class Player : Stats
 {
+    public Equipement item = new Equipement(1, 1);
+   
+
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     public Sprite spriteInteraction;
     public Sprite spriteKill;
     public UnityEngine.UI.Slider sliderHealth;
     public int attackKnockback;
-
     private SpriteRenderer spriteRenderer;
     private bool tmpbool;
     private bool isDead;
     private BoxCollider2D bc2d;
-
     List<GameObject> enemy = new List<GameObject>();
     List<GameObject> interact = new List<GameObject>();
-
+    private Sprite[] sprites;
     //To kill the player
     public void kill()
     {
@@ -30,10 +31,26 @@ public class Player : Stats
         Destroy(this.GetComponent<MoveWASD>(), 0);
         Debug.Log("Player is Dead!!!");
     }
+    public void ChangeEquipement()
+    {
+        
+            int weapon = Random.Range(0, 7);// item.getWeapon();
+            int armor = Random.Range(0, 4);// item.getArmor();
+            Debug.Log("weapon = " + weapon);
+            Debug.Log("armor = " + armor);
+            int combination = (armor * 21 + weapon * 3);
+            spriteDefault = sprites[combination];
+            spriteAttack = sprites[combination + 1];
+            spriteInteraction = sprites[combination + 2];
+            spriteRenderer.sprite = spriteDefault;
+        
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        sprites = Resources.LoadAll<Sprite>("rogue_sheet");
         sliderHealth = GameObject.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>();
         sliderHealth.maxValue = hp;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -166,6 +183,14 @@ public class Player : Stats
             {
                 spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
             }
-        }
+            //Change equipement
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                ChangeEquipement();
+            }
+            }
+        
     }
+
+    
 }
