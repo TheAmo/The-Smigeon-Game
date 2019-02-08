@@ -33,20 +33,15 @@ public class Player : Stats
     }
     public void ChangeEquipement()
     {
-        
             int weapon = Random.Range(0, 7);// item.getWeapon();
             int armor = Random.Range(0, 4);// item.getArmor();
-            Debug.Log("weapon = " + weapon);
-            Debug.Log("armor = " + armor);
             int combination = (armor * 21 + weapon * 3);
             spriteDefault = sprites[combination];
             spriteAttack = sprites[combination + 1];
             spriteInteraction = sprites[combination + 2];
             spriteRenderer.sprite = spriteDefault;
-        
-
     }
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -108,89 +103,100 @@ public class Player : Stats
         if (!isDead)
         {
             //Attack
-            if (Input.GetKeyUp(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill)
-            {
-                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
-            }
             sliderHealth.value = hp;
             if (Input.GetKeyDown(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill) //If key is pushed
             {
                 spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
-                foreach (GameObject target in enemy)
+                attack();
+                if (Input.GetKeyUp(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill)
                 {
-                    tmpbool = target.GetComponent<Stats>().getDamage(this.dealDamage());
-                    target.GetComponent<Rigidbody2D>().AddForce(transform.forward * attackKnockback);//knockback
-                    if (tmpbool == true)
-                    {
-                        enemy.Remove(target);
-                        target.GetComponent<MonsterAi>().kill();
-
-                        // GameObject.FindGameObjectWithTag("SliderHealth").GetComponent<Slider>().SetValueWithoutNotify(50f);
-
-                    }
-                    break;
+                    spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
                 }
             }
             if (Input.GetKeyUp(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill)
             {
                 spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
             }
+
             //Interaction
+            if (Input.GetKeyUp(KeyCode.F) && spriteRenderer.sprite != spriteKill)
+            {
+                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+            }
             if (Input.GetKeyDown(KeyCode.F) && spriteRenderer.sprite != spriteKill) //If key is pushed
             {
                 spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
                 Vector2 playerPosition = transform.position;
                 foreach (GameObject target in interact)
                 {
-                    if (target.tag == "Door")
+                    if (target.tag == "Door" || target.tag == "Doorh")
                     {
-                        if (target.transform.eulerAngles.z == 0)
-                        {
-
-                            target.transform.Translate(0, 2.5f, 0);
-                            target.transform.Rotate(0, 0, 90, Space.Self);
-                        }
-                        else
-                        {
-                            target.transform.Rotate(0, 0, -90, Space.Self);
-                            target.transform.Translate(0, -2.5f, 0);
-                        }
-
+                        Door(target, target.tag);
                     }
-                    else if (target.tag == "Doorh")
-                    {
-                        if (target.transform.eulerAngles.z == 90)
-                        {
-                            target.transform.Rotate(0, 0, -90, Space.Self);
-                            target.transform.Translate(-2.5f, 0, 0);
-                        }
-                        else
-                        {
-                            target.transform.Translate(2.5f, 0, 0);
-                            target.transform.Rotate(0, 0, 90, Space.Self);
-                        }
-                    }
-                    else if(target.tag == "Blacksmith")
+                    else if (target.tag == "Blacksmith")
                     {
 
                     }
                     /* Destroy(target, 0);
                      interact.Remove(target);*/
                     break;
-                }
+                }              
             }
-            if (Input.GetKeyUp(KeyCode.F) && spriteRenderer.sprite != spriteKill)
-            {
-                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
-            }
+            
+
             //Change equipement
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 ChangeEquipement();
             }
-            }
+        }
         
     }
 
-    
+    public void Door(GameObject target, string tag)
+    {
+        if (target.tag == "Door")
+        {
+            if (target.transform.eulerAngles.z == 0)
+            {
+                target.transform.Translate(0, 2.5f, 0);
+                target.transform.Rotate(0, 0, 90, Space.Self);
+            }
+            else {
+                target.transform.Rotate(0, 0, -90, Space.Self);
+                target.transform.Translate(0, -2.5f, 0);
+            }
+        }
+        else {
+            if (target.transform.eulerAngles.z == 90)
+            {
+                target.transform.Rotate(0, 0, -90, Space.Self);
+                target.transform.Translate(-2.5f, 0, 0);
+            }
+            else
+            {
+                target.transform.Translate(2.5f, 0, 0);
+                target.transform.Rotate(0, 0, 90, Space.Self);
+            }
+        }
+    }
+
+    public void attack()
+    {
+
+        foreach (GameObject target in enemy)
+        {
+            tmpbool = target.GetComponent<Stats>().getDamage(this.dealDamage());
+            target.GetComponent<Rigidbody2D>().AddForce(transform.forward * attackKnockback);//knockback
+            if (tmpbool == true)
+            {
+                enemy.Remove(target);
+                target.GetComponent<MonsterAi>().kill();
+
+                // GameObject.FindGameObjectWithTag("SliderHealth").GetComponent<Slider>().SetValueWithoutNotify(50f);
+
+            }
+            break;
+        }
+    }
 }
