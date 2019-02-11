@@ -3,20 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityNpgsql;
 
-public class Items : MonoBehaviour
-{
-    string strConnection = "Server=localhost; Port=5432; DataBase=postgres; Username=postgres; Password=Milena14 ";
 
-    NpgsqlConnection dbConnection = null;
-    NpgsqlCommand dbCmd = null;
+public class Items 
+{
+    private string name;
+    private int damage;
+    private int defense;
+    private int price;
+
+    public Items(string name, int damage, int defense, int price) 
+    {
+        this.name = name;
+        this.damage = damage;
+        this.defense = defense;
+        this.price = price;
+    }
+
+    public Items()
+    {
+        
+    }
+
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        dbConnection = new NpgsqlConnection(strConnection);
-
-
         
     }
 

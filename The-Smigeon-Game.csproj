@@ -630,7 +630,7 @@
   <ItemGroup>
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Script\CameraController.cs" />
-    <Compile Include="Assets\Script\DataBase.cs" />
+    <Compile Include="Assets\Script\DataBaseSmi.cs" />
     <Compile Include="Assets\Script\Items.cs" />
     <Compile Include="Assets\Script\MonsterAi.cs" />
     <Compile Include="Assets\Script\Player\MoveWASD.cs" />
