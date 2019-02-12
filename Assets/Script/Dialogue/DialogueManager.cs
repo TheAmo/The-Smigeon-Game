@@ -7,10 +7,13 @@ public class DialogueManager : MonoBehaviour
 {
     public Text Name;
     public Text Dialogue;
+    public Button continueButton;
     private Queue<string> sentences;
     // Start is called before the first frame update
     void Start()
     {
+        continueButton.enabled = true;
+        continueButton.interactable = true;
         sentences = new Queue<string>();
     }
 
@@ -34,6 +37,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void DisplayNextText()
     {
+        Debug.Log("re");
          if(sentences.Count == 0)
         {
             EndText();

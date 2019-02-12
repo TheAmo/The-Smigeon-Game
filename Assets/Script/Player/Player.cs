@@ -166,6 +166,15 @@ public class Player : Stats
             {
                 spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
             }
+            if (Input.GetKeyUp(KeyCode.G) && spriteRenderer.sprite != spriteKill)
+            {
+                string[] ss = {"asdas", "ffff", "wader"};
+                Dialogue d = new Dialogue();
+                d.sentences = ss;
+                d.name = "The Rock";
+                DialogueTrigger dt = new DialogueTrigger(d);
+                dt.TriggerDialogue();
+            }
         }
     }
 }
