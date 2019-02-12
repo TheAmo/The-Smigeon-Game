@@ -9,6 +9,9 @@ public class DialogueManager : MonoBehaviour
     public Text Dialogue;
     public Button continueButton;
     private Queue<string> sentences;
+
+    public Animator a1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +20,17 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            DisplayNextText();
+        }
+    }
+
     public void StartText(Dialogue d)
     {
+        a1.SetBool("isOpen", true);
         Debug.Log("START DIALOGUE CALISS");
         Name.text = d.name;
         sentences.Clear();
@@ -28,12 +40,13 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
         DisplayNextText();
+        
     }
 
        
     public void EndText()
     {
-
+        a1.SetBool("isOpen", false);
     }
     public void DisplayNextText()
     {
