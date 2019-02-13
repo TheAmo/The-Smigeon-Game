@@ -140,7 +140,7 @@ public class MonsterAi : Stats
                 if (tmpbool == true)
                 {
                     playerlist.Remove(target);
-                    target.GetComponent<PlayerAttack>().kill();
+                    target.GetComponent<Player>().kill();
                 }
                 break;
             }
