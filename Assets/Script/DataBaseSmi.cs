@@ -88,6 +88,9 @@ public class DataBaseSmi : MonoBehaviour
         string name;
         int id, damage, defense, price;
 
+        DataTable m_dbTableWea = new DataTable();
+        m_dbTableWea = SelectWeapons();
+
         for (int i = 0; i < m_dbTableWea.Rows.Count; i++)
         {
             id = Convert.ToInt32(m_dbTableWea.Rows[i]["id"]);
@@ -107,6 +110,9 @@ public class DataBaseSmi : MonoBehaviour
         List<Items> materials = new List<Items>();
         string name;
         int id, damage, defense, price;
+
+        DataTable m_dbTableMa = new DataTable();
+        m_dbTableMa = SelectMaterials();
 
         Debug.Log(m_dbTableMa.Rows.Count);
         for (int i = 1; i < m_dbTableMa.Rows.Count; i++)
@@ -136,7 +142,7 @@ public class DataBaseSmi : MonoBehaviour
 
         List<Items> weapon_material = new List<Items>();
 
-        m_dbTableMaWea = new DataTable();
+        DataTable m_dbTableMaWea = new DataTable();
         m_dbTableMaWea = SelectWeaponsMaterials();
 
         for (int i = 0; i < weapons.Count; i++)
@@ -169,21 +175,7 @@ public class DataBaseSmi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_dbTableWea = new DataTable();
-        m_dbTableWea = SelectWeapons();
-
-        m_dbTableMa = new DataTable();
-        m_dbTableMa = SelectMaterials();
-
-        m_dbTableMaWea = new DataTable();
-        m_dbTableMaWea = SelectWeaponsMaterials();
-
-        List<Items> weapons = getWeapons();
-        List<Items> materials = getMaterials();
-
-        List<Items> weapons_materials = getMaWea();
-        //Debug.Log(weapons_materials[0].getName());
-        //Debug.Log(weapons_materials[0].getName() + " " + weapons_materials[0].getName() + " " + weapons_materials[0].getDamage() + " " + weapons_materials[0].getDefense() + " " + weapons_materials[0].getPrice() + " " + weapons_materials[0].getMaterial());
+       
     }
 
     // Update is called once per frame
