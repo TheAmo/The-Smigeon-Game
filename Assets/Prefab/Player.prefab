@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3690426719176018748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32, y: 30, z: 0}
+  m_LocalPosition: {x: 33.5, y: 30.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc9c54a774178f4094e2c3edd42e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 47
   ac: 15
   att: 2
   spriteDefault: {fileID: 21300090, guid: 4f2f6c4b65b07c646ae488aee92ad2d7, type: 3}
@@ -178,6 +178,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025227547, y: 1.4504986}
+  m_Offset: {x: 0, y: 1.61}
   serializedVersion: 2
-  m_Radius: 1.7513094
+  m_Radius: 1.3790817
