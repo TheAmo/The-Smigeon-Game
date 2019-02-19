@@ -232,13 +232,13 @@ namespace Light2D
             if (_extendedLightTextureSize.y%2 != 0)
                 _extendedLightTextureSize.y++;
 
-            if (_extendedLightTextureSize.x > 1024 || _extendedLightTextureSize.y > 1024 ||
+            /*if (_extendedLightTextureSize.x > 1024 || _extendedLightTextureSize.y > 1024 ||
                 _smallLightTextureSize.x > 1024 || _smallLightTextureSize.y > 1024)
             {
                 Debug.LogError("LightPixelSize is too small. Turning off lighting system.");
                 enabled = false;
                 return;
-            }
+            }*/
 
             if (_extendedLightTextureSize.x < 4 || _extendedLightTextureSize.y < 4 ||
                 _smallLightTextureSize.x < 4 || _smallLightTextureSize.y < 4)
