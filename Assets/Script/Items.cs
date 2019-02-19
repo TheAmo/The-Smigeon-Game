@@ -30,6 +30,14 @@ public class Items
         this.price = price;
         this.material = material;
     }
+    public Items(string name, int damage, int defense, int price, string material)
+    {
+        this.name = name;
+        this.damage = damage;
+        this.defense = defense;
+        this.price = price;
+        this.material = material;
+    }
 
     public Items()
     {
