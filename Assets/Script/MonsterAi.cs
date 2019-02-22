@@ -10,7 +10,7 @@ public class MonsterAi : Stats
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     public Sprite spriteKill;
-
+    public Sprite spriteLootbag;
     float degfactor = 360 / (2 * Mathf.PI);
     float sqrt2 = 1 / Mathf.Sqrt(2);
 
@@ -22,20 +22,24 @@ public class MonsterAi : Stats
 
     private float horizontalAxis;
     private float verticalAxis;
-
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
+    private SpriteRenderer SRLootbag;
 
+    public GameObject lootbag;
     List<GameObject> playerlist = new List<GameObject>();
 
     // Start is called before the first frame update
 
     void Start()
     {
+        SRLootbag = GetComponent<SpriteRenderer>();
+        lootbag = new GameObject();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
+
 
         if (spriteRenderer == null)
             spriteRenderer.sprite = spriteDefault;
@@ -46,6 +50,10 @@ public class MonsterAi : Stats
     //To kill the monster
     public void kill()
     {
+        lootbag.SetActive(true);
+        Instantiate(lootbag,transform.position,Quaternion.identity);
+        SRLootbag.sprite = spriteLootbag;
+
         Destroy(bc2d,0);
         speed = 0;
         updateInterval = -1;
