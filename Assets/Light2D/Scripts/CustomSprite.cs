@@ -76,10 +76,14 @@ namespace Light2D
             _uv0 = new Vector2[4];
             _vertices = new Vector3[4];
             _triangles = new[] {2, 1, 0, 1, 2, 3};
-            _meshRenderer = GetComponent<MeshRenderer>();
+            if (!gameObject.tag.Contains("Door"))
+            {
+                _meshRenderer = GetComponent<MeshRenderer>();
+            }
+
             _meshFilter = GetComponent<MeshFilter>();
 
-            if (_meshRenderer == null)
+            if (_meshRenderer == null && !gameObject.tag.Contains("Door") )
             {
                 _meshRenderer = gameObject.AddComponent<MeshRenderer>();
                 _meshRenderer.castShadows = _meshRenderer.receiveShadows = false;
@@ -98,17 +102,23 @@ namespace Light2D
 #endif
 
             TryReleaseMesh();
-            _meshFilter.sharedMesh = _mesh = new Mesh();
-            _mesh.MarkDynamic();
-            _mesh.name = GeneratedMeshName;
+            if (!gameObject.tag.Contains("Door"))
+            {
+                _meshFilter.sharedMesh = _mesh = new Mesh();
+                _mesh.MarkDynamic();
+                _mesh.name = GeneratedMeshName;
+            }
+           
 
             _tangents = new Vector4[4];
             for (int i = 0; i < _tangents.Length; i++)
                 _tangents[i] = new Vector4(1, 0, 0);
 
             UpdateMeshData(true);
-
-            RendererEnabled = _meshRenderer.enabled;
+            if (!gameObject.tag.Contains("Door"))
+            {
+                RendererEnabled = _meshRenderer.enabled;
+            }
         }
 
         protected virtual void Start()
