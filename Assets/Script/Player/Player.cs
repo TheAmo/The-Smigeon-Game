@@ -74,6 +74,10 @@ public class Player : Stats
         {
             interact.Add(range.gameObject);
         }
+        else if(range.gameObject.tag == ("Lootbag"))
+        {
+            interact.Add(range.gameObject);
+        }
     }
     void OnTriggerExit2D(Collider2D range)
     {
@@ -92,6 +96,10 @@ public class Player : Stats
             interact.Remove(range.gameObject);
         }
         else if (range.gameObject.tag == ("Blacksmith"))
+        {
+            interact.Remove(range.gameObject);
+        }
+        else if (range.gameObject.tag == ("Lootbag"))
         {
             interact.Remove(range.gameObject);
         }
@@ -129,14 +137,18 @@ public class Player : Stats
                 Vector2 playerPosition = transform.position;
                 foreach (GameObject target in interact)
                 {
-                    if (target.tag == "Door" || target.tag == "Doorh")
+                    if (target.tag.Contains("Door"))
                     {
                         Door(target, target.tag);
                     }
                     else if (target.tag == "Blacksmith")
                     {
 
+                    }if(target.tag == "Lootbag")
+                    {
+                        PickLoot(target);
                     }
+
                     /* Destroy(target, 0);
                      interact.Remove(target);*/
                     break;
@@ -189,7 +201,13 @@ public class Player : Stats
             }
         }
     }
-
+    public void PickLoot(GameObject target)
+    {
+        Loot loot = new Loot();
+        loot.DropType(target.name);
+        Destroy(target);
+        interact.Remove(target);
+    }
     public void attack()
     {
 

@@ -27,7 +27,7 @@ public class MonsterAi : Stats
     private BoxCollider2D bc2d;
     private SpriteRenderer SRLootbag;
 
-    public GameObject lootbag;
+    //public GameObject lootbag;
     List<GameObject> playerlist = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -35,7 +35,8 @@ public class MonsterAi : Stats
     void Start()
     {
         SRLootbag = GetComponent<SpriteRenderer>();
-        lootbag = new GameObject();
+        SRLootbag.sprite = spriteLootbag;
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
@@ -50,10 +51,16 @@ public class MonsterAi : Stats
     //To kill the monster
     public void kill()
     {
-        lootbag.SetActive(true);
-        Instantiate(lootbag,transform.position,Quaternion.identity);
-        SRLootbag.sprite = spriteLootbag;
-
+        GameObject lootbag = new GameObject();
+        lootbag.name = "loot"+this.name;
+        lootbag.AddComponent<SpriteRenderer>();
+        lootbag.AddComponent<BoxCollider2D>().size = new Vector2(3, 3);
+        lootbag.GetComponent<BoxCollider2D>().isTrigger = true;
+        lootbag.tag = "Lootbag";
+        lootbag.GetComponent<SpriteRenderer>().sprite = spriteLootbag;
+        lootbag.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        lootbag.transform.position = this.transform.position;
+        
         Destroy(bc2d,0);
         speed = 0;
         updateInterval = -1;
