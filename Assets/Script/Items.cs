@@ -6,12 +6,12 @@ using UnityNpgsql;
 
 public class Items 
 {
-    private int id { get; set; }
-    private string name { get; set; }
-    private int damage { get; set; }
-    private int defense { get; set; }
-    private double price { get; set; }
-    private string material { get; set; }
+    private int id;
+    private string name;
+    private int damage;
+    private int defense;
+    private double price;
+    private string material;
 
     public Items(int id, string name, int damage, int defense, double price) 
     {
@@ -74,19 +74,4 @@ public class Items
         return material;
     }
 
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

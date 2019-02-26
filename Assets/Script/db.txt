@@ -70,4 +70,6 @@ INSERT INTO weapon_material (id_weapon, id_material) VALUES (3, 2);
 
 SELECT * FROM weapon
 LEFT JOIN weapon_material ON weapon.id= weapon_material.id_weapon
-LEFT JOIN material ON material.id = weapon_material.id_material
+LEFT JOIN material ON material.id = weapon_material.id_material;
+
+SELECT price FROM weapon WHERE weapon.name = 'mace';  

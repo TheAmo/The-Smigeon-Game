@@ -12,12 +12,14 @@ public class DataBaseSmi : MonoBehaviour
     private DataTable m_dbTableWea;
     private DataTable m_dbTableMa;
     private DataTable m_dbTableMaWea;
-
-
+    private double m_valWea;
+    private double m_valMa;
+ 
     private string strConnection = "Server=localhost; Port=5432; DataBase=dbsmigeon; Username=postgres; Password=Milena14";
 
     private NpgsqlConnection dbConnection = null;
     private NpgsqlCommand dbCmd = null;
+    private NpgsqlDataReader dbReader = null;
 
     public DataTable SelectWeapons()
     {
@@ -117,7 +119,6 @@ public class DataBaseSmi : MonoBehaviour
         DataTable m_dbTableMa = new DataTable();
         m_dbTableMa = SelectMaterials();
 
-        //Debug.Log(m_dbTableMa.Rows.Count);
         for (int i = 0; i < m_dbTableMa.Rows.Count; i++)
         {
             id = Convert.ToInt32(m_dbTableMa.Rows[i]["id"]);
@@ -126,8 +127,6 @@ public class DataBaseSmi : MonoBehaviour
             defense = Convert.ToInt32(m_dbTableMa.Rows[i]["defense"]);
             price = Convert.ToDouble(m_dbTableMa.Rows[i]["price"]);
 
-            //Debug.Log(id + " " + name + " " + damage + " " + defense + " " + price);
-
             materials.Add(new Items(id, name, damage, defense, price));
             
         }
@@ -135,87 +134,48 @@ public class DataBaseSmi : MonoBehaviour
         return materials;
     }
 
-    public List<Items> getMaWea()
+    public double getWeaInfo(String info, String name, String mat)
     {
-        int id_weapon, id_material;
-
-        List<Items> weapons = new List<Items>();
-        weapons = getWeapons();
-
-        List<Items> materials = new List<Items>();
-        materials = getMaterials();
-
-        List<Items> weapon_material = new List<Items>();
-
-        DataTable m_dbTableMaWea = new DataTable();
-        m_dbTableMaWea = SelectWeaponsMaterials();
-
-        for (int i = 0; i < m_dbTableMaWea.Rows.Count; i++)
-        {
-            id_weapon = Convert.ToInt32(m_dbTableMaWea.Rows[i]["id_weapon"]);
-            id_material = Convert.ToInt32(m_dbTableMaWea.Rows[i]["id_material"]);
-
-            for (int j = 0; j < weapons.Count; j++)
-            {
-                if (id_weapon == weapons[j].getId())
-                {
-                    Debug.Log("                    DANS IF ");
-                    weapon_material.Add(new Items(weapons[j].getName(),
-                        weapons[j].getDamage() + materials[id_material - 1].getDamage(),
-                        weapons[j].getDefense() + materials[id_material - 1].getDefense(),
-                        weapons[j].getPrice() + materials[id_material - 1].getPrice(),
-                        materials[id_material - 1].getName()));
-                    Debug.Log(weapon_material[j].getName() + " " + weapon_material[j].getDamage() + " " + weapon_material[j].getDefense() + " " + weapon_material[j].getPrice() + " " + weapon_material[j].getMaterial() + "                       ITEM ");
-                }
-                else Debug.Log(id_weapon + " != " + weapons[j].getId());
-            }
-        }
-
-        return weapon_material;
-        
-    }
-
-    public void getWeaPrice(String name)
-    {
-        NpgsqlDataAdapter dbAdapter;
-        double price;
-
         dbConnection = new NpgsqlConnection(strConnection);
         dbConnection.Open();
 
-        string strSelect = "SELECT price FROM weapon WHERE weapon.name =  \'" + name + "\'";
+        string strSelectWea = "SELECT " + info + " FROM weapon WHERE weapon."+ info + " =  \'" + name + "\'";
+        string strSelectMa = "SELECT " + info + " FROM material WHERE material." + info +" =  \'" + mat + "\'";
 
-        using (NpgsqlCommand command = new NpgsqlCommand(strSelect, dbConnection))
+
+        using (dbCmd = new NpgsqlCommand(strSelectWea, dbConnection))
         {
-            int val;
-            NpgsqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            dbReader = dbCmd.ExecuteReader();
+            while (dbReader.Read())
             {
-                val = Int32.Parse(reader[0].ToString());
-                Debug.Log("val = " + val);
-            }  
+                m_valWea = double.Parse(dbReader[0].ToString());
+                m_valWea = double.Parse(dbReader[0].ToString());
+            }
         }
 
-        //dbCmd = new NpgsqlCommand(strSelect, dbConnection);
-
-
-
-        //dbAdapter = new NpgsqlDataAdapter(dbCmd);
-
-        
+        using (dbCmd = new NpgsqlCommand(strSelectMa, dbConnection))
+        {
+            dbReader = dbCmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                m_valMa = double.Parse(dbReader[0].ToString());
+            }
+        }
 
         dbConnection.Close();
-       
+
+        return (m_valWea + m_valMa);
     }
+
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("avant");
-        List<Items> weaMa = getMaWea();
-        string name = "mace"; 
-        getWeaPrice(name);
-        Debug.Log("apres");
+        string info = "price";
+        string name = "mace";
+        string mat = "bronze";
+        double price = getWeaInfo(info, name, mat);
 
     }
 
