@@ -10,10 +10,10 @@ public class Items
     private string name { get; set; }
     private int damage { get; set; }
     private int defense { get; set; }
-    private int price { get; set; }
+    private double price { get; set; }
     private string material { get; set; }
 
-    public Items(int id, string name, int damage, int defense, int price) 
+    public Items(int id, string name, int damage, int defense, double price) 
     {
         this.id = id;
         this.name = name;
@@ -21,7 +21,7 @@ public class Items
         this.defense = defense;
         this.price = price;
     }
-    public Items(int id, string name, int damage, int defense, int price, string material)
+    public Items(int id, string name, int damage, int defense, double price, string material)
     {
         this.id = id;
         this.name = name;
@@ -30,7 +30,7 @@ public class Items
         this.price = price;
         this.material = material;
     }
-    public Items(string name, int damage, int defense, int price, string material)
+    public Items(string name, int damage, int defense, double price, string material)
     {
         this.name = name;
         this.damage = damage;
@@ -46,32 +46,32 @@ public class Items
 
     public int getId()
     {
-        return this.id;
+        return id;
     }
 
     public string getName()
     {
-        return this.name;
+        return name;
     }
 
     public int getDamage()
     {
-        return this.damage;
+        return damage;
     }
 
     public int getDefense()
     {
-        return this.defense;
+        return defense;
     }
 
-    public int getPrice()
+    public double getPrice()
     {
-        return this.price;
+        return price;
     }
 
     public string getMaterial()
     {
-        return this.material;
+        return material;
     }
 
 

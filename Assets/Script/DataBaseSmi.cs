@@ -87,7 +87,8 @@ public class DataBaseSmi : MonoBehaviour
     {
         List<Items> weapons = new List<Items>();
         string name;
-        int id, damage, defense, price;
+        int id, damage, defense;
+        double price;
 
         DataTable m_dbTableWea = new DataTable();
         m_dbTableWea = SelectWeapons();
@@ -98,7 +99,7 @@ public class DataBaseSmi : MonoBehaviour
             name = (m_dbTableWea.Rows[i]["name"]).ToString();
             damage = Convert.ToInt32(m_dbTableWea.Rows[i]["damage"]);
             defense = Convert.ToInt32(m_dbTableWea.Rows[i]["defense"]);
-            price = Convert.ToInt32(m_dbTableWea.Rows[i]["price"]);
+            price = Convert.ToDouble(m_dbTableWea.Rows[i]["price"]);
 
             weapons.Add(new Items(id, name, damage, defense, price));
         }
@@ -110,7 +111,8 @@ public class DataBaseSmi : MonoBehaviour
     {
         List<Items> materials = new List<Items>();
         string name;
-        int id, damage, defense, price;
+        int id, damage, defense;
+        double price;
 
         DataTable m_dbTableMa = new DataTable();
         m_dbTableMa = SelectMaterials();
@@ -122,7 +124,7 @@ public class DataBaseSmi : MonoBehaviour
             name = (m_dbTableMa.Rows[i]["name"]).ToString();
             damage = Convert.ToInt32(m_dbTableMa.Rows[i]["damage"]);
             defense = Convert.ToInt32(m_dbTableMa.Rows[i]["defense"]);
-            price = Convert.ToInt32(m_dbTableMa.Rows[i]["price"]);
+            price = Convert.ToDouble(m_dbTableMa.Rows[i]["price"]);
 
             //Debug.Log(id + " " + name + " " + damage + " " + defense + " " + price);
 
@@ -173,11 +175,46 @@ public class DataBaseSmi : MonoBehaviour
         
     }
 
+    public void getWeaPrice(String name)
+    {
+        NpgsqlDataAdapter dbAdapter;
+        double price;
+
+        dbConnection = new NpgsqlConnection(strConnection);
+        dbConnection.Open();
+
+        string strSelect = "SELECT price FROM weapon WHERE weapon.name =  \'" + name + "\'";
+
+        using (NpgsqlCommand command = new NpgsqlCommand(strSelect, dbConnection))
+        {
+            int val;
+            NpgsqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                val = Int32.Parse(reader[0].ToString());
+                Debug.Log("val = " + val);
+            }  
+        }
+
+        //dbCmd = new NpgsqlCommand(strSelect, dbConnection);
+
+
+
+        //dbAdapter = new NpgsqlDataAdapter(dbCmd);
+
+        
+
+        dbConnection.Close();
+       
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("avant");
         List<Items> weaMa = getMaWea();
+        string name = "mace"; 
+        getWeaPrice(name);
         Debug.Log("apres");
 
     }
@@ -188,4 +225,6 @@ public class DataBaseSmi : MonoBehaviour
    
 
     }
+
+    
 }
