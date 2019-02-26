@@ -7,7 +7,6 @@ using UnityEngine.Experimental.UIElements;
 public class Player : Stats
 {
     public Equipement item = new Equipement(1, 1);
-   
 
     public Sprite spriteDefault;
     public Sprite spriteAttack;
@@ -104,7 +103,6 @@ public class Player : Stats
             interact.Remove(range.gameObject);
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -148,14 +146,11 @@ public class Player : Stats
                     {
                         PickLoot(target);
                     }
-
                     /* Destroy(target, 0);
                      interact.Remove(target);*/
                     break;
                 }              
             }
-            
-
             //Change equipement
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -170,10 +165,8 @@ public class Player : Stats
                 DialogueTrigger dt = new DialogueTrigger(d);
                 dt.TriggerDialogue();
             }
-        }
-        
+        }       
     }
-
     public void Door(GameObject target, string tag)
     {
         if (target.tag == "Door")
@@ -219,8 +212,6 @@ public class Player : Stats
             {
                 enemy.Remove(target);
                 target.GetComponent<MonsterAi>().kill();
-
-                // GameObject.FindGameObjectWithTag("SliderHealth").GetComponent<Slider>().SetValueWithoutNotify(50f);
 
             }
             break;
