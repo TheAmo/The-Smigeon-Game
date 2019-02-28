@@ -39,10 +39,9 @@ public class Stats: MonoBehaviour
     {
         return this.gold;
     }
-    public float addGold(float money)
+    public void addGold(float money)
     {
         this.gold += money;
-        return this.gold;
     }
 }
 

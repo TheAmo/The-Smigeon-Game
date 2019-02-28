@@ -6,24 +6,26 @@ using UnityEngine.UI;
 
 public class Money : MonoBehaviour
 {
-    public string moneys;
+    private string moneys;
     public float money;
-    Text textm;
+    public Text textm;
     public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         textm = this.GetComponent<Text>();
-        moneys = player.GetComponent<Stats>().getGold().ToString();
-        Debug.Log(textm.text);
+       /* money = player.GetComponent<Stats>().getGold();
+        moneys = money.ToString();
+        textm.text = moneys;*/
     }
     
     // Update is called once per frame
     void Update()
     {
-        //moneys = player.GetComponent<Stats>().getGold().ToString();
-
+        money = player.GetComponent<Stats>().getGold();
+        moneys = money.ToString();
         if(textm.text != moneys)
         {
             textm.text = moneys;

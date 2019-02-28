@@ -27,7 +27,6 @@ public class MonsterAi : Stats
     private BoxCollider2D bc2d;
     private SpriteRenderer SRLootbag;
 
-    //public GameObject lootbag;
     List<GameObject> playerlist = new List<GameObject>();
 
     // Start is called before the first frame update

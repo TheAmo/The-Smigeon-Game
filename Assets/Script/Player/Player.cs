@@ -197,9 +197,11 @@ public class Player : Stats
     public void PickLoot(GameObject target)
     {
         Loot loot = new Loot();
-        loot.DropType(target.name);
+        int gold = loot.DropType(target.name);
         Destroy(target);
         interact.Remove(target);
+        this.GetComponent<Stats>().addGold(gold);
+        
     }
     public void attack()
     {
