@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Automatically updating mesh, material and main texture of light obstacle. 

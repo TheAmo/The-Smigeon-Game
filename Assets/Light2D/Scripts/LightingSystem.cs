@@ -6,7 +6,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Main script for lights. Should be attached to camera.

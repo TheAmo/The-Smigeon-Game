@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     [ExecuteInEditMode]
     public class SortingOrderSetter : MonoBehaviour

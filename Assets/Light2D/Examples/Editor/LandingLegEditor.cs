@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEditor;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     [CustomEditor(typeof (LandingLeg))]
     [CanEditMultipleObjects]

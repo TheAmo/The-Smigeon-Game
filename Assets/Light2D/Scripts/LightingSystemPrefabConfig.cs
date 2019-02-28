@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Some configuration for LightingSystem. Containd in lighting system prefab, destroyed after ininial setup.

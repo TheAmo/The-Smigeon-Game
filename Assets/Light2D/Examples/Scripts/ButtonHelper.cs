@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     public class ButtonHelper : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {

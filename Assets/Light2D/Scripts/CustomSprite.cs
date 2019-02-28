@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Light2D;
+using Light;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Custom sprite wich uses MeshFilter and MeshRenderer to render.

@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     public class ColorTweener : MonoBehaviour
     {

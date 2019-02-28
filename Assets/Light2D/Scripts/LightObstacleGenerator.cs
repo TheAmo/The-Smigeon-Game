@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// That class is generating obstacles for object it attached to.

@@ -8,7 +8,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Sprite with dual color support. Grabs sprite from GameSpriteRenderer field.

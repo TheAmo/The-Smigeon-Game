@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     /// <summary>
     /// SimpleRNG is a simple random number generator based on 

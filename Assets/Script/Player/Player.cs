@@ -22,6 +22,11 @@ public class Player : Stats
     List<GameObject> enemy = new List<GameObject>();
     List<GameObject> interact = new List<GameObject>();
     private Sprite[] sprites;
+
+    private short lanternLightToggle;
+
+    private GameObject lantern;
+
     //To kill the player
     public void kill()
     {
@@ -51,6 +56,9 @@ public class Player : Stats
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
             spriteRenderer.sprite = spriteDefault;
+
+        lantern=GameObject.Find("Light Lantern");
+        lanternLightToggle = -1;
     }
 
     // Getting the list of ennemy within range
@@ -108,8 +116,24 @@ public class Player : Stats
     // Update is called once per frame
     void Update()
     {
+
         if (!isDead)
         {
+            //Light toggle
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (lanternLightToggle == -1)
+                {
+                    lanternLightToggle *= -1;
+                    lantern.SetActive(true);
+                }
+                else if (lanternLightToggle == 1)
+                {
+                    lanternLightToggle *= -1;
+                    lantern.SetActive(false);
+                }
+            }
+
             //Attack
             sliderHealth.value = hp;
             if (Input.GetKeyDown(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill) //If key is pushed

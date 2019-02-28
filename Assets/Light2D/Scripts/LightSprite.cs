@@ -8,7 +8,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Used to draw lights. Puts LightOrigin world position to UV1.

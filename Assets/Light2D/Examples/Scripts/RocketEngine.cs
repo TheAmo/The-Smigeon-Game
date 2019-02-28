@@ -6,7 +6,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     public class RocketEngine : MonoBehaviour
     {

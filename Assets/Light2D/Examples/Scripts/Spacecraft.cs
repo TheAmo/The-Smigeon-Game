@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     public class Spacecraft : MonoBehaviour
     {
