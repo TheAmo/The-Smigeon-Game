@@ -21,6 +21,8 @@ INSERT INTO weapon (name, price, damage, defense) VALUES ('longsword', 50, 10, 4
 -- SHOW
 SELECT name, damage, defense, price FROM weapon;
 
+DROP TABLE IF EXISTS playerinventory CASCADE;
+
 -- MATERIAL TABLE
 DROP TABLE if exists material CASCADE;
 
@@ -70,4 +72,15 @@ INSERT INTO weapon_material (id_weapon, id_material) VALUES (3, 2);
 
 SELECT * FROM weapon
 LEFT JOIN weapon_material ON weapon.id= weapon_material.id_weapon
-LEFT JOIN material ON material.id = weapon_material.id_material
+LEFT JOIN material ON material.id = weapon_material.id_material;
+
+SELECT price FROM weapon WHERE weapon.name = 'mace'; 
+
+--PLAYER INVENTORY TABLE
+CREATE TABLE playerinventory(
+	id serial PRIMARY KEY,
+	weapons varchar(255) NOT NULL,
+	money DOUBLE NOT NULL,
+	items varchar(255) NOT NULL	
+)
+
