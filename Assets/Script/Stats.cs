@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Stats: MonoBehaviour
 {
+    public float gold;
+
     public int hp = 10;
     public int ac = 15;
     public int att = 5;
@@ -29,7 +31,18 @@ public class Stats: MonoBehaviour
     {
        return(Random.Range(1, 6) + att);
     }
-
+    public void setGold(float money)
+    {
+        this.gold = money;
+    }
+    public float getGold()
+    {
+        return this.gold;
+    }
+    public void addGold(float money)
+    {
+        this.gold += money;
+    }
 }
 
 
