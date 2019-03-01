@@ -40,29 +40,18 @@ public class DataBaseSmi : MonoBehaviour
         return m_dbTable;
     }
 
-    public DataTable SelectWeapons()
+    public DataTable Select(string strSelect)
     {
-        m_dbTableWea = new DataTable();
+        m_dbTable = new DataTable();
 
-        string strSelect = "SELECT * FROM \"weapon\"";
+        //string strSelect = "SELECT * FROM \"weapon\"";
 
-        m_dbTableWea = Connection(strSelect);
+        m_dbTable = Connection(strSelect);
 
-        return m_dbTableWea;
+        return m_dbTable;
     }
 
-    public DataTable SelectMaterials()
-    {
-        m_dbTableMa = new DataTable();
-
-        string strSelect = "SELECT * FROM \"material\"";
-
-        m_dbTableMa = Connection(strSelect);
-
-        return m_dbTableMa;
-    }
-
-    public DataTable SelectWeaponsMaterials()
+      /*public DataTable SelectWeaponsMaterials()
     {
 
         m_dbTableMaWea = new DataTable();
@@ -72,7 +61,7 @@ public class DataBaseSmi : MonoBehaviour
         m_dbTableMaWea = Connection(strSelect);
 
         return m_dbTableMaWea;
-    }
+    }*/
 
     public List<Items> getAllWeapons()
     {
@@ -81,8 +70,10 @@ public class DataBaseSmi : MonoBehaviour
         int id, damage, defense;
         double price;
 
-        DataTable m_dbTableWea = new DataTable();
-        m_dbTableWea = SelectWeapons();
+        string strSelect = "SELECT * FROM \"weapon\"";
+
+        m_dbTableWea = new DataTable();
+        m_dbTableWea = Select(strSelect);
 
         for (int i = 0; i < m_dbTableWea.Rows.Count; i++)
         {
@@ -105,8 +96,10 @@ public class DataBaseSmi : MonoBehaviour
         int id, damage, defense;
         double price;
 
-        DataTable m_dbTableMa = new DataTable();
-        m_dbTableMa = SelectMaterials();
+        string strSelect = "SELECT * FROM \"material\"";
+
+        m_dbTableMa = new DataTable();
+        m_dbTableMa = Select(strSelect);
 
         for (int i = 0; i < m_dbTableMa.Rows.Count; i++)
         {
