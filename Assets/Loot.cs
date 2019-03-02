@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Loot //: MonoBehaviour
+public class Loot : MonoBehaviour
 {
     
     public string EnemyName;
@@ -16,37 +16,18 @@ public class Loot //: MonoBehaviour
     {
         EnemyName = name;
     }
-    public int DropType(string name)
+    public void DropType(string name)
     {
-        int gold = 0;
         if(name.Contains("Goblin"))
         {
-           gold = GoblinDrop();
+            GoblinDrop();
         }
-        return gold;
     }
-    public int GoblinDrop()
+    public string GoblinDrop()
     {
-        int gold = 0;
-        int rand = Random.Range(1, 100);
-        if(rand == 100)
-        {
-            gold = 10000;
-        }
-        if(rand < 99 && rand > 80)
-        {
-            gold = 500;
-        }
-        if(rand < 75 && rand > 50)
-        {
-            gold = 100;
-        }
-        else
-        {
-            gold = 10;
-        }
-        Debug.Log(gold);
-        return gold;
+        string drop = ("");
+        Debug.Log("tyl");
+        return drop;
     }
  
 }

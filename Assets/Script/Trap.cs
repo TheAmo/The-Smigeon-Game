@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : Stats
-{
+public class Trap : MonoBehaviour { 
+    /*
     public int damage;
     public float explosionTime;
 
@@ -95,4 +95,5 @@ public class Trap : Stats
         }
 
     }
+    */
 }

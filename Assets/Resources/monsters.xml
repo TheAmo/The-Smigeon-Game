@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MonsterCollection>
+  <Monsters>
+    
+    <Monster name="Goblin">
+      <Hit_Point>6</Hit_Point>
+      <Armor_Class>16</Armor_Class>
+      <Attack_Bonus>1</Attack_Bonus>
+      <Damage_Bonus>1</Damage_Bonus>
+      <Damage_Die>4</Damage_Die>
+    </Monster>
+
+    <Monster name="Dragon">
+      <Hit_Point>256</Hit_Point>
+      <Armor_Class>14</Armor_Class>
+      <Attack_Bonus>11</Attack_Bonus>
+      <Damage_Bonus>12</Damage_Bonus>
+      <Damage_Die>16</Damage_Die>
+    </Monster>
+  </Monsters>
+  
+</MonsterCollection>

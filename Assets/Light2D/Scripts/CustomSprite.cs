@@ -91,7 +91,7 @@ namespace Light
 
             if (_meshFilter == null)
             {
-                _meshFilter = gameObject.AddComponent<MeshFilter>();
+                //_meshFilter = gameObject.AddComponent<MeshFilter>();
             }
 
 #if UNITY_EDITOR

@@ -30,9 +30,9 @@ namespace Light
             _parentMeshRenderer = transform.parent.GetComponent<MeshRenderer>();
             _parentMeshFilter = transform.parent.GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
-            if (_meshRenderer == null) _meshRenderer = gameObject.AddComponent<MeshRenderer>();
+           // if (_meshRenderer == null) _meshRenderer = gameObject.AddComponent<MeshRenderer>();
             _meshFilter = GetComponent<MeshFilter>();
-            if (_meshFilter == null) _meshFilter = gameObject.AddComponent<MeshFilter>();
+            //if (_meshFilter == null) _meshFilter = gameObject.AddComponent<MeshFilter>();
         }
 
         void Update()
