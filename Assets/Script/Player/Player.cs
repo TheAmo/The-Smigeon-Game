@@ -22,7 +22,10 @@ public class Player : MonoBehaviour
 
     private BoxCollider2D bc2d;
 
-    /*===================================================================================================================
+    public GameObject canvas;
+    private bool isShowing;
+
+     /*===================================================================================================================
      * Killed
      * 
      ===================================================================================================================*/
@@ -47,11 +50,15 @@ public class Player : MonoBehaviour
      ===================================================================================================================*/
     void Start()
     {
+        isShowing = true;
         dead = false ;
-        stats = GameObject.Find("Player").GetComponent<Stats>();
+        //stats = GameObject.Find("Player").GetComponent<Stats>();
 
         sliderHealth = GameObject.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>();
         sliderHealth.maxValue = this.stats.getHitPoint() ;
+
+        
+        canvas = GameObject.Find("Canvas");
     }
 
 
@@ -64,6 +71,13 @@ public class Player : MonoBehaviour
         if (dead)
         {
             sliderHealth.value = this.stats.getHitPoint();
+
+          
+            if(Input.GetKeyDown("escape")) //TO Open Inventory. Doesn't work.
+            {
+                isShowing = !isShowing;
+                canvas.SetActive(isShowing);
+            }
         }       
     }
     /*===================================================================================================================

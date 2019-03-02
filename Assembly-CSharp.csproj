@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BoxCollider_Adder.cs" />
      <Compile Include="Assets\EnableButtons.cs" />
      <Compile Include="Assets\Light2D\Examples\Scripts\Bat.cs" />
      <Compile Include="Assets\Light2D\Examples\Scripts\BlockSetProfile.cs" />
@@ -99,6 +98,7 @@
      <Compile Include="Assets\QPathFinder\Script\PathFinder.cs" />
      <Compile Include="Assets\QPathFinder\Script\Utils.cs" />
      <Compile Include="Assets\Resources\Monster.cs" />
+     <Compile Include="Assets\Script\Core\GameInstantiate.cs" />
      <Compile Include="Assets\Script\DataBase\DataBaseSmi.cs" />
      <Compile Include="Assets\Script\Dialogue\Dialogue.cs" />
      <Compile Include="Assets\Script\Dialogue\DialogueTrigger.cs" />
@@ -116,7 +116,11 @@
      <Compile Include="Assets\Script\Player\Player.cs" />
      <Compile Include="Assets\Script\Player\Stats.cs" />
      <Compile Include="Assets\Script\Trap.cs" />
-     <Compile Include="Assets\Script\XMLManager.cs" />
+     <Compile Include="Assets\Script\UI\PlayerBlock.cs" />
+     <Compile Include="Assets\Script\UI\PlayerDisplay.cs" />
+     <Compile Include="Assets\Script\XML\XMLClassManagement.cs" />
+     <Compile Include="Assets\Script\XML\XMLMonsterManager.cs" />
+     <Compile Include="Assets\Script\XML\XMLPlayerManagement.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -179,8 +183,8 @@
      <None Include="Assets\Light2D\Examples\Resources\Shaders\TransparentVertexColor.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
-     <None Include="Assets\Resources\monsters.xml" />
      <None Include="Assets\Light2D\Resources\Shaders\LightOverlay.shader" />
+     <None Include="Assets\StreamingFiles\XML\class_data.xml" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\Light2D\Resources\Shaders\TransparentDualColorNormalMapped.shader" />

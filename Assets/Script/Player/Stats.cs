@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 
-public class Stats: MonoBehaviour
+public class Stats
 {
     /*===================================================================================================================
      * Stats
