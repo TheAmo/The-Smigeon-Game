@@ -13,7 +13,9 @@ public class XMLPlayerManagement : MonoBehaviour
     void Awake()
     {
         ins=this;
-        LoadPlayer();
+        //LoadPlayer();
+        //SavePlayer();
+
     }
 
     //List of Players
@@ -24,7 +26,7 @@ public class XMLPlayerManagement : MonoBehaviour
     {
         //open a new xml file
         XmlSerializer serializer = new XmlSerializer(typeof(PlayerDatabase));
-        FileStream stream = new FileStream(Application.dataPath+"/StreamingFiles/XML/player_data",FileMode.Create);
+        FileStream stream = new FileStream(Application.dataPath+"/StreamingFiles/XML/player_data.xml",FileMode.Create);
 
         serializer.Serialize(stream, playerDB);
         stream.Close();
@@ -34,7 +36,7 @@ public class XMLPlayerManagement : MonoBehaviour
     public void LoadPlayer()
     {
         XmlSerializer serializer = new XmlSerializer(typeof(PlayerDatabase));
-        FileStream stream = new FileStream(Application.dataPath + "/StreamingFiles/XML/player_data", FileMode.Open);
+        FileStream stream = new FileStream(Application.dataPath + "/StreamingFiles/XML/player_data.xml", FileMode.Open);
 
         playerDB = serializer.Deserialize(stream) as PlayerDatabase;
         stream.Close();

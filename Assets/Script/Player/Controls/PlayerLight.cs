@@ -8,7 +8,7 @@ public class PlayerLight : MonoBehaviour
      * Attribute
      * 
      ===================================================================================================================*/
-    private short lanternLightToggle;
+    private bool lanternLightToggle;
 
     private GameObject lantern;
 
@@ -19,7 +19,8 @@ public class PlayerLight : MonoBehaviour
     void Start()
     {
         lantern = GameObject.Find("Light Lantern");
-        lanternLightToggle = -1;
+        lantern.SetActive(false);
+        lanternLightToggle = false;
     }
 
     /*===================================================================================================================
@@ -30,16 +31,8 @@ public class PlayerLight : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (lanternLightToggle == -1)
-            {
-                lanternLightToggle *= -1;
-                lantern.SetActive(true);
-            }
-            else if (lanternLightToggle == 1)
-            {
-                lanternLightToggle *= -1;
-                lantern.SetActive(false);
-            }
+            lanternLightToggle = !lanternLightToggle;
+            lantern.SetActive(lanternLightToggle);
         }
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<PlayerDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <playerList>
+    <PlayerEntry>
+      <name>Maxime</name>
+      <className>Rogue</className>
+      <experience>500</experience>
+      <position>
+        <float>362.5144</float>
+        <float>172.2078</float>
+      </position>
+      <gold>3000</gold>
+    </PlayerEntry>
+  </playerList>
+</PlayerDatabase>

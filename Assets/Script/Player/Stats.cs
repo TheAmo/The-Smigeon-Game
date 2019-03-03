@@ -10,26 +10,26 @@ public class Stats
      * Stats
      * 
      ===================================================================================================================*/
-    [XmlAttribute("name")]
+    
     public string name;
 
     //Ability
-    [XmlElement("Strength")]
+
     private int m_strength;
 
-    [XmlElement("Dexterity")]
+   
     private int m_dexterity;
 
-    [XmlElement("Constitution")]
+
     private int m_constitution;
 
-    [XmlElement("Intelligence")]
+   
     private int m_intelligence;
 
-    [XmlElement("Wisdom")]
+
     private int m_wisdom;
 
-    [XmlElement("Charisma")]
+   
     private int m_charisma;
 
     //Ability Modifier
@@ -41,22 +41,28 @@ public class Stats
     private int m_charismaModifier;
 
     //Hp
-    [XmlElement("Hit_Point")]
+
     private int m_hitPoint;
 
     //Attack / defence
-    [XmlElement("Armor_Class")]
+   
     private int m_armorClass;
 
-    [XmlElement("Attack_Bonus")]
+
     private int m_attackBonus;
 
     //Damage
-    [XmlElement("Damage_Bonus")]
+  
     private int m_damageBonus;
 
-    [XmlElement("Damage_Die")]
+
     private int m_damageDie;
+
+    //Gold
+    private int m_gold;
+
+    //Experience
+    private int m_experience;
 
     /*===================================================================================================================
      * Constructor
@@ -88,9 +94,48 @@ public class Stats
         //HitPoint
         setHitPoint(10 + getConstitutionModifier());
 
+        //Gold;
+        setGold(50);
+
+        //Experience
+        setExperience(0);
+
         Debug.Log("Stats Generated: Str: "+m_strength+ "Dex: " + m_dexterity + "Con: " + m_constitution + "Int: " + m_intelligence + "Wis: " + m_wisdom + "Cha: " + m_charisma );
     }
 
+    public Stats(PlayerEntry player, ClassEntry playerClass)
+    {
+        Debug.Log("Generating from player: " + player.name);
+
+        //Ability roll
+        setStrength(playerClass.baseAbility[0]);
+        setDexterity(playerClass.baseAbility[1]);
+        setConstitution(playerClass.baseAbility[2]);
+        setIntelligence(playerClass.baseAbility[3]);
+        setWisdom(playerClass.baseAbility[4]);
+        setCharisma(playerClass.baseAbility[5]);
+
+        //Calculate Modifier
+        calculateAllModifier();
+
+        //Attack-Armor
+        setArmorClass(10 + getDexterityModifier());
+        setAttackBonus(getDexterityModifier());
+        setDamageBonus(getStrengthModifier());
+
+        setDamageDie(playerClass.damageDice);
+
+        //HitPoint
+        setHitPoint(playerClass.hitDice + getConstitutionModifier());
+
+        //Gold
+        setGold(player.gold);
+
+        //Experience
+        setExperience(player.experience);
+
+        Debug.Log("Stats Generated Succesfully: Str: " + m_strength + " Dex: " + m_dexterity + " Con: " + m_constitution + " Int: " + m_intelligence + " Wis: " + m_wisdom + " Cha: " + m_charisma + " On position (" + player.position[0]+","+player.position[1] + ")");
+    }
     /*===================================================================================================================
     * Stats Calculator
     * 
@@ -147,6 +192,12 @@ public class Stats
     public int getDamageBonus() { return (m_damageBonus); }
     public int getDamageDie() { return (m_damageDie); }
 
+    //Gold
+    public int getGold() { return(m_gold); }
+
+    //Experience
+    public int getExperience() { return(m_experience); }
+
     /*===================================================================================================================
      * Setter
      * 
@@ -169,6 +220,14 @@ public class Stats
     //Damage
     public void setDamageBonus(int damageBonus) {  m_damageBonus=damageBonus; }
     public void setDamageDie(int damageDie) {  m_damageDie=damageDie; }
+
+    //Gold
+    public void setGold(int gold) { m_gold = gold; }
+    public void changeGoldByValue(int gold) { m_gold += gold; }
+
+    //Experience
+    public void setExperience(int experience) { m_experience = experience; }
+    public void changeExperienceByValue(int experience) { m_experience += experience; }
 }
 
 

@@ -170,6 +170,7 @@
      <None Include="Assets\Light2D\Resources\Shaders\LightBlender.shader" />
      <None Include="Assets\Light2D\Resources\Shaders\Light1.shader" />
      <None Include="Assets\Light2D\Resources\Shaders\Light50.shader" />
+     <None Include="Assets\StreamingFiles\XML\player_data.xml" />
      <None Include="Assets\Light2D\Resources\Shaders\Light80.shader" />
      <None Include="Assets\Light2D\Resources\Shaders\Light20.shader" />
      <None Include="Assets\Light2D\Resources\Shaders\AmbientLightComputer.shader" />

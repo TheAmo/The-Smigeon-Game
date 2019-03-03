@@ -13,22 +13,62 @@ public class Player : MonoBehaviour
     public Stats stats;
     
     public Sprite spriteKill;
-
     private SpriteRenderer spriteRenderer;
-
     public UnityEngine.UI.Slider sliderHealth;
-    
-    private bool dead;
 
     private BoxCollider2D bc2d;
-
     public GameObject canvas;
-    private bool isShowing;
 
-     /*===================================================================================================================
-     * Killed
-     * 
-     ===================================================================================================================*/
+    private bool isShowing;
+    private bool dead;
+
+    private PlayerDatabase playerDatabase;
+    private ClassDatabase classDatabase;
+
+    private int m_player_id;
+    //public Transform transform;
+    /*===================================================================================================================
+    * Start
+    * 
+    ===================================================================================================================*/
+    public void ininitialisePlayer(int player_id, int class_id)
+    {
+        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().LoadPlayer();
+        Debug.Log("Constructeur du player");
+        m_player_id = player_id;
+        //get PlayerEntry
+        playerDatabase = GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB;
+        //get ClassEntry
+        classDatabase = GameObject.Find("XML Class Manager").GetComponent<XMLClassManagement>().classDB;
+
+        //Add Entry's info in Stats
+        stats = new Stats(playerDatabase.playerList[player_id], classDatabase.classList[class_id]);
+
+        //Calculate everything for player level
+
+        //Put player on good position
+        Vector3 temp = new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
+        GameObject.Find("Player").transform.position += temp;
+        GameObject.Find("Main Camera").transform.position += temp;
+    }
+    /*===================================================================================================================
+    * Save
+    * 
+    ===================================================================================================================*/
+    public void SavePlayer()
+    {
+        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[0] = GameObject.Find("Player").transform.position.x;
+        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[1] = GameObject.Find("Player").transform.position.y;
+
+        Debug.Log("Saved Position " + GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[0] + ","+GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[1] + ")");
+        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().SavePlayer();
+        Debug.Log("Saved Player");
+    }
+
+    /*===================================================================================================================
+    * Killed
+    * 
+    ===================================================================================================================*/
     public void kill()
     {
         Destroy(bc2d, 0);
@@ -50,15 +90,18 @@ public class Player : MonoBehaviour
      ===================================================================================================================*/
     void Start()
     {
+        ininitialisePlayer(0, 0);
         isShowing = true;
         dead = false ;
         //stats = GameObject.Find("Player").GetComponent<Stats>();
 
         sliderHealth = GameObject.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>();
-        sliderHealth.maxValue = this.stats.getHitPoint() ;
+        sliderHealth.maxValue = stats.getHitPoint() ;
 
-        
         canvas = GameObject.Find("Canvas");
+
+
+        //Initialize stats
     }
 
 
@@ -70,7 +113,7 @@ public class Player : MonoBehaviour
     {
         if (dead)
         {
-            sliderHealth.value = this.stats.getHitPoint();
+            sliderHealth.value = stats.getHitPoint();
 
           
             if(Input.GetKeyDown("escape")) //TO Open Inventory. Doesn't work.
