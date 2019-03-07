@@ -106,6 +106,8 @@
      <Compile Include="Assets\Script\Item\Equipement.cs" />
      <Compile Include="Assets\Script\Item\Items.cs" />
      <Compile Include="Assets\Script\Monster\MonsterAi.cs" />
+     <Compile Include="Assets\Script\Monster\MonsterAIAttack.cs" />
+     <Compile Include="Assets\Script\Monster\MonsterCore.cs" />
      <Compile Include="Assets\Script\Player\CameraController.cs" />
      <Compile Include="Assets\Script\Player\Controls\MoveWASD.cs" />
      <Compile Include="Assets\Script\Player\Controls\PlayerAttack.cs" />
@@ -159,6 +161,7 @@
      <None Include="Assets\Light2D\Resources\Shaders\FastBlur.shader" />
      <None Include="Assets\Light2D\Resources\Shaders\Light70.shader" />
      <None Include="Assets\Light2D\changelog.txt" />
+     <None Include="Assets\StreamingFiles\XML\monster_data.xml" />
      <None Include="Assets\Light2D\Resources\Shaders\LightIgnoreObstacles.shader" />
      <None Include="Assets\Light2D\Resources\Shaders\NormalMap.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

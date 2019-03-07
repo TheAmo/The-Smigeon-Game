@@ -81,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (GameObject target in enemy)
         {
-            tmpbool = target.GetComponent<MonsterAi>().monster.getAttack(GetComponent<Player>().stats.getAttackBonus());
+            tmpbool = target.GetComponent<Monster>().getAttack(GetComponent<Player>().stats.getAttackBonus());
             if (tmpbool == true)//Target is hit
             {
                 tmpbool = target.GetComponent<MonsterAi>().monster.ReceiveDamage(GetComponent<Player>().CalculateDamage());

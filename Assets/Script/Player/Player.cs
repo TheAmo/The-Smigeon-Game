@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private ClassDatabase classDatabase;
 
     private int m_player_id;
-    //public Transform transform;
+
     /*===================================================================================================================
     * Start
     * 
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
       ===================================================================================================================*/
     void Update()
     {
-        if (dead)
+        if (!dead)
         {
             sliderHealth.value = stats.getHitPoint();
 
@@ -120,6 +120,11 @@ public class Player : MonoBehaviour
             {
                 isShowing = !isShowing;
                 canvas.SetActive(isShowing);
+            }
+            if (Input.GetKeyDown(KeyCode.K)) //TO Open Inventory. Doesn't work.
+            {
+                ReceiveDamage(1);
+                Debug.Log("Damage player test");
             }
         }       
     }
