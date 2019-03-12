@@ -8,33 +8,40 @@ using UnityNpgsql;
 
 public class DataBaseSmi : MonoBehaviour
 {
+    /*===================================================================================================================
+    * Data Table
+    * 
+    ===================================================================================================================*/
     private DataTable m_dbTable;
-    private DataTable m_dbTableWea;
-    private DataTable m_dbTableMa;
-    private DataTable m_dbTableMaWea;
-    private double m_valWea;
-    private double m_valMa;
+    private DataTable m_dbTableWeapon;
+    private DataTable m_dbTableMaterial;
+    private DataTable m_dbTableMaterialWeapon;
+    private DataTable m_dbTableMonsterStats;
+    private DataTable m_dbtmpTable;
 
+    private double m_valWeapon;
+    private double m_valMaterial;
+
+    /*===================================================================================================================
+    * Connection
+    * 
+    ===================================================================================================================*/
     private string strConnection = "Server=localhost; Port=5432; DataBase=dbsmigeon; Username=postgres; Password=Milena14";
-
     private NpgsqlConnection dbConnection = null;
     private NpgsqlCommand dbCmd = null;
     private NpgsqlDataReader dbReader = null;
 
-    public DataTable Connection(string strSelect)
+    public DataTable ReceiveFromQueryction(string strQuery)
     {
         m_dbTable = new DataTable();
         NpgsqlDataAdapter dbAdapter;
 
         dbConnection = new NpgsqlConnection(strConnection);
+
         dbConnection.Open();
-
-        dbCmd = new NpgsqlCommand(strSelect, dbConnection);
-
+        dbCmd = new NpgsqlCommand(strQuery, dbConnection);
         dbAdapter = new NpgsqlDataAdapter(dbCmd);
-
         dbAdapter.Fill(m_dbTable);
-
         dbConnection.Close();
 
         return m_dbTable;
@@ -44,25 +51,67 @@ public class DataBaseSmi : MonoBehaviour
     {
         m_dbTable = new DataTable();
 
-        //string strSelect = "SELECT * FROM \"weapon\"";
-
-        m_dbTable = Connection(strSelect);
+        m_dbTable = ReceiveFromQueryction(strSelect);
 
         return m_dbTable;
     }
 
-      /*public DataTable SelectWeaponsMaterials()
+    /*===================================================================================================================
+ *** =================================================================================================================
+ *** =================================================================================================================
+ *** Stats
+ *** 
+ ***
+ *** 
+ *** =================================================================================================================
+ *** =================================================================================================================
+ ===================================================================================================================*/
+
+    /*===================================================================================================================
+     * Get Monster Stat by Id
+     * 
+    ===================================================================================================================*/
+    public DataTable getMonsterInfoById(int id)
+    {
+        m_dbTableMonsterStats = new DataTable();
+        m_dbTableMonsterStats = ReceiveFromQueryction("SELECT * FROM monster_stats WHERE id=" + id);
+
+        return m_dbTableMonsterStats;
+    }
+
+    /*===================================================================================================================
+    *** =================================================================================================================
+    *** =================================================================================================================
+    *** Items:
+    *** 
+    ***
+    *** 
+    *** =================================================================================================================
+    *** =================================================================================================================
+    ===================================================================================================================*/
+
+
+    /*===================================================================================================================
+    * Select Weapons and materials
+    * 
+    ===================================================================================================================*/
+
+    public DataTable SelectWeaponsMaterials()
     {
 
-        m_dbTableMaWea = new DataTable();
+        m_dbTableMaterialWeapon = new DataTable();
 
         string strSelect = "SELECT * FROM \"weapon_material\"";
 
-        m_dbTableMaWea = Connection(strSelect);
+        m_dbTableMaterialWeapon = ReceiveFromQueryction(strSelect);
 
-        return m_dbTableMaWea;
-    }*/
+        return m_dbTableMaterialWeapon;
+    }
 
+    /*===================================================================================================================
+    * Select Weapon
+    * 
+    ===================================================================================================================*/
     public List<Items> getAllWeapons()
     {
         List<Items> weapons = new List<Items>();
@@ -72,16 +121,16 @@ public class DataBaseSmi : MonoBehaviour
 
         string strSelect = "SELECT * FROM \"weapon\"";
 
-        m_dbTableWea = new DataTable();
-        m_dbTableWea = Select(strSelect);
+        m_dbTableWeapon = new DataTable();
+        m_dbTableWeapon = Select(strSelect);
 
-        for (int i = 0; i < m_dbTableWea.Rows.Count; i++)
+        for (int i = 0; i < m_dbTableWeapon.Rows.Count; i++)
         {
-            id = Convert.ToInt32(m_dbTableWea.Rows[i]["id"]);
-            name = (m_dbTableWea.Rows[i]["name"]).ToString();
-            damage = Convert.ToInt32(m_dbTableWea.Rows[i]["damage"]);
-            defense = Convert.ToInt32(m_dbTableWea.Rows[i]["defense"]);
-            price = Convert.ToDouble(m_dbTableWea.Rows[i]["price"]);
+            id = Convert.ToInt32(m_dbTableWeapon.Rows[i]["id"]);
+            name = (m_dbTableWeapon.Rows[i]["name"]).ToString();
+            damage = Convert.ToInt32(m_dbTableWeapon.Rows[i]["damage"]);
+            defense = Convert.ToInt32(m_dbTableWeapon.Rows[i]["defense"]);
+            price = Convert.ToDouble(m_dbTableWeapon.Rows[i]["price"]);
 
             weapons.Add(new Items(id, name, damage, defense, price));
         }
@@ -89,6 +138,10 @@ public class DataBaseSmi : MonoBehaviour
         return weapons;
     }
 
+    /*===================================================================================================================
+    * Select Material
+    * 
+    ===================================================================================================================*/
     public List<Items> getAllMaterials()
     {
         List<Items> materials = new List<Items>();
@@ -98,16 +151,16 @@ public class DataBaseSmi : MonoBehaviour
 
         string strSelect = "SELECT * FROM \"material\"";
 
-        m_dbTableMa = new DataTable();
-        m_dbTableMa = Select(strSelect);
+        m_dbTableMaterial = new DataTable();
+        m_dbTableMaterial = Select(strSelect);
 
-        for (int i = 0; i < m_dbTableMa.Rows.Count; i++)
+        for (int i = 0; i < m_dbTableMaterial.Rows.Count; i++)
         {
-            id = Convert.ToInt32(m_dbTableMa.Rows[i]["id"]);
-            name = (m_dbTableMa.Rows[i]["name"]).ToString();
-            damage = Convert.ToInt32(m_dbTableMa.Rows[i]["damage"]);
-            defense = Convert.ToInt32(m_dbTableMa.Rows[i]["defense"]);
-            price = Convert.ToDouble(m_dbTableMa.Rows[i]["price"]);
+            id = Convert.ToInt32(m_dbTableMaterial.Rows[i]["id"]);
+            name = (m_dbTableMaterial.Rows[i]["name"]).ToString();
+            damage = Convert.ToInt32(m_dbTableMaterial.Rows[i]["damage"]);
+            defense = Convert.ToInt32(m_dbTableMaterial.Rows[i]["defense"]);
+            price = Convert.ToDouble(m_dbTableMaterial.Rows[i]["price"]);
 
             materials.Add(new Items(id, name, damage, defense, price));
 
@@ -116,13 +169,13 @@ public class DataBaseSmi : MonoBehaviour
         return materials;
     }
 
-    public double getWeaInfo(String info, String name, String mat)
+    public double getWeaponInfo(String info, String name, String material)
     {
         dbConnection = new NpgsqlConnection(strConnection);
         dbConnection.Open();
 
         string strSelectWea = "SELECT " + info + " FROM weapon WHERE weapon." + info + " =  \'" + name + "\'";
-        string strSelectMa = "SELECT " + info + " FROM material WHERE material." + info + " =  \'" + mat + "\'";
+        string strSelectMa = "SELECT " + info + " FROM material WHERE material." + info + " =  \'" + material + "\'";
 
 
         using (dbCmd = new NpgsqlCommand(strSelectWea, dbConnection))
@@ -130,8 +183,7 @@ public class DataBaseSmi : MonoBehaviour
             dbReader = dbCmd.ExecuteReader();
             while (dbReader.Read())
             {
-                m_valWea = double.Parse(dbReader[0].ToString());
-                m_valWea = double.Parse(dbReader[0].ToString());
+                m_valWeapon = double.Parse(dbReader[0].ToString());
             }
         }
 
@@ -140,13 +192,13 @@ public class DataBaseSmi : MonoBehaviour
             dbReader = dbCmd.ExecuteReader();
             while (dbReader.Read())
             {
-                m_valMa = double.Parse(dbReader[0].ToString());
+                m_valMaterial = double.Parse(dbReader[0].ToString());
             }
         }
 
         dbConnection.Close();
 
-        return (m_valWea + m_valMa);
+        return (m_valWeapon + m_valMaterial);
     }
 
 
@@ -154,10 +206,6 @@ public class DataBaseSmi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string info = "price";
-        string name = "mace";
-        string mat = "bronze";
-        double price = getWeaInfo(info, name, mat);
 
     }
 
