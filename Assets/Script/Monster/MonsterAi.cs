@@ -258,7 +258,7 @@ public class MonsterAi : MonoBehaviour
         
         //Attack
         attacktime += Time.deltaTime;
-        if(attacktime>=attackCooldown && attackCooldown!=-1 && Vector2.Distance(player.position, this.transform.position) < 2 && playerlist.Count > 0)
+        if(attacktime>=attackCooldown && attackCooldown!=-1 && Vector2.Distance(player.transform.position, this.transform.position) < 2 && playerlist.Count > 0)
         {
             spriteRenderer.sprite = spriteAttack;
             attacktime = 0;
@@ -266,7 +266,7 @@ public class MonsterAi : MonoBehaviour
             
             foreach (GameObject target in playerlist)
             {
-                tmpbool = target.GetComponent<Player>().ReceiveDamage(GameObject.Find("Monster").GetComponen<MonsterCore>().CalculateDamage());
+                tmpbool = target.GetComponent<Player>().ReceiveDamage(GameObject.Find("Monster").GetComponent<MonsterCore>().CalculateDamage());
                 if (tmpbool == true)
                 {
                     playerlist.Remove(target);

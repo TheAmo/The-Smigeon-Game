@@ -17,14 +17,16 @@ public class PlayerAttack : MonoBehaviour
     private BoxCollider2D bc2d;
     List<GameObject> enemy = new List<GameObject>();
 
+    public GameObject player;
+
     /*===================================================================================================================
      * On Start
      * 
      ===================================================================================================================*/
     void Start()
     {
-        spriteDefault = GameObject.Find("Player").GetComponent<PlayerChangeEquipment>().spriteDefault;
-        spriteAttack = GameObject.Find("Player").GetComponent<PlayerChangeEquipment>().spriteAttack;
+        spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
+        spriteAttack = player.GetComponent<PlayerChangeEquipment>().spriteAttack;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -37,6 +39,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
         {
+            spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
+            spriteAttack = player.GetComponent<PlayerChangeEquipment>().spriteAttack;
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
             attack();
             if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -78,13 +82,12 @@ public class PlayerAttack : MonoBehaviour
     bool tmpbool;
     public void attack()
     {
-
         foreach (GameObject target in enemy)
         {
             tmpbool = target.GetComponent<Monster>().getAttack(GetComponent<Player>().stats.getAttackBonus());
             if (tmpbool == true)//Target is hit
             {
-                tmpbool = target.GetComponent<MonsterAi>().monster.ReceiveDamage(GetComponent<Player>().CalculateDamage());
+                tmpbool = target.GetComponent<MonsterCore>().ReceiveDamage(GetComponent<Player>().CalculateDamage());
                 if (tmpbool == true)//Target is dead
                 {
                     enemy.Remove(target);

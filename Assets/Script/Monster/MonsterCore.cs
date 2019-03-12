@@ -8,7 +8,7 @@ public class MonsterCore : MonoBehaviour
          * Attribute
          * 
          ===================================================================================================================*/
-    private int m_monsterid;
+    private int m_monster_id;
     private string m_name;
     private int m_hitPoint;
     private int m_armorClass;
@@ -32,11 +32,11 @@ public class MonsterCore : MonoBehaviour
     ===================================================================================================================*/
     public void ininitialiseMonster(int monster_id, int positionX, int positionY)
     {
-        GameObject.Find("XML Monsters Manager").GetComponent<XMLMonsterManagement>().LoadMonster();
+        GameObject.Find("XML Monsters Manager").GetComponent<XMLMonsterManager>().LoadMonster();
         Debug.Log("Constructeur du Monster");
-        m_player_id = player_id;
+        m_monster_id = monster_id;
         //get MonsterEntry
-        monsterDatabase = GameObject.Find("XML Monsters Manager").GetComponent<XMLMonsterManagement>().monsterDB;
+        monsterDatabase = GameObject.Find("XML Monsters Manager").GetComponent<XMLMonsterManager>().monsterDB;
 
         //Put monster on good position
         Vector3 temp = new Vector3(positionX, positionY, 0);
@@ -124,7 +124,7 @@ public class MonsterCore : MonoBehaviour
     //Receive Damage
     public bool ReceiveDamage(int damage)
     {
-        m_hitpoint -= damage;
+        m_hitPoint -= damage;
         Debug.Log("Dealt: " + damage + "   HP left: " + m_hitPoint);
         if (m_hitPoint <= 0)
         {
@@ -136,7 +136,7 @@ public class MonsterCore : MonoBehaviour
     //Calculate Damage
     public int CalculateDamage()
     {
-        return (Random.Range(1, m_damageDice()) + m_damageBonus);
+        return (Random.Range(1, m_damageDice) + m_damageBonus);
     }
 
 }

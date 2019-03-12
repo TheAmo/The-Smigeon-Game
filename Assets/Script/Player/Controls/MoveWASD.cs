@@ -47,6 +47,7 @@ public class MoveWASD : MonoBehaviour
                 angle += 180;
 
             transform.localRotation = Quaternion.Euler(0, 0, angle);
+            
         }
     }
 }

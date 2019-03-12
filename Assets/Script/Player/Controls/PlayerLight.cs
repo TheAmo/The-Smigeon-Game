@@ -10,7 +10,7 @@ public class PlayerLight : MonoBehaviour
      ===================================================================================================================*/
     private bool lanternLightToggle;
 
-    private GameObject lantern;
+    public GameObject lantern;
 
     /*===================================================================================================================
      * On Start
@@ -18,7 +18,7 @@ public class PlayerLight : MonoBehaviour
      ===================================================================================================================*/
     void Start()
     {
-        lantern = GameObject.Find("Light Lantern");
+        //lantern = GameObject.Find("Light Lantern");
         lantern.SetActive(false);
         lanternLightToggle = false;
     }

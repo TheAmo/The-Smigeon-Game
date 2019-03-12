@@ -13,6 +13,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    public GameObject player;
+
     private BoxCollider2D bc2d;
     List<GameObject> interact = new List<GameObject>();
 
@@ -22,10 +24,10 @@ public class PlayerInteraction : MonoBehaviour
      ===================================================================================================================*/
     void Start()
     {
-        spriteDefault = GameObject.Find("Player").GetComponent<PlayerChangeEquipment>().spriteDefault;
-        spriteInteraction = GameObject.Find("Player").GetComponent<PlayerChangeEquipment>().spriteInteraction;
+        spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
+        spriteInteraction = player.GetComponent<PlayerChangeEquipment>().spriteInteraction;
 
-        spriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        spriteRenderer = player.GetComponent<SpriteRenderer>();
     }
 
     /*===================================================================================================================
@@ -40,6 +42,8 @@ public class PlayerInteraction : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F)) //If key is pushed
         {
+            spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
+            spriteInteraction = player.GetComponent<PlayerChangeEquipment>().spriteInteraction;
             spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
             Vector2 playerPosition = transform.position;
             foreach (GameObject target in interact)
