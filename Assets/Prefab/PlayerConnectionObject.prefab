@@ -77,11 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a9ac0f91aa2664084e41368922a965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraPrefab: {fileID: 110611051071945465, guid: 945b5abb06eeb7b40a47c1ef97d79cfb,
+    type: 3}
   m_player_id: 0
   PlayerObjectPrefab: {fileID: 3690426719176018748, guid: 33d57348f3606044a8d120ef6dbe84b3,
-    type: 3}
-  PlayerCameraPrefab: {fileID: 2599027803721844714, guid: 876545d19d4cbf044b8b02e30f3f672a,
-    type: 3}
-  LightLanternPrefab: {fileID: 67, guid: 08b3c52796d485b4694de83cdb18baed, type: 3}
-  HudPrefab: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b,
     type: 3}

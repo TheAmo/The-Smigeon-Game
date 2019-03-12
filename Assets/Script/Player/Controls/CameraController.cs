@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class CameraController : NetworkBehaviour
+public class CameraController : MonoBehaviour
 {
     public GameObject player;
     public int height;
@@ -12,7 +11,7 @@ public class CameraController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 temp = new Vector3(0,70,height);
+        Vector3 temp = new Vector3(0,0,height);
         transform.position = temp;
     }
 
@@ -23,10 +22,9 @@ public class CameraController : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        if (!hasAuthority) return;
-        Vector3 temp = new Vector3(player.transform.position.x, player.transform.position.y, height);
+       Vector3 temp = new Vector3(player.transform.position.x, player.transform.position.y, height);
        transform.position = temp;
     }
 }
