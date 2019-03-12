@@ -16,20 +16,10 @@ public class Stats
     //Ability
 
     private int m_strength;
-
-   
     private int m_dexterity;
-
-
-    private int m_constitution;
-
-   
+    private int m_constitution; 
     private int m_intelligence;
-
-
-    private int m_wisdom;
-
-   
+    private int m_wisdom; 
     private int m_charisma;
 
     //Ability Modifier
@@ -41,25 +31,18 @@ public class Stats
     private int m_charismaModifier;
 
     //Hp
-
     private int m_hitPoint;
 
     //Attack / defence
-   
     private int m_armorClass;
-
-
     private int m_attackBonus;
 
     //Damage
-  
     private int m_damageBonus;
-
-
     private int m_damageDie;
 
     //Gold
-    private int m_gold;
+    private float m_gold;
 
     //Experience
     private int m_experience;
@@ -193,7 +176,7 @@ public class Stats
     public int getDamageDie() { return (m_damageDie); }
 
     //Gold
-    public int getGold() { return(m_gold); }
+    public float getGold() { return(m_gold); }
 
     //Experience
     public int getExperience() { return(m_experience); }
@@ -223,7 +206,7 @@ public class Stats
 
     //Gold
     public void setGold(int gold) { m_gold = gold; }
-    public void changeGoldByValue(int gold) { m_gold += gold; }
+    public void changeGoldByValue(float gold) { m_gold += gold; }
 
     //Experience
     public void setExperience(int experience) { m_experience = experience; }
