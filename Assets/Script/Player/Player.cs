@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Player : Stats
 {
@@ -125,7 +126,10 @@ public class Player : Stats
             {
                 spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
             }
-
+            if (Input.GetKeyUp(KeyCode.Q) && spriteRenderer.sprite != spriteKill && (SceneManager.GetSceneByName("BlacksmithShop_3-0").isLoaded))
+            {
+                SceneManager.UnloadSceneAsync("BlacksmithShop_3-0");//Change the sprite to default one
+            }
             //Interaction
             if (Input.GetKeyUp(KeyCode.F) && spriteRenderer.sprite != spriteKill)
             {
@@ -143,7 +147,8 @@ public class Player : Stats
                     }
                     else if (target.tag == "Blacksmith")
                     {
-
+                        FindObjectOfType<DialogueTrigger>().TriggerDialogue();
+                        
                     }if(target.tag == "Lootbag")
                     {
                         PickLoot(target);
