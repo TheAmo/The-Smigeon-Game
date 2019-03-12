@@ -82,7 +82,6 @@ MonoBehaviour:
     type: 3}
   PlayerCameraPrefab: {fileID: 2599027803721844714, guid: 876545d19d4cbf044b8b02e30f3f672a,
     type: 3}
-  LightLanternPrefab: {fileID: 3528093194581150822, guid: 08b3c52796d485b4694de83cdb18baed,
-    type: 3}
+  LightLanternPrefab: {fileID: 67, guid: 08b3c52796d485b4694de83cdb18baed, type: 3}
   HudPrefab: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b,
     type: 3}

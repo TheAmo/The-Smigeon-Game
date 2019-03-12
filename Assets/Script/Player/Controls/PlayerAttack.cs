@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : NetworkBehaviour
 {
     /*===================================================================================================================
      * Attribute
@@ -37,6 +38,8 @@ public class PlayerAttack : MonoBehaviour
      ===================================================================================================================*/
     void Update()
     {
+        if (hasAuthority == false) return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
         {
             spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;

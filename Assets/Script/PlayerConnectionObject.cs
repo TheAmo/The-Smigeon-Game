@@ -14,16 +14,30 @@ public class PlayerConnectionObject : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(GameObject.Find("Camera"));
-
-        if (isLocalPlayer == false)
+        
+        if (!isLocalPlayer)
         {
+            Debug.Log("PlayerConnection::Start --Is not local");
             return;
         }
 
+        Destroy(GameObject.Find("Camera"));
+
         Debug.Log("PlayerConnection::Start --Spawning a personal player");
 
+        canvas = Instantiate(HudPrefab);
+        lightLantern = Instantiate(LightLanternPrefab);
+
+
         CmdSpawnMyUnit();
+
+        playerCamera=Instantiate(PlayerCameraPrefab);
+
+        playerCamera.GetComponent<CameraController>().setPlayer(player);
+        lightLantern.GetComponent<CameraController>().setPlayer(player)
+            ;
+ 
+
     }
 
     // Update is called once per frame
@@ -36,32 +50,36 @@ public class PlayerConnectionObject : NetworkBehaviour
     * Commands
     * 
     ===================================================================================================================*/
+    GameObject playerCamera;
+    GameObject lightLantern;
+    GameObject canvas;
+    GameObject player;
+
     [Command]
     void CmdSpawnMyUnit()
     {
         //We are on the server
         GameObject go = Instantiate(PlayerObjectPrefab);
-        GameObject ll = Instantiate(LightLanternPrefab);
-        GameObject pc = Instantiate(PlayerCameraPrefab);
-        GameObject can = Instantiate(HudPrefab);
 
-        go.GetComponent<Player>().canvas = can;
-        pc.GetComponent<CameraController>().player = go;
 
-        go.GetComponent<Player>().player = go;
-        go.GetComponent<PlayerAttack>().player = go;
-        go.GetComponent<PlayerInteraction>().player = go;
+        player = go;
+        
+        player.GetComponent<Player>().canvas = canvas;
+       
 
-        ll.GetComponent<CameraController>().player = go;
+        player.GetComponent<Player>().player = player;
+        player.GetComponent<PlayerAttack>().player = player;
+        player.GetComponent<PlayerInteraction>().player = player;
+        player.GetComponent<PlayerLight>().lantern = lightLantern;
 
-        go.GetComponent<PlayerLight>().lantern = ll;
+        lightLantern.GetComponent<CameraController>().player = player;
 
+        player.GetComponent<PlayerLight>().lantern = lightLantern;
 
         //We have to propagate the object on all the client
-        NetworkServer.Spawn(go);
-        NetworkServer.Spawn(ll);
-        NetworkServer.Spawn(pc);
-        NetworkServer.Spawn(can);
+        NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
+        //NetworkServer.SpawnWithClientAuthority(ll, connectionToClient);
+        //NetworkServer.SpawnWithClientAuthority(can, connectionToClient);
     }
     /*===================================================================================================================
     * Save

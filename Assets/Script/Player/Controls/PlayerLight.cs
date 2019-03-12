@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerLight : MonoBehaviour
+using UnityEngine.Networking;
+public class PlayerLight : NetworkBehaviour
 {
     /*===================================================================================================================
      * Attribute
@@ -29,6 +29,7 @@ public class PlayerLight : MonoBehaviour
      ===================================================================================================================*/
     void Update()
     {
+        if (hasAuthority == false) return;
         if (Input.GetKeyDown(KeyCode.R))
         {
             lanternLightToggle = !lanternLightToggle;

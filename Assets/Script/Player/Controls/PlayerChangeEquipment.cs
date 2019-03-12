@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerChangeEquipment : MonoBehaviour
+public class PlayerChangeEquipment : NetworkBehaviour
 {
     /*===================================================================================================================
      * Attribute
@@ -37,6 +38,8 @@ public class PlayerChangeEquipment : MonoBehaviour
      ===================================================================================================================*/
     void Update()
     {
+        if (hasAuthority == false) return;
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeEquipement();
