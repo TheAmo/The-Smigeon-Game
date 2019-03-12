@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 3690426719176018747}
   - component: {fileID: 3598793998919252502}
   - component: {fileID: 7063573848319029845}
+  - component: {fileID: 986709748894727008}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -55,8 +56,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteKill: {fileID: 0}
   sliderHealth: {fileID: 0}
-  canvas: {fileID: 0}
-  player: {fileID: 0}
+  canvas: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b, type: 3}
+  player: {fileID: 3690426719176018748}
 --- !u!114 &2872826071406226214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackKnockback: 50000
-  player: {fileID: 0}
+  player: {fileID: 3690426719176018748}
 --- !u!114 &6944542531686902729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00963eca069755478b5b3cd016bf5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 3690426719176018748}
 --- !u!114 &785844789307696860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe27da6968ee7ca4f929b6d1ccf424b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lantern: {fileID: 0}
+  lantern: {fileID: 67, guid: 08b3c52796d485b4694de83cdb18baed, type: 3}
 --- !u!114 &9072967859094618221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,4 +270,26 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &986709748894727008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690426719176018748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1

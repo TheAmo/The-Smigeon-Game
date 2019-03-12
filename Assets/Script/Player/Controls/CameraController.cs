@@ -16,10 +16,17 @@ public class CameraController : NetworkBehaviour
         transform.position = temp;
     }
 
+    public void setPlayer(GameObject p)
+    {
+        Debug.Log("Setting player object on camera");
+        player = p;
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {
-       Vector3 temp = new Vector3(player.transform.position.x, player.transform.position.y, height);
+        if (!hasAuthority) return;
+        Vector3 temp = new Vector3(player.transform.position.x, player.transform.position.y, height);
        transform.position = temp;
     }
 }

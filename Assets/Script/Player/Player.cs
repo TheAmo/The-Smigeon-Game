@@ -105,7 +105,7 @@ public class Player : NetworkBehaviour
     void Update()
     {
 
-
+        if (hasAuthority == false) return;
 
         if (!dead)
         {
