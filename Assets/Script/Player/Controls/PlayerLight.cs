@@ -18,7 +18,8 @@ public class PlayerLight : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
-        //lantern = GameObject.Find("Light Lantern");
+        if (!hasAuthority) return;
+        lantern = GameObject.Find("Light Lantern");
         lantern.SetActive(false);
         lanternLightToggle = false;
     }

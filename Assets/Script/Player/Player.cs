@@ -53,7 +53,7 @@ public class Player : NetworkBehaviour
 
         //Put player on good position
         //Vector3 temp = new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
-        Vector3 temp = new Vector3(0,70, 0);
+        Vector3 temp = new Vector3(0,0, 0);
 
         player.transform.position = temp;
 
@@ -92,7 +92,10 @@ public class Player : NetworkBehaviour
 
         canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
 
-
+        if (hasAuthority)
+        {
+            GameObject.Find("Camera").GetComponent<CameraController>().setPlayer(player);
+        }
 
         //Initialize stats
     }
