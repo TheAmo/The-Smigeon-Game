@@ -19,7 +19,7 @@ public class DataBaseSmi : MonoBehaviour
     private DataTable m_dbTableMonsterStats;
     private DataTable m_dbtmpTable;
 
-    private double m_valWeapon;
+    private double m_val;
     private double m_valMaterial;
 
     /*===================================================================================================================
@@ -31,7 +31,7 @@ public class DataBaseSmi : MonoBehaviour
     private NpgsqlCommand dbCmd = null;
     private NpgsqlDataReader dbReader = null;
 
-    public DataTable ReceiveFromQueryction(string strQuery)
+    private DataTable Connection(string strQuery)
     {
         m_dbTable = new DataTable();
         NpgsqlDataAdapter dbAdapter;
@@ -47,11 +47,11 @@ public class DataBaseSmi : MonoBehaviour
         return m_dbTable;
     }
 
-    public DataTable Select(string strSelect)
+    private DataTable Select(string strSelect)
     {
         m_dbTable = new DataTable();
 
-        m_dbTable = ReceiveFromQueryction(strSelect);
+        m_dbTable = Connection(strSelect);
 
         return m_dbTable;
     }
@@ -74,7 +74,7 @@ public class DataBaseSmi : MonoBehaviour
     public DataTable getMonsterInfoById(int id)
     {
         m_dbTableMonsterStats = new DataTable();
-        m_dbTableMonsterStats = ReceiveFromQueryction("SELECT * FROM monster_stats WHERE id=" + id);
+        m_dbTableMonsterStats = Connection("SELECT * FROM monster_stats WHERE id=" + id);
 
         return m_dbTableMonsterStats;
     }
@@ -103,7 +103,7 @@ public class DataBaseSmi : MonoBehaviour
 
         string strSelect = "SELECT * FROM \"weapon_material\"";
 
-        m_dbTableMaterialWeapon = ReceiveFromQueryction(strSelect);
+        m_dbTableMaterialWeapon = Connection(strSelect);
 
         return m_dbTableMaterialWeapon;
     }
@@ -168,40 +168,48 @@ public class DataBaseSmi : MonoBehaviour
 
         return materials;
     }
-
-    public double getWeaponInfo(String info, String name, String material)
+   /*===================================================================================================================
+   * Get Table value
+   * 
+   ===================================================================================================================*/
+    private double getTableValue(String strSelect)
     {
         dbConnection = new NpgsqlConnection(strConnection);
         dbConnection.Open();
 
-        string strSelectWea = "SELECT " + info + " FROM weapon WHERE weapon." + info + " =  \'" + name + "\'";
-        string strSelectMa = "SELECT " + info + " FROM material WHERE material." + info + " =  \'" + material + "\'";
-
-
-        using (dbCmd = new NpgsqlCommand(strSelectWea, dbConnection))
+        using (dbCmd = new NpgsqlCommand(strSelect, dbConnection))
         {
             dbReader = dbCmd.ExecuteReader();
             while (dbReader.Read())
             {
-                m_valWeapon = double.Parse(dbReader[0].ToString());
+                m_val = double.Parse(dbReader[0].ToString());
             }
         }
-
-        using (dbCmd = new NpgsqlCommand(strSelectMa, dbConnection))
-        {
-            dbReader = dbCmd.ExecuteReader();
-            while (dbReader.Read())
-            {
-                m_valMaterial = double.Parse(dbReader[0].ToString());
-            }
-        }
-
         dbConnection.Close();
 
-        return (m_valWeapon + m_valMaterial);
+        return m_val;
     }
+   /*===================================================================================================================
+   * Get Table info
+   * 
+   ===================================================================================================================*/
+    public double getTableInfo(String info, String name, String table, String material)
+    {
+        string strSelect = "SELECT " + info + " FROM weapon WHERE " + table + "." + info + " =  \'" + name + "\'";
 
+        m_val = getTableValue(strSelect);
 
+        if (table == "weapon")
+        {
+            string strSelectMa = "SELECT " + info + " FROM material WHERE material." + info + " =  \'" + material + "\'";
+
+            m_valMaterial = getTableValue(strSelectMa);
+
+            return (m_val + m_valMaterial);
+        }
+
+        return m_val;
+    }
 
     // Start is called before the first frame update
     void Start()
