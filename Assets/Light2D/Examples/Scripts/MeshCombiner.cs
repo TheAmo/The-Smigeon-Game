@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     /// <summary>
     /// Combines child mesh renderers into one mesh at startup.

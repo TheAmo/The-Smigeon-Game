@@ -30,7 +30,7 @@ namespace TMPro.Examples
             m_initial_Rotation = m_transform.rotation.eulerAngles;
             m_initial_Position = m_transform.position;
 
-            Light light = GetComponent<Light>();
+            UnityEngine.Light light = GetComponent<UnityEngine.Light>();
             m_lightColor = light != null ? light.color : Color.black;
         }
 

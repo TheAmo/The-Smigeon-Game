@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     [CustomPropertyDrawer(typeof (ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Automatically updating mesh, material and main texture of light obstacle. 
@@ -30,9 +30,9 @@ namespace Light2D
             _parentMeshRenderer = transform.parent.GetComponent<MeshRenderer>();
             _parentMeshFilter = transform.parent.GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
-            if (_meshRenderer == null) _meshRenderer = gameObject.AddComponent<MeshRenderer>();
+           // if (_meshRenderer == null) _meshRenderer = gameObject.AddComponent<MeshRenderer>();
             _meshFilter = GetComponent<MeshFilter>();
-            if (_meshFilter == null) _meshFilter = gameObject.AddComponent<MeshFilter>();
+            //if (_meshFilter == null) _meshFilter = gameObject.AddComponent<MeshFilter>();
         }
 
         void Update()

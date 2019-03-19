@@ -5,7 +5,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     [CustomEditor(typeof(LightingSystem))]
     public class LightingSystemEditor : Editor

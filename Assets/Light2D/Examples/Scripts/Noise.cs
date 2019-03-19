@@ -29,7 +29,7 @@
 
 using System.Diagnostics;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     /// <summary>
     /// Implementation of the Perlin simplex noise, an improved Perlin noise algorithm.

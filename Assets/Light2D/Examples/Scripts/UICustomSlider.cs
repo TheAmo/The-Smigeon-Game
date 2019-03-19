@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     public class UICustomSlider : MonoBehaviour, IDragHandler, IEndDragHandler
     {

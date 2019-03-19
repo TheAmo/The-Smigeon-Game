@@ -3,232 +3,166 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.UIElements;
-using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
-public class Player : Stats
+public class Player : NetworkBehaviour
 {
-    public Equipement item = new Equipement(1, 1);
-   
-
-    public Sprite spriteDefault;
-    public Sprite spriteAttack;
-    public Sprite spriteInteraction;
+    /*===================================================================================================================
+     * Attribute
+     * 
+     ===================================================================================================================*/
+    public Stats stats;
+    
     public Sprite spriteKill;
-    public UnityEngine.UI.Slider sliderHealth;
-    public int attackKnockback;
     private SpriteRenderer spriteRenderer;
-    private bool tmpbool;
-    private bool isDead;
+
+    public GameObject sliderHealth;
+
     private BoxCollider2D bc2d;
-    List<GameObject> enemy = new List<GameObject>();
-    List<GameObject> interact = new List<GameObject>();
-    private Sprite[] sprites;
-    //To kill the player
+    public GameObject canvas;
+
+    private bool isShowing;
+    private bool dead;
+
+    private PlayerDatabase playerDatabase;
+    private ClassDatabase classDatabase;
+
+    private int m_player_id;
+
+    public Camera camera;
+    /*===================================================================================================================
+    * Start
+    * 
+    ===================================================================================================================*/
+    public void ininitialisePlayer(int player_id, int class_id)
+    {
+        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().LoadPlayer();
+        Debug.Log("Constructeur du player");
+        m_player_id = player_id;
+        //get PlayerEntry
+        playerDatabase = GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB;
+        //get ClassEntry
+        classDatabase = GameObject.Find("XML Class Manager").GetComponent<XMLClassManagement>().classDB;
+
+        //Add Entry's info in Stats
+        stats = new Stats(playerDatabase.playerList[player_id], classDatabase.classList[class_id]);
+
+        //Calculate everything for player level
+
+        //Put player on good position
+        //Vector3 temp = new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
+        Vector3 temp = new Vector3(0,0, 0);
+    }
+
+    /*===================================================================================================================
+    * Killed
+    * 
+    ===================================================================================================================*/
     public void kill()
     {
         Destroy(bc2d, 0);
         spriteRenderer.sprite = spriteKill;
         spriteRenderer.sortingOrder = 1;
-        Destroy(this.GetComponent<MoveWASD>(), 0);
+
         Debug.Log("Player is Dead!!!");
     }
-    public void ChangeEquipement()
-    {
-            int weapon = Random.Range(0, 7);// item.getWeapon();
-            int armor = Random.Range(0, 4);// item.getArmor();
-            int combination = (armor * 21 + weapon * 3);
-            spriteDefault = sprites[combination];
-            spriteAttack = sprites[combination + 1];
-            spriteInteraction = sprites[combination + 2];
-            spriteRenderer.sprite = spriteDefault;
-    }
-    
-    // Start is called before the first frame update
+
+    /*===================================================================================================================
+     * On Start
+     * 
+     ===================================================================================================================*/
     void Start()
     {
-        sprites = Resources.LoadAll<Sprite>("rogue_sheet");
-        sliderHealth = GameObject.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>();
-        sliderHealth.maxValue = hp;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-            spriteRenderer.sprite = spriteDefault;
+        ininitialisePlayer(0, 0);
+        isShowing = true;
+        dead = false ;
+
+
+        canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
+
+        if (hasAuthority)
+        {
+            
+        }
+
+        //Initialize stats
     }
 
-    // Getting the list of ennemy within range
-    void OnTriggerEnter2D(Collider2D range)
-    {
-        if (range.gameObject.tag == "Enemy")
-        {
-            enemy.Add(range.gameObject);
-            //Debug.Log("Enemy in range");
-        }
-        else if (range.gameObject.tag == "Interactable")
-        {
-            interact.Add(range.gameObject);
-            //Debug.Log("Enemy in range");
-        }
-        else if (range.gameObject.tag.Contains("Door"))
-        {
-            interact.Add(range.gameObject);
-        }
-        else if (range.gameObject.tag == ("Blacksmith"))
-        {
-            interact.Add(range.gameObject);
-        }
-        else if(range.gameObject.tag == ("Lootbag"))
-        {
-            interact.Add(range.gameObject);
-        }
-    }
-    void OnTriggerExit2D(Collider2D range)
-    {
-        if (range.gameObject.tag == "Enemy")
-        {
-            enemy.Remove(range.gameObject);
-            //Debug.Log("Enemy out of range");
-        }
-        else if (range.gameObject.tag == "Interactable")
-        {
-            interact.Remove(range.gameObject);
-            //Debug.Log("Enemy in range");
-        }
-        else if (range.gameObject.tag.Contains("Door"))
-        {
-            interact.Remove(range.gameObject);
-        }
-        else if (range.gameObject.tag == ("Blacksmith"))
-        {
-            interact.Remove(range.gameObject);
-        }
-        else if (range.gameObject.tag == ("Lootbag"))
-        {
-            interact.Remove(range.gameObject);
-        }
-    }
 
-    // Update is called once per frame
+    /*===================================================================================================================
+      * On Update
+      * 
+      ===================================================================================================================*/
     void Update()
     {
-        if (!isDead)
+
+        if (hasAuthority == false)
         {
-            //Attack
-            sliderHealth.value = hp;
-            if (Input.GetKeyDown(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill) //If key is pushed
-            {
-                spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
-                attack();
-                if (Input.GetKeyUp(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill)
-                {
-                    spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
-                }
-            }
-            if (Input.GetKeyUp(KeyCode.LeftShift) && spriteRenderer.sprite != spriteKill)
-            {
-                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
-            }
-            if (Input.GetKeyUp(KeyCode.Q) && spriteRenderer.sprite != spriteKill && (SceneManager.GetSceneByName("BlacksmithShop_3-0").isLoaded))
-            {
-                SceneManager.UnloadSceneAsync("BlacksmithShop_3-0");//Change the sprite to default one
-            }
-            //Interaction
-            if (Input.GetKeyUp(KeyCode.F) && spriteRenderer.sprite != spriteKill)
-            {
-                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
-            }
-            if (Input.GetKeyDown(KeyCode.F) && spriteRenderer.sprite != spriteKill) //If key is pushed
-            {
-                spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
-                Vector2 playerPosition = transform.position;
-                foreach (GameObject target in interact)
-                {
-                    if (target.tag.Contains("Door"))
-                    {
-                        Door(target, target.tag);
-                    }
-                    else if (target.tag == "Blacksmith")
-                    {
-                        FindObjectOfType<DialogueTrigger>().TriggerDialogue();
-                        
-                    }if(target.tag == "Lootbag")
-                    {
-                        PickLoot(target);
-                    }
-
-                    /* Destroy(target, 0);
-                     interact.Remove(target);*/
-                    break;
-                }              
-            }
-            
-
-            //Change equipement
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                ChangeEquipement();
-            }
-            if (Input.GetKeyUp(KeyCode.G) && spriteRenderer.sprite != spriteKill)
-            {
-                string[] ss = {"asdas", "ffff", "wader"};
-                Dialogue d = new Dialogue();
-                d.sentences = ss;
-                d.name = "The Rock";
-                DialogueTrigger dt = new DialogueTrigger(d);
-                dt.TriggerDialogue();
-            }
+            camera.enabled = false;
+            return;
         }
+        if (camera.enabled==false) camera.enabled = true;
+
+        if (!dead)
+        {
+            //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+
+
+
+            if (Input.GetKeyDown("escape")) //TO Open Inventory. Doesn't work.
+            {
+                isShowing = !isShowing;
+                canvas.SetActive(isShowing);
+            }
+            if (Input.GetKeyDown(KeyCode.K)) //TO Open Inventory. Doesn't work.
+            {
+                ReceiveDamage(1);
+                Debug.Log("Damage player test");
+            }
+        }       
+    }
+    /*===================================================================================================================
+     * Damage/ Damage Calculator
+     * 
+     ===================================================================================================================*/
+    public bool isDead()
+    {
+        return (dead);
+    }
         
-    }
-
-    public void Door(GameObject target, string tag)
+    //Give Attack
+    public bool getAttack(int attackBonus)
     {
-        if (target.tag == "Door")
+        attackBonus += Random.Range(1, 20);
+
+        if (stats.getArmorClass() <= attackBonus)
         {
-            if (target.transform.eulerAngles.z == 0)
-            {
-                target.transform.Translate(0, 2.5f, 0);
-                target.transform.Rotate(0, 0, 90, Space.Self);
-            }
-            else {
-                target.transform.Rotate(0, 0, -90, Space.Self);
-                target.transform.Translate(0, -2.5f, 0);
-            }
+            Debug.Log("Attack HIT: " + attackBonus + "  VS Armor: " + stats.getArmorClass());
+            return (true); //Attack Touch
         }
-        else {
-            if (target.transform.eulerAngles.z == 90)
-            {
-                target.transform.Rotate(0, 0, -90, Space.Self);
-                target.transform.Translate(-2.5f, 0, 0);
-            }
-            else
-            {
-                target.transform.Translate(2.5f, 0, 0);
-                target.transform.Rotate(0, 0, 90, Space.Self);
-            }
-        }
-    }
-    public void PickLoot(GameObject target)
-    {
-        Loot loot = new Loot();
-        loot.DropType(target.name);
-        Destroy(target);
-        interact.Remove(target);
-    }
-    public void attack()
-    {
-
-        foreach (GameObject target in enemy)
+        else
         {
-            tmpbool = target.GetComponent<Stats>().getDamage(this.dealDamage());
-            target.GetComponent<Rigidbody2D>().AddForce(transform.forward * attackKnockback);//knockback
-            if (tmpbool == true)
-            {
-                enemy.Remove(target);
-                target.GetComponent<MonsterAi>().kill();
-
-                // GameObject.FindGameObjectWithTag("SliderHealth").GetComponent<Slider>().SetValueWithoutNotify(50f);
-
-            }
-            break;
+            Debug.Log("Attack MISS: " + attackBonus + "  VS Armor: " + stats.getArmorClass());
+            return (false); //Attack Miss
         }
     }
+
+    //Receive Damage
+    public bool ReceiveDamage(int damage)
+    {
+        stats.setHitPoint(stats.getHitPoint()-damage);
+        Debug.Log("Dealt: " + damage + "   HP left: " + stats.getHitPoint());
+        if (stats.getHitPoint() <= 0)
+        {
+            return (true); //Is dead
+        }
+        else return (false); //Is alive
+    }
+
+    //Calculate Damage
+    public int CalculateDamage()
+    {
+        return (Random.Range(1, stats.getDamageDie()) + stats.getDamageBonus());
+    }
+
 }

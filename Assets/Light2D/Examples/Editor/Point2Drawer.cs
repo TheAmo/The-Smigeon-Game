@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-namespace Light2D
+namespace Light
 {
     [CustomPropertyDrawer(typeof (Point2))]
     internal class Point2Drawer : PropertyDrawer

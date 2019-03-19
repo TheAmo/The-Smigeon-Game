@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// This class apply post processing effect to light obstacles texture.

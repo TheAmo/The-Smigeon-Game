@@ -6,7 +6,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Main script for lights. Should be attached to camera.
@@ -394,7 +394,7 @@ namespace Light2D
             LightCamera.cullingMask = 1 << LightObstaclesLayer;
             LightCamera.backgroundColor = new Color(1, 1, 1, 0);
 
-            _obstaclesPostProcessor.DrawMesh(LightCamera, LightObstaclesAntialiasing ? 2 : 1);
+           // _obstaclesPostProcessor.DrawMesh(LightCamera, LightObstaclesAntialiasing ? 2 : 1);
 
             LightCamera.Render();
             LightCamera.targetTexture = null;

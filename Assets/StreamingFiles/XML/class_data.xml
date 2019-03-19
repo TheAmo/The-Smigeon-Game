@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ClassDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <classList>
+    <ClassEntry>
+      <name>Rogue</name>
+      <baseAbility>
+        <int>10</int>
+        <int>10</int>
+        <int>8</int>
+        <int>10</int>
+        <int>10</int>
+        <int>10</int>
+      </baseAbility>
+      <hitDice>8</hitDice>
+      <bbaEachLevel>
+        <int>2</int>
+      </bbaEachLevel>
+      <damageDice>6</damageDice>
+    </ClassEntry>
+  </classList>
+</ClassDatabase>

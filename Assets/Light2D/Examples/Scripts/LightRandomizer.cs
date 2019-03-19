@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     [RequireComponent(typeof(LightSprite))]
     public class LightRandomizer : MonoBehaviour

@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     public class LandingLeg : MonoBehaviour
     {

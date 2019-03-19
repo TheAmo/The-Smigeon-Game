@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Light2D;
+using Light;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-namespace Light2D.Examples
+namespace Light.Examples
 {
     public class MapGenerator : MonoBehaviour
     {

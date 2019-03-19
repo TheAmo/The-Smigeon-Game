@@ -14,7 +14,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Light2D
+namespace Light
 {
     /// <summary>
     /// Bunch of utility functions that could be userful sometimes.
