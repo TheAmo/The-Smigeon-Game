@@ -56,7 +56,7 @@ public class PlayerInteraction : NetworkBehaviour
                 }
                 else if (target.tag == "Blacksmith")
                 {
-
+                    FindObjectOfType<DialogueTrigger>().TriggerDialogue();
                 }
                 if (target.tag == "Lootbag")
                 {

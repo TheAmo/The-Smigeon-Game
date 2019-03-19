@@ -47,6 +47,8 @@ public class DialogueManager : MonoBehaviour
     public void EndText()
     {
         a1.SetBool("isOpen", false);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BlacksmithShop_3.0", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+
     }
     public void DisplayNextText()
     {
