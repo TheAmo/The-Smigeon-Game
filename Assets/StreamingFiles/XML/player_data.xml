@@ -6,8 +6,8 @@
       <className>Rogue</className>
       <experience>500</experience>
       <position>
-        <float>0</float>
-        <float>70</float>
+        <float>-236</float>
+        <float>539</float>
       </position>
       <gold>3000</gold>
     </PlayerEntry>
