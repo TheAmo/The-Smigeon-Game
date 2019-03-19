@@ -5,12 +5,9 @@ using UnityEngine.Networking;
 
 public class PlayerConnectionObject : NetworkBehaviour
 {
-    GameObject playerCamera;
-    GameObject playerLantern;
-    public GameObject cameraPrefab;
-    public GameObject lanternPrefab;
     public int m_player_id;
     public GameObject PlayerObjectPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +17,8 @@ public class PlayerConnectionObject : NetworkBehaviour
             Debug.Log("PlayerConnection::Start --Is not local");
             return;
         }
-        playerCamera = Instantiate(cameraPrefab);
-        playerLantern = Instantiate(lanternPrefab);
+      
         CmdSpawnMyUnit();
-
-        playerCamera.GetComponent<CameraController>().setPlayer(player);
-        playerLantern.GetComponent<CameraController>().setPlayer(player);
-
-
     }
 
     // Update is called once per frame

@@ -21,9 +21,6 @@ public class Player : NetworkBehaviour
     private BoxCollider2D bc2d;
     public GameObject canvas;
 
-    public GameObject player;
-
-
     private bool isShowing;
     private bool dead;
 
@@ -32,6 +29,7 @@ public class Player : NetworkBehaviour
 
     private int m_player_id;
 
+    public Camera camera;
     /*===================================================================================================================
     * Start
     * 
@@ -54,10 +52,6 @@ public class Player : NetworkBehaviour
         //Put player on good position
         //Vector3 temp = new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
         Vector3 temp = new Vector3(0,0, 0);
-
-        player.transform.position = temp;
-
-
     }
 
     /*===================================================================================================================
@@ -69,12 +63,6 @@ public class Player : NetworkBehaviour
         Destroy(bc2d, 0);
         spriteRenderer.sprite = spriteKill;
         spriteRenderer.sortingOrder = 1;
-
-        Destroy(player.GetComponent<MoveWASD>(), 0);
-        Destroy(player.GetComponent<PlayerAttack>(), 0);
-        Destroy(player.GetComponent<PlayerInteraction>(), 0);
-        Destroy(player.GetComponent<PlayerChangeEquipment>(), 0);
-        Destroy(player.GetComponent<PlayerLight>(), 0);
 
         Debug.Log("Player is Dead!!!");
     }
@@ -94,7 +82,7 @@ public class Player : NetworkBehaviour
 
         if (hasAuthority)
         {
-            GameObject.Find("Camera").GetComponent<CameraController>().setPlayer(player);
+            
         }
 
         //Initialize stats
@@ -108,11 +96,16 @@ public class Player : NetworkBehaviour
     void Update()
     {
 
-        if (hasAuthority == false) return;
+        if (hasAuthority == false)
+        {
+            camera.enabled = false;
+            return;
+        }
+        if (camera.enabled==false) camera.enabled = true;
 
         if (!dead)
         {
-            canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+            //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
 
 
 
