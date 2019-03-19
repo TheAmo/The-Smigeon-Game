@@ -8,7 +8,8 @@ public class PlayerLight : NetworkBehaviour
      * Attribute
      * 
      ===================================================================================================================*/
-    private bool lanternLightToggle;
+    [SyncVar]
+    public bool lanternLightToggle;
 
     public GameObject lantern;
 
@@ -19,9 +20,8 @@ public class PlayerLight : NetworkBehaviour
     void Start()
     {
         if (!hasAuthority) return;
-        lantern = GameObject.Find("Light Lantern");
-        lantern.SetActive(false);
-        lanternLightToggle = false;
+        lantern.SetActive(true);
+        lanternLightToggle = true;
     }
 
     /*===================================================================================================================
@@ -30,11 +30,20 @@ public class PlayerLight : NetworkBehaviour
      ===================================================================================================================*/
     void Update()
     {
+        lantern.SetActive(lanternLightToggle);
+
         if (hasAuthority == false) return;
         if (Input.GetKeyDown(KeyCode.R))
         {
             lanternLightToggle = !lanternLightToggle;
-            lantern.SetActive(lanternLightToggle);
+            CmdToggleLight(lanternLightToggle);
         }
+    }
+
+    [Command]
+    void CmdToggleLight(bool lanternio)
+    {
+        lanternLightToggle = lanternio;
+        lantern.SetActive(lanternLightToggle);
     }
 }
