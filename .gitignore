@@ -63,7 +63,3 @@ crashlytics-build.properties
 
 
 Packages/manifest\.json
-
-Library/
-
-Assets/Sprite/BoxCollider_Adder\.cs\.meta

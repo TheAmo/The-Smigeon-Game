@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -25,11 +24,11 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            DisplayNextText(tag);
+            DisplayNextText();
         }
     }
 
-    public void StartText(Dialogue d, string tag)
+    public void StartText(Dialogue d)
     {
         a1.SetBool("isOpen", true);
         Debug.Log("START DIALOGUE CALISS");
@@ -40,27 +39,21 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-        DisplayNextText(tag);
+        DisplayNextText();
         
     }
 
        
-    public void EndText(string tag)
+    public void EndText()
     {
         a1.SetBool("isOpen", false);
-        if (!(SceneManager.GetSceneByName("BlacksmithShop_3-0").isLoaded))
-        {
-            Debug.Log(SceneManager.GetSceneByName("BlacksmithShop_3-0").isLoaded);
-            SceneManager.LoadScene("BlacksmithShop_3-0", LoadSceneMode.Additive);
-        }
-        
     }
-    public void DisplayNextText(string tag)
+    public void DisplayNextText()
     {
         Debug.Log("re");
          if(sentences.Count == 0)
         {
-            EndText(tag);
+            EndText();
             return;
         }
         string s = sentences.Dequeue();
