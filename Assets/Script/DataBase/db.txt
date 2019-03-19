@@ -71,13 +71,13 @@ LEFT JOIN weapon_material ON weapon.id= weapon_material.id_weapon
 LEFT JOIN material ON material.id = weapon_material.id_material;
 
 --PLAYER INVENTORY TABLE
-DROP TABLE IF EXISTS player_inventory CASCADE;
-CREATE TABLE player_inventory(
-	id serial PRIMARY KEY,
-	weapons varchar(255) NOT NULL,
-	money int NOT NULL,
-	items varchar(255) NOT NULL	
-);
+--DROP TABLE IF EXISTS player_inventory CASCADE;
+--CREATE TABLE player_inventory(
+	--id serial PRIMARY KEY,
+	--weapons varchar(255) NOT NULL,
+	--money int NOT NULL,
+	--items varchar(255) NOT NULL	
+--);
 
 --MONSTER STATS TABLE 
 DROP TABLE IF EXISTS monster_stats CASCADE;
@@ -89,13 +89,46 @@ CREATE TABLE monster_stats(
 	armorclass int NOT NULL,
 	attackbonus int NOT NULL,
 	damagebonus int NOT NULL,
-	damagedie int NOT NULL,
-	speed int NOT NULL
+	damagedice int NOT NULL
 );
 
 -- INSERT INFO INTO MONSTER STATS TABLE 
 INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, 
-						   damagebonus, damagedie, speed) 
-VALUES ('Goblin', 135, 6, 13, 16, 1, 0, 4, 3000);
+						   damagebonus, damagedice) 
+VALUES ('Goblin', 135, 6, 16, 1, 0, 4);
+
+-- SHOW 
+SELECT name, xp, hitpoint, armorclass, attackbonus,damagebonus, damagedice
+FROM monster_stats;
+
+--PLAYER ENTRY TABLE
+DROP TABLE IF EXISTS player_entry CASCADE;
+CREATE TABLE player_entry(
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	class_name varchar(255) NOT NULL,
+	experience int NOT NULL,
+	position float[2] NOT NULL,
+	gold int NOT NULL	
+);
+
+-- SHOW 
+SELECT name, xp, hitpoint, armorclass, attackbonus,damagebonus, damagedice
+FROM monster_stats;
+
+-- CLASS PLAYER TABLE
+DROP TABLE IF EXISTS class_player CASCADE;
+CREATE TABLE class_player(
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	base_ability integer[6] NOT NULL,
+	hitdice int NOT NULL,
+	bba_each_level integer[20] NOT NULL,
+	damagedice int NOT NULL
+);
+
+
+
+
 
 			
