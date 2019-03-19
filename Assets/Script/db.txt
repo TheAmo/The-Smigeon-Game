@@ -1,0 +1,113 @@
+-- DELETE
+DROP TABLE IF EXISTS weapon CASCADE;
+
+-- WEAPON TABLE
+CREATE TABLE weapon(
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	price int NOT NULL,
+	damage int NOT NULL,
+	defense int NOT NULL
+);
+
+-- INSERT INFO INTO WEAPON TABLE
+INSERT INTO weapon (name, price, damage, defense) VALUES ('mace', 10, 10,  20);
+INSERT INTO weapon (name, price, damage, defense) VALUES ('rapier', 35, 10, 27);
+INSERT INTO weapon (name, price, damage, defense) VALUES ('scimitar', 42, 10, 36);
+INSERT INTO weapon (name, price, damage, defense) VALUES ('maul', 47, 10, 43);
+INSERT INTO weapon (name, price, damage, defense) VALUES ('longsword', 50, 10, 47);
+
+-- SHOW
+SELECT name, damage, defense, price FROM weapon;
+
+-- MATERIAL TABLE
+DROP TABLE IF EXISTS material CASCADE;
+CREATE TABLE material(
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	price int NOT NULL,
+	damage int NOT NULL, 
+	defense int NOT NULL
+);
+
+-- INSERT INFO INTO MATERIAL TABLE 
+INSERT INTO material (name, price, damage, defense) VALUES ('bronze', 0, 1, 1);
+INSERT INTO material (name, price, damage, defense) VALUES ('steel', 20, 2, 2);
+INSERT INTO material (name, price, damage, defense) VALUES ('white', 100, 3, 3);
+INSERT INTO material (name, price, damage, defense) VALUES ('mythrill', 500, 4, 4);
+INSERT INTO material (name, price, damage, defense) VALUES ('adamant', 1250, 5, 5);
+INSERT INTO material (name, price, damage, defense) VALUES ('rune', 3000, 6, 6);
+INSERT INTO material (name, price, damage, defense) VALUES ('draconic', 10000, 7, 7);
+
+--SHOW
+SELECT name, price, damage, defense FROM material;
+
+-- ASSO TABLE
+DROP TABLE IF EXISTS weapon_material;
+CREATE TABLE weapon_material(
+	id_weapon int NOT NULL  REFERENCES weapon(id),
+	id_material int NOT NULL  REFERENCES material(id)
+);
+
+ALTER TABLE public.weapon_material
+    ADD CONSTRAINT pk PRIMARY KEY (id_weapon, id_material)
+;
+
+-- INSERT INFO INTO ASSO TABLE 
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (1, 1);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (1, 2);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (1, 3);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (2, 1);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (3, 1);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (4, 1);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (5, 1);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (5, 2);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (5, 4);
+INSERT INTO weapon_material (id_weapon, id_material) VALUES (3, 2);
+
+-- SHOW
+SELECT * FROM weapon
+LEFT JOIN weapon_material ON weapon.id= weapon_material.id_weapon
+LEFT JOIN material ON material.id = weapon_material.id_material;
+
+--PLAYER INVENTORY TABLE
+DROP TABLE IF EXISTS player_inventory CASCADE;
+CREATE TABLE player_inventory(
+	id serial PRIMARY KEY,
+	weapons varchar(255) NOT NULL,
+	money int NOT NULL,
+	items varchar(255) NOT NULL	
+);
+
+--MONSTER STATS TABLE 
+DROP TABLE IF EXISTS monster_stats CASCADE;
+CREATE TABLE monster_stats(
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	xp int NOT NULL,
+	hitpoint int NOT NULL,
+	strength int NOT NULL,
+	dexterity int NOT NULL,
+	constitution int NOT NULL,
+	intelligence int NOT NULL,
+	wisdom int NOT NULL,
+	charisma int NOT NULL,
+	armorclass int NOT NULL,
+	attackbonus int NOT NULL,
+	damagebonus int NOT NULL,
+	damagedie int NOT NULL,
+	speed int NOT NULL
+);
+
+-- INSERT INFO INTO MONSTER STATS TABLE 
+INSERT INTO monster_stats (name, xp, hitpoint, strength, dexterity, constitution,
+						   intelligence, wisdom, charisma, armorclass, attackbonus, 
+						   damagebonus, damagedie, speed) 
+VALUES ('Goblin', 135, 6, 13, 15, 12, 10, 9, 6, 16, 1, 0, 4, 3000);
+
+-- SHOW 
+SELECT name, xp, hitpoint, strength, dexterity,
+		constitution,intelligence, wisdom, charisma, 
+		armorclass, attackbonus,damagebonus, damagedie, speed
+FROM monster_stats;
+			
