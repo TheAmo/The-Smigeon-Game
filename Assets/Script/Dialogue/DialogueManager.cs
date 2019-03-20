@@ -9,7 +9,7 @@ public class DialogueManager : MonoBehaviour
     public Text Dialogue;
     public Button continueButton;
     private Queue<string> sentences;
-
+    public GameObject player;
     public Animator a1;
 
     // Start is called before the first frame update
@@ -47,8 +47,8 @@ public class DialogueManager : MonoBehaviour
     public void EndText()
     {
         a1.SetBool("isOpen", false);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("BlacksmithShop_3.0", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BlacksmithShop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UI");
     }
     public void DisplayNextText()
     {

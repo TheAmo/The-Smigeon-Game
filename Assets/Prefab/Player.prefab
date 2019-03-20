@@ -186,6 +186,8 @@ GameObject:
   - component: {fileID: 3690426719176018747}
   - component: {fileID: 3598793998919252502}
   - component: {fileID: 7063573848319029845}
+  - component: {fileID: 2444193630508139745}
+  - component: {fileID: 1547931205940582880}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -257,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc9c54a774178f4094e2c3edd42e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 0}
   spriteKill: {fileID: 0}
   sliderHealth: {fileID: 0}
   canvas: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b, type: 3}
@@ -461,6 +464,34 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &2444193630508139745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690426719176018748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3338537e398fb0e4ba648745d6c37969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 10
+  textm: {fileID: 0}
+  player: {fileID: 3690426719176018748}
+--- !u!114 &1547931205940582880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690426719176018748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb2be7a91387a8429b4e5d98790b3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
 --- !u!1 &6215596099443315851
 GameObject:
   m_ObjectHideFlags: 0

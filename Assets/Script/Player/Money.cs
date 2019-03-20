@@ -14,11 +14,11 @@ public class Money : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        textm = GameObject.Find("Text").GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
-        textm = this.GetComponent<Text>();
-        /* money = player.GetComponent<Stats>().getGold();
-         moneys = money.ToString();
-         textm.text = moneys;*/
+        money = player.GetComponent<Stats>().getGold();
+        moneys = money.ToString();
+        textm.text = moneys;
     }
 
     // Update is called once per frame

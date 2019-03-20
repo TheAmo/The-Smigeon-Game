@@ -101,12 +101,12 @@
      <Compile Include="Assets\Script\Core\GameInstantiate.cs" />
      <Compile Include="Assets\Script\DataBase\DataBaseSmi.cs" />
      <Compile Include="Assets\Script\Dialogue\Dialogue.cs" />
+     <Compile Include="Assets\Script\Dialogue\DialogueManager.cs" />
      <Compile Include="Assets\Script\Dialogue\DialogueTrigger.cs" />
      <Compile Include="Assets\Script\Dialogue\Reference.cs" />
      <Compile Include="Assets\Script\Item\Equipement.cs" />
      <Compile Include="Assets\Script\Item\Items.cs" />
      <Compile Include="Assets\Script\Monster\MonsterAi.cs" />
-     <Compile Include="Assets\Script\Monster\MonsterAIAttack.cs" />
      <Compile Include="Assets\Script\Monster\MonsterCore.cs" />
      <Compile Include="Assets\Script\Player\Controls\CameraController.cs" />
      <Compile Include="Assets\Script\Player\Controls\MoveWASD.cs" />
@@ -114,7 +114,7 @@
      <Compile Include="Assets\Script\Player\Controls\PlayerChangeEquipment.cs" />
      <Compile Include="Assets\Script\Player\Controls\PlayerInteraction.cs" />
      <Compile Include="Assets\Script\Player\Controls\PlayerLight.cs" />
-     <Compile Include="Assets\Script\Player\Dialog\DialogueManager.cs" />
+     <Compile Include="Assets\Script\Player\Money.cs" />
      <Compile Include="Assets\Script\Player\Player.cs" />
      <Compile Include="Assets\Script\Player\Stats.cs" />
      <Compile Include="Assets\Script\PlayerConnectionObject.cs" />

@@ -966,7 +966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3992412091030314238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1429,6 +1429,7 @@ MonoBehaviour:
   Name: {fileID: 3992412089399601752}
   Dialogue: {fileID: 3992412089633995381}
   continueButton: {fileID: 3992412089982434900}
+  player: {fileID: 0}
   a1: {fileID: 3992412091206082843}
 --- !u!1 &5094345930576137483
 GameObject:
@@ -2317,6 +2318,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5094345932053019589}
     m_Modifications:
+    - target: {fileID: 5872452399496316587, guid: d24c958c4707344469cbfed90dcbc29e,
+        type: 3}
+      propertyPath: m_Name
+      value: blockPrefab
+      objectReference: {fileID: 0}
     - target: {fileID: 7194021104140686559, guid: d24c958c4707344469cbfed90dcbc29e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2371,11 +2377,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872452399496316587, guid: d24c958c4707344469cbfed90dcbc29e,
-        type: 3}
-      propertyPath: m_Name
-      value: blockPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d24c958c4707344469cbfed90dcbc29e, type: 3}

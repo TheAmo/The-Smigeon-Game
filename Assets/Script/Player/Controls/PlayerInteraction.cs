@@ -16,7 +16,6 @@ public class PlayerInteraction : NetworkBehaviour
     private SpriteRenderer spriteRenderer;
 
     public GameObject player;
-
     private BoxCollider2D bc2d;
     List<GameObject> interact = new List<GameObject>();
 
@@ -120,6 +119,7 @@ public class PlayerInteraction : NetworkBehaviour
      ===================================================================================================================*/
     public void PickLoot(GameObject target)
     {
+       
         Loot loot = new Loot();
         loot.DropType(target.name);
         Destroy(target);

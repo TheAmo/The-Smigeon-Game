@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 
-public class Stats
+public class Stats : MonoBehaviour
 {
     /*===================================================================================================================
      * Stats
@@ -77,7 +77,7 @@ public class Stats
         //HitPoint
         setHitPoint(10 + getConstitutionModifier());
 
-        //Gold;
+        //Gold;ge
         setGold(50);
 
         //Experience

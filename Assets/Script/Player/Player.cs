@@ -34,7 +34,7 @@ public class Player : NetworkBehaviour
     * Start
     * 
     ===================================================================================================================*/
-    public void ininitialisePlayer(int player_id, int class_id)
+    public void initialisePlayer(int player_id, int class_id)
     {
         GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().LoadPlayer();
         Debug.Log("Constructeur du player");
@@ -73,7 +73,7 @@ public class Player : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
-        ininitialisePlayer(0, 0);
+        initialisePlayer(0, 0);
         isShowing = true;
         dead = false ;
 
