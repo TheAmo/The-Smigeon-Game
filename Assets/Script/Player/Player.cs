@@ -29,7 +29,8 @@ public class Player : NetworkBehaviour
 
     private int m_player_id;
 
-    public Camera camera;
+    public Camera PlayerCamera;
+    public GameObject ObjectCamera;
     /*===================================================================================================================
     * Start
     * 
@@ -98,12 +99,12 @@ public class Player : NetworkBehaviour
 
         if (hasAuthority == false)
         {
-            camera.enabled = false;
+            PlayerCamera.enabled = false;
             return;
         }
-        if (camera.enabled==false) camera.enabled = true;
-
-        if (!dead)
+        if (PlayerCamera.enabled==false) PlayerCamera.enabled = true;
+        if (ObjectCamera.activeSelf == false) ObjectCamera.SetActive(true);
+            if (!dead)
         {
             //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
 
@@ -163,6 +164,12 @@ public class Player : NetworkBehaviour
     public int CalculateDamage()
     {
         return (Random.Range(1, stats.getDamageDie()) + stats.getDamageBonus());
+    }
+    public void EnableCamera()
+    {
+
+        ObjectCamera.SetActive(true);
+        Debug.Log(ObjectCamera.activeSelf);
     }
 
 }

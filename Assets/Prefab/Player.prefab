@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3985458614659003178}
   - component: {fileID: 8190283040040124238}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Maria
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +263,8 @@ MonoBehaviour:
   spriteKill: {fileID: 0}
   sliderHealth: {fileID: 0}
   canvas: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b, type: 3}
-  camera: {fileID: 369825173140892279}
+  PlayerCamera: {fileID: 369825173140892279}
+  ObjectCamera: {fileID: 369825173140892277}
 --- !u!114 &2872826071406226214
 MonoBehaviour:
   m_ObjectHideFlags: 0
