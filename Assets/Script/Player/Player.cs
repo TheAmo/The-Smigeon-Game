@@ -12,6 +12,7 @@ public class Player : NetworkBehaviour
      * 
      ===================================================================================================================*/
     public Stats stats;
+    public Equipement equipement = new Equipement(0, 0);
     
     public Sprite spriteKill;
     private SpriteRenderer spriteRenderer;
@@ -96,17 +97,42 @@ public class Player : NetworkBehaviour
       ===================================================================================================================*/
     void Update()
     {
-
+       
         if (hasAuthority == false)
         {
             PlayerCamera.enabled = false;
             return;
         }
-        if (PlayerCamera.enabled==false) PlayerCamera.enabled = true;
-        if (ObjectCamera.activeSelf == false) ObjectCamera.SetActive(true);
+       
             if (!dead)
         {
-            //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+            if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false)
+            {
+                if (this.GetComponent<MoveWASD>().enabled == false)
+                {
+                    this.GetComponent<MoveWASD>().enabled = true;
+                }
+                if (this.GetComponent<PlayerInteraction>().enabled == false)
+                {
+                    this.GetComponent<PlayerInteraction>().enabled = true;
+                }
+            } else
+            {
+
+                if (this.GetComponent<MoveWASD>().enabled == true)
+                {
+                    this.GetComponent<MoveWASD>().enabled = false;
+                }
+                if (this.GetComponent<PlayerInteraction>().enabled == true)
+                {
+                    this.GetComponent<PlayerInteraction>().enabled = false;
+                }
+            }
+            
+            
+
+            if (PlayerCamera.enabled == false) PlayerCamera.enabled = true;
+            if (ObjectCamera.activeSelf == false) ObjectCamera.SetActive(true);
 
 
 

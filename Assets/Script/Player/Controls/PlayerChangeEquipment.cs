@@ -19,6 +19,8 @@ public class PlayerChangeEquipment : NetworkBehaviour
 
     public Sprite[] sprites;
 
+    private GameObject player;
+
     /*===================================================================================================================
      * On Start
      * 
@@ -28,7 +30,7 @@ public class PlayerChangeEquipment : NetworkBehaviour
         sprites = Resources.LoadAll<Sprite>("rogue_sheet");
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
-            spriteRenderer.sprite = spriteDefault;
+        spriteRenderer.sprite = spriteDefault;
         ChangeEquipement();
     }
 
@@ -60,8 +62,10 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     public void ChangeEquipement()
     {
-        int weapon = Random.Range(0, 7);// item.getWeapon();
-        int armor = Random.Range(0, 4);// item.getArmor();
+        int armor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor();
+        int weapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor();
+
+
         int combination = (armor * 21 + weapon * 3);
         spriteDefault = sprites[combination];
         spriteAttack = sprites[combination + 1];

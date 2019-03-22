@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         continueButton.enabled = true;
         continueButton.interactable = true;
         sentences = new Queue<string>();
@@ -49,7 +50,8 @@ public class DialogueManager : MonoBehaviour
         a1.SetBool("isOpen", false);
         UnityEngine.SceneManagement.SceneManager.LoadScene("BlacksmithShop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UI");
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        
 
     }
     public void DisplayNextText()
