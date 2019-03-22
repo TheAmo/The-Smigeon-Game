@@ -165,11 +165,6 @@ public class Player : NetworkBehaviour
     {
         return (Random.Range(1, stats.getDamageDie()) + stats.getDamageBonus());
     }
-    public void EnableCamera()
-    {
-
-        ObjectCamera.SetActive(true);
-        Debug.Log(ObjectCamera.activeSelf);
-    }
+   
 
 }
