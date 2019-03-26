@@ -59,17 +59,6 @@ public class DataBaseSmi : MonoBehaviour
     }
 
     /*===================================================================================================================
- *** =================================================================================================================
- *** =================================================================================================================
- *** Stats
- *** 
- ***
- *** 
- *** =================================================================================================================
- *** =================================================================================================================
- ===================================================================================================================*/
-
-    /*===================================================================================================================
      * Get Monster Stat by Id
      * 
     ===================================================================================================================*/
@@ -79,66 +68,6 @@ public class DataBaseSmi : MonoBehaviour
         m_dbTableMonsterStats = Connection("SELECT * FROM monster_stats WHERE id=" + id);
 
         return m_dbTableMonsterStats;
-    }
-
-    /*===================================================================================================================
-    *** =================================================================================================================
-    *** =================================================================================================================
-    *** Items:
-    *** 
-    ***
-    *** 
-    *** =================================================================================================================
-    *** =================================================================================================================
-    ===================================================================================================================*/
-
-
-    /*===================================================================================================================
-    * Select Weapons and materials
-    * 
-    ===================================================================================================================*/
-
-    public DataTable SelectWeaponsMaterials()
-    {
-
-        m_dbTableMaterialWeapon = new DataTable();
-
-        string strSelect = "SELECT * FROM \"weapon_material\"";
-
-        m_dbTableMaterialWeapon = Connection(strSelect);
-
-        return m_dbTableMaterialWeapon;
-    }
-
-    /*===================================================================================================================
-    * Get all weapons
-    * Select Weapon
-    * 
-    ===================================================================================================================*/
-    public List<Items> getAllWeapons()
-    {
-        List<Items> weapons = new List<Items>();
-        string name;
-        int id, damage, defense;
-        double price;
-
-        string strSelect = "SELECT id, name, damage, defense, price FROM \"weapon\"";
-
-        m_dbTableWeapon = new DataTable();
-        m_dbTableWeapon = Select(strSelect);
-
-        for (int i = 0; i < m_dbTableWeapon.Rows.Count; i++)
-        {
-            id = Convert.ToInt32(m_dbTableWeapon.Rows[i]["id"]);
-            name = (m_dbTableWeapon.Rows[i]["name"]).ToString();
-            damage = Convert.ToInt32(m_dbTableWeapon.Rows[i]["damage"]);
-            defense = Convert.ToInt32(m_dbTableWeapon.Rows[i]["defense"]);
-            price = Convert.ToDouble(m_dbTableWeapon.Rows[i]["price"]);
-
-            weapons.Add(new Items(id, name, damage, defense, price));
-        }
-
-        return weapons;
     }
 
     /*===================================================================================================================
@@ -317,12 +246,9 @@ public class DataBaseSmi : MonoBehaviour
             dbReader = dbCmd.ExecuteReader();
             while (dbReader.Read())
             {
-                int i = 0;
-
                 // m_val = dbReader[0].ToString();
-                m_val= dbReader[id].ToString();
-                Debug.Log("dbReader[i] : " + dbReader[i].ToString());
-                i++;
+                m_val= dbReader[id-1].ToString();
+            
             }
         }
         dbConnection.Close();
@@ -343,7 +269,7 @@ public class DataBaseSmi : MonoBehaviour
             dbReader = dbCmd.ExecuteReader();
             while (dbReader.Read())
             {
-                m_valI = Convert.ToInt16(dbReader[id]);
+                m_valI = Convert.ToInt16(dbReader[id-1]);
             }
         }
         dbConnection.Close();
@@ -351,17 +277,17 @@ public class DataBaseSmi : MonoBehaviour
         return m_valI;
     }
     /*===================================================================================================================
-    * Get Table info
+    * Get Table info by id
     * 
     ===================================================================================================================*/
-    /*public double getTableInfo(String info, String name, String table, String material)
-    {
-        string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
+    //public double getTableInfo(String info, String id, String table)
+    //{
+        //string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
 
-        double valInfo = Convert.ToDouble(getTableValue(strSelect));
+        //double valInfo = Convert.ToDouble(getTableValue(strSelect, id));
 
-        return valInfo;
-    }*/
+        //return valInfo;
+    //}
 
     // Start is called before the first frame update
     void Start()
