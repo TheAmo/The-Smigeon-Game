@@ -14,12 +14,14 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     private DataTable m_dbTable;
     private DataTable m_dbTableWeapon;
+    private DataTable m_dbTablePLayerEntry;
     private DataTable m_dbTableMaterial;
     private DataTable m_dbTableMaterialWeapon;
     private DataTable m_dbTableMonsterStats;
     private DataTable m_dbtmpTable;
 
-    private double m_val;
+    private string m_val;
+    private int m_valI;
     private double m_valMaterial;
 
     /*===================================================================================================================
@@ -57,17 +59,6 @@ public class DataBaseSmi : MonoBehaviour
     }
 
     /*===================================================================================================================
- *** =================================================================================================================
- *** =================================================================================================================
- *** Stats
- *** 
- ***
- *** 
- *** =================================================================================================================
- *** =================================================================================================================
- ===================================================================================================================*/
-
-    /*===================================================================================================================
      * Get Monster Stat by Id
      * 
     ===================================================================================================================*/
@@ -80,65 +71,7 @@ public class DataBaseSmi : MonoBehaviour
     }
 
     /*===================================================================================================================
-    *** =================================================================================================================
-    *** =================================================================================================================
-    *** Items:
-    *** 
-    ***
-    *** 
-    *** =================================================================================================================
-    *** =================================================================================================================
-    ===================================================================================================================*/
-
-
-    /*===================================================================================================================
-    * Select Weapons and materials
-    * 
-    ===================================================================================================================*/
-
-    public DataTable SelectWeaponsMaterials()
-    {
-
-        m_dbTableMaterialWeapon = new DataTable();
-
-        string strSelect = "SELECT * FROM \"weapon_material\"";
-
-        m_dbTableMaterialWeapon = Connection(strSelect);
-
-        return m_dbTableMaterialWeapon;
-    }
-
-    /*===================================================================================================================
-    * Select Weapon
-    * 
-    ===================================================================================================================*/
-    public List<Items> getAllWeapons()
-    {
-        List<Items> weapons = new List<Items>();
-        string name;
-        int id, damage, defense;
-        double price;
-
-        string strSelect = "SELECT * FROM \"weapon\"";
-
-        m_dbTableWeapon = new DataTable();
-        m_dbTableWeapon = Select(strSelect);
-
-        for (int i = 0; i < m_dbTableWeapon.Rows.Count; i++)
-        {
-            id = Convert.ToInt32(m_dbTableWeapon.Rows[i]["id"]);
-            name = (m_dbTableWeapon.Rows[i]["name"]).ToString();
-            damage = Convert.ToInt32(m_dbTableWeapon.Rows[i]["damage"]);
-            defense = Convert.ToInt32(m_dbTableWeapon.Rows[i]["defense"]);
-            price = Convert.ToDouble(m_dbTableWeapon.Rows[i]["price"]);
-
-            weapons.Add(new Items(id, name, damage, defense, price));
-        }
-
-        return weapons;
-    }
-
-    /*===================================================================================================================
+    * Get all materials
     * Select Material
     * 
     ===================================================================================================================*/
@@ -149,7 +82,7 @@ public class DataBaseSmi : MonoBehaviour
         int id, damage, defense;
         double price;
 
-        string strSelect = "SELECT * FROM \"material\"";
+        string strSelect = "SELECT id, name, price, damage, defense FROM \"material\"";
 
         m_dbTableMaterial = new DataTable();
         m_dbTableMaterial = Select(strSelect);
@@ -168,11 +101,142 @@ public class DataBaseSmi : MonoBehaviour
 
         return materials;
     }
-   /*===================================================================================================================
-   * Get Table value
-   * 
-   ===================================================================================================================*/
-    private double getTableValue(String strSelect)
+    /*===================================================================================================================
+    * Select player entry
+    * 
+    ===================================================================================================================*/
+    public List<PlayerEntryDB> getPlayerEntry()
+    {
+        List<PlayerEntryDB> playerList = new List<PlayerEntryDB>();
+        string name, className;
+        int experience, gold;
+        var position = new float[2];
+
+        string strSelect = "SELECT name, class_name, positionx, positiony, gold FROM \"player_entry\"";
+
+        m_dbTablePLayerEntry = new DataTable();
+        m_dbTablePLayerEntry = Select(strSelect);
+
+        for (int i = 0; i < m_dbTablePLayerEntry.Rows.Count; i++)
+        {
+            name = (m_dbTablePLayerEntry.Rows[i]["name"]).ToString();
+            className = (m_dbTablePLayerEntry.Rows[i]["class_name"]).ToString();
+            experience = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["experience"]);
+            position[0] = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["positionx"]);
+            position[1] = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["positiony"]);
+            gold = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["gold"]);
+
+            playerList.Add(new PlayerEntryDB(name, className, experience, position, gold));
+        }
+
+        return playerList;
+    }
+    /*===================================================================================================================
+    * Get Name 
+    * 
+    ===================================================================================================================*/
+    public string getName(string table, int id)
+    {
+        string strSelect = "SELECT name FROM \""+ table +"\"";
+
+        string name = getTableValue(strSelect, id);
+
+        Debug.Log("name : " + name);
+
+        return name;
+    }
+    /*===================================================================================================================
+    * Get Class name 
+    * 
+    ===================================================================================================================*/
+    public string getClassName(string table, int id)
+    {
+        string strSelect = "SELECT class_name FROM \"" + table + "\"";
+
+        string className = getTableValue(strSelect, id);
+
+        return className;
+    }
+    /*===================================================================================================================
+    * Get position x and position y
+    * 
+    ===================================================================================================================*/
+    public int getPosition(string table, int id, string pos)
+    {
+        string strSelect = "SELECT position" + pos + " FROM \"" + table + "\"";
+
+        int position = getIntegerValue(strSelect, id);
+
+        Debug.Log("position" + pos + " : " + position);
+
+        return position;
+    }
+    /*===================================================================================================================
+    * Get experience
+    * 
+    ===================================================================================================================*/
+    public int getExperience(string table, int id)
+    {
+        string strSelect = "SELECT experience FROM \"" + table + "\"";
+
+        int experience = getIntegerValue(strSelect, id);
+
+        return experience;
+    }
+    /*===================================================================================================================
+    * Get gold
+    * 
+    ===================================================================================================================*/
+    public int getGold(string table, int id)
+    {
+        string strSelect = "SELECT gold FROM \"" + table + "\"";
+
+        int gold = getIntegerValue(strSelect, id);
+
+        return gold;
+    }
+    /*===================================================================================================================
+    * Get damage
+    * 
+    ===================================================================================================================*/
+    public int getDamage(string table, int id)
+    {
+        string strSelect = "SELECT damage FROM \"" + table + "\"";
+
+        int damage = getIntegerValue(strSelect, id);
+
+        return damage;
+    }
+    /*===================================================================================================================
+    * Get defense
+    * 
+    ===================================================================================================================*/
+    public int getDefense(string table, int id)
+    {
+        string strSelect = "SELECT defense FROM \"" + table + "\"";
+
+        int defense = getIntegerValue(strSelect, id);
+
+        return defense;
+    }
+    /*===================================================================================================================
+    * Get price
+    * 
+    ===================================================================================================================*/
+    public int getPrice(string table, int id)
+    {
+        string strSelect = "SELECT price FROM \"" + table + "\"";
+
+        int price = getIntegerValue(strSelect, id);
+
+        return price;
+    }
+
+    /*===================================================================================================================
+    * Get string value
+    * 
+    ===================================================================================================================*/
+    private string getTableValue(String strSelect, int id)
     {
         dbConnection = new NpgsqlConnection(strConnection);
         dbConnection.Open();
@@ -182,7 +246,9 @@ public class DataBaseSmi : MonoBehaviour
             dbReader = dbCmd.ExecuteReader();
             while (dbReader.Read())
             {
-                m_val = double.Parse(dbReader[0].ToString());
+                // m_val = dbReader[0].ToString();
+                m_val= dbReader[id-1].ToString();
+            
             }
         }
         dbConnection.Close();
@@ -190,31 +256,44 @@ public class DataBaseSmi : MonoBehaviour
         return m_val;
     }
     /*===================================================================================================================
-    * Get Table info
-    * armur = getTableInfo("armur", "player", " ")
+    * Get integer value
+    * 
     ===================================================================================================================*/
-    public double getTableInfo(String info, String name, String table, String material)
+    private int getIntegerValue(String strSelect, int id)
     {
-        string strSelect = "SELECT " + info + " FROM weapon WHERE " + table + "." + info + " =  \'" + name + "\'";
+        dbConnection = new NpgsqlConnection(strConnection);
+        dbConnection.Open();
 
-        m_val = getTableValue(strSelect);
-
-        if (table == "weapon")
+        using (dbCmd = new NpgsqlCommand(strSelect, dbConnection))
         {
-            string strSelectMa = "SELECT " + info + " FROM material WHERE material." + info + " =  \'" + material + "\'";
-
-            m_valMaterial = getTableValue(strSelectMa);
-
-            return (m_val + m_valMaterial);
+            dbReader = dbCmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                m_valI = Convert.ToInt16(dbReader[id-1]);
+            }
         }
+        dbConnection.Close();
 
-        return m_val;
+        return m_valI;
     }
+    /*===================================================================================================================
+    * Get Table info by id
+    * 
+    ===================================================================================================================*/
+    //public double getTableInfo(String info, String id, String table)
+    //{
+        //string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
+
+        //double valInfo = Convert.ToDouble(getTableValue(strSelect, id));
+
+        //return valInfo;
+    //}
 
     // Start is called before the first frame update
     void Start()
     {
-
+        string name = getName("weapon", 2);
+        int positon = getPosition("player_entry", 1, "x");
     }
 
     // Update is called once per frame
