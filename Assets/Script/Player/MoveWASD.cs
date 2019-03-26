@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MoveWASD : MonoBehaviour
+public class MoveWASD : NetworkBehaviour
 {
     public float speed = 1;
     float degfactor = 360 / (2 * Mathf.PI);
@@ -36,8 +37,8 @@ public class MoveWASD : MonoBehaviour
             isFast = false;
         }
         if (verticalAxis != 0 && horizontalAxis != 0)
-            rb2d.AddForce(movement * speed * sqrt2);
-        else rb2d.AddForce(movement * speed);
+            rb2d.MovePosition((rb2d.position) + movement * speed * sqrt2);
+        else rb2d.MovePosition((rb2d.position) + movement * speed);
 
         //Rotation
         if (verticalAxis != 0 || horizontalAxis != 0)

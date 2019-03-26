@@ -175,9 +175,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3690426719176018750}
   - component: {fileID: 8266766487212093096}
+  - component: {fileID: 4336124058740051480}
   - component: {fileID: 6707666635540906122}
   - component: {fileID: 2751431095743478540}
-  - component: {fileID: 2872826071406226214}
   - component: {fileID: 7080996947961178403}
   - component: {fileID: 6944542531686902729}
   - component: {fileID: 9072967859094618221}
@@ -231,6 +231,19 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &4336124058740051480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690426719176018748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471917d24dc176545b328a4373c1931f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.4
 --- !u!114 &6707666635540906122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,19 +274,6 @@ MonoBehaviour:
   sliderHealth: {fileID: 0}
   canvas: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b, type: 3}
   camera: {fileID: 369825173140892279}
---- !u!114 &2872826071406226214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3690426719176018748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be6745e2a32c4f4aa4a7335996a2ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
 --- !u!114 &7080996947961178403
 MonoBehaviour:
   m_ObjectHideFlags: 0

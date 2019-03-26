@@ -13,7 +13,7 @@ public class PlayerDisplay : MonoBehaviour
 
     public void Display()
     {
-        foreach(PlayerEntry player in XMLPlayerManagement.ins.playerDB.playerList)
+        foreach(PlayerEntry player in DBPlayerManagement.ins.playerDB.playerList)
         {
             Debug.Log("loaded " + player.name);
             PlayerBlock newBlock = Instantiate(blockPrefab) as PlayerBlock;

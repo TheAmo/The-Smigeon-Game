@@ -115,10 +115,9 @@
     <Compile Include="Assets\Script\Dialogue\Reference.cs" />
     <Compile Include="Assets\Script\Item\Equipement.cs" />
     <Compile Include="Assets\Script\Item\Items.cs" />
-    <Compile Include="Assets\Script\Monster\MonsterAi.cs" />
     <Compile Include="Assets\Script\Monster\MonsterAIAttack.cs" />
     <Compile Include="Assets\Script\Monster\MonsterCore.cs" />
-    <Compile Include="Assets\Script\MonsterAi.cs" />
+    <Compile Include="Assets\Script\Monster\MonsterSuperAi.cs" />
     <Compile Include="Assets\Script\Player\Controls\CameraController.cs" />
     <Compile Include="Assets\Script\Player\Controls\PlayerAttack.cs" />
     <Compile Include="Assets\Script\Player\Controls\PlayerChangeEquipment.cs" />
@@ -129,7 +128,6 @@
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Player\Stats.cs" />
     <Compile Include="Assets\Script\PlayerConnectionObject.cs" />
-    <Compile Include="Assets\Script\Stats.cs" />
     <Compile Include="Assets\Script\Trap.cs" />
     <Compile Include="Assets\Script\UI\PlayerBlock.cs" />
     <Compile Include="Assets\Script\UI\PlayerDisplay.cs" />

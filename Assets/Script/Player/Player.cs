@@ -38,13 +38,13 @@ public class Player : NetworkBehaviour
     ===================================================================================================================*/
     public void ininitialisePlayer(int player_id, int class_id)
     {
-        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().LoadPlayer();
+        GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().LoadPlayer();
         Debug.Log("Constructeur du player");
         m_player_id = player_id;
         //get PlayerEntry
-        playerDatabase = GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB;
+        playerDatabase = GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().playerDB;
         //get ClassEntry
-        classDatabase = GameObject.Find("XML Class Manager").GetComponent<XMLClassManagement>().classDB;
+        classDatabase = GameObject.Find("DB Class Manager").GetComponent<DBClassManagement>().classDB;
 
         //Add Entry's info in Stats
         stats = new Stats(playerDatabase.playerList[player_id], classDatabase.classList[class_id]);
