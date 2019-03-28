@@ -31,6 +31,7 @@ public class Player : NetworkBehaviour
     private int m_player_id;
 
     public Camera PlayerCamera;
+    private Rigidbody2D rb2d;
     public GameObject ObjectCamera;
     /*===================================================================================================================
     * Start
@@ -53,7 +54,9 @@ public class Player : NetworkBehaviour
 
         //Put player on good position
         //Vector3 temp = new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
-        Vector3 temp = new Vector3(0,0, 0);
+        Vector3 temp = new Vector3(70, 70, 0);
+        rb2d.position = temp;
+
     }
 
     /*===================================================================================================================
@@ -75,6 +78,7 @@ public class Player : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
+        rb2d = this.GetComponent<Rigidbody2D>();
         initialisePlayer(0, 0);
         isShowing = true;
         dead = false ;

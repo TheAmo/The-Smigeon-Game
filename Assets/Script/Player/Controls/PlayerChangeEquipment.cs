@@ -62,7 +62,7 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     public void ChangeEquipement()
     {
-        int armor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor();
+        int armor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getWeapon();
         int weapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor();
 
 
