@@ -30,20 +30,20 @@ public class BuyingSword: MonoBehaviour
             textm.text = (money - price).ToString();
         }
 
-        sprites = Resources.LoadAll<Sprite>("rogue_sheet");
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-            spriteRenderer.sprite = spriteDefault;
-      
-            int armor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getWeapon();
-            int weapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor();
+        //sprites = Resources.LoadAll<Sprite>("rogue_sheet");
+        //spriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetComponentInChildren<PlayerChangeEquipment>().ChangeEquipement();
 
 
+           /* int armor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor();
+            int weapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getWeapon();
+            Debug.Log(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getWeapon());
+            
             int combination = (armor * 21 + weapon * 3);
             spriteDefault = sprites[combination];
             spriteAttack = sprites[combination + 1];
             spriteInteraction = sprites[combination + 2];
-            spriteRenderer.sprite = spriteDefault;
+            spriteRenderer.sprite = spriteDefault;*/
         
     }
 }
