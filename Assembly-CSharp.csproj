@@ -110,12 +110,12 @@
     <Compile Include="Assets\Script\DataBase\DBClassManagement.cs" />
     <Compile Include="Assets\Script\DataBase\DBMonsterManager.cs" />
     <Compile Include="Assets\Script\DataBase\DBPlayerManagement.cs" />
+    <Compile Include="Assets\Script\DataBase\PlayerEntryDB.cs" />
     <Compile Include="Assets\Script\Dialogue\Dialogue.cs" />
     <Compile Include="Assets\Script\Dialogue\DialogueTrigger.cs" />
     <Compile Include="Assets\Script\Dialogue\Reference.cs" />
     <Compile Include="Assets\Script\Item\Equipement.cs" />
     <Compile Include="Assets\Script\Item\Items.cs" />
-    <Compile Include="Assets\Script\Monster\MonsterAIAttack.cs" />
     <Compile Include="Assets\Script\Monster\MonsterCore.cs" />
     <Compile Include="Assets\Script\Monster\MonsterSuperAi.cs" />
     <Compile Include="Assets\Script\Player\Controls\CameraController.cs" />
@@ -127,7 +127,7 @@
     <Compile Include="Assets\Script\Player\MoveWASD.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Player\Stats.cs" />
-    <Compile Include="Assets\Script\PlayerConnectionObject.cs" />
+    <Compile Include="Assets\Script\PlayerController.cs" />
     <Compile Include="Assets\Script\Trap.cs" />
     <Compile Include="Assets\Script\UI\PlayerBlock.cs" />
     <Compile Include="Assets\Script\UI\PlayerDisplay.cs" />

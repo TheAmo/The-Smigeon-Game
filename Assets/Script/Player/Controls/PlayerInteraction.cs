@@ -13,6 +13,7 @@ public class PlayerInteraction : NetworkBehaviour
     private Sprite spriteDefault;
     private Sprite spriteInteraction;
 
+    [SyncVar]
     private SpriteRenderer spriteRenderer;
 
     public GameObject player;
@@ -69,6 +70,12 @@ public class PlayerInteraction : NetworkBehaviour
             }
         }
     }
+    [Command]
+    void CmdChangeSprite(Sprite spriterio)
+    {
+        spriteRenderer.sprite = spriterio;
+    }
+
 
     /*===================================================================================================================
      * Collider for interactable range

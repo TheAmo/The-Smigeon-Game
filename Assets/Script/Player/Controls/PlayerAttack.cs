@@ -94,7 +94,7 @@ public class PlayerAttack : NetworkBehaviour
                 if (tmpbool == true)//Target is dead
                 {
                     enemy.Remove(target);
-                    target.GetComponent<MonsterAi>().kill();
+                    //target.GetComponent<MonsterSuperAi>().kill();
                 }
                 else
                 {
