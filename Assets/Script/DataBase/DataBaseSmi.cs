@@ -135,15 +135,20 @@ public class DataBaseSmi : MonoBehaviour
     * Get Name 
     * 
     ===================================================================================================================*/
-    public string getName(string table, int id)
+    public string getName(int id)
     {
-        string strSelect = "SELECT name FROM \""+ table +"\"";
-
-        string name = getTableValue(strSelect, id);
-
-        Debug.Log("name : " + name);
-
-        return name;
+        string strSelect = "SELECT name FROM \"material\"";
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+        string[] name = new String[8];
+        string nameid;
+        
+        for(int i = 0; i < m_dbTable.Rows.Count; i++)
+        {
+            name[i] = (m_dbTable.Rows[i]["name"]).ToString();
+        }
+        nameid = name[id];
+        return nameid;
     }
     /*===================================================================================================================
     * Get Class name 
@@ -244,12 +249,11 @@ public class DataBaseSmi : MonoBehaviour
         using (dbCmd = new NpgsqlCommand(strSelect, dbConnection))
         {
             dbReader = dbCmd.ExecuteReader();
-            while (dbReader.Read())
-            {
+           
                 // m_val = dbReader[0].ToString();
-                m_val= dbReader[id-1].ToString();
+                m_val= dbReader[id-8].ToString();
             
-            }
+            
         }
         dbConnection.Close();
 
@@ -292,7 +296,8 @@ public class DataBaseSmi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string name = getName("weapon", 2);
+        string name = getName(2);
+        Debug.Log(name + " name ");
         int positon = getPosition("player_entry", 1, "x");
     }
 

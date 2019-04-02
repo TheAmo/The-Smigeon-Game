@@ -199,8 +199,8 @@ GameObject:
   - component: {fileID: 172640694}
   - component: {fileID: 172640693}
   m_Layer: 11
-  m_Name: White
-  m_TagString: Untagged
+  m_Name: Sword 3
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,8 +317,8 @@ GameObject:
   - component: {fileID: 216205875}
   - component: {fileID: 216205874}
   m_Layer: 11
-  m_Name: Mithril
-  m_TagString: Untagged
+  m_Name: Sword 4
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,9 +500,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92da3812638c5594fadb55f91f641ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  db: {fileID: 0}
   ShopCamera: {fileID: 645192653}
   player: {fileID: 3690426719176018748, guid: 33d57348f3606044a8d120ef6dbe84b3, type: 3}
   CurrentMoney: {fileID: 972080796}
+  button: []
 --- !u!1 &455361414
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +575,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mithril   +3
+  m_Text: 
 --- !u!222 &455361417
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -596,8 +598,8 @@ GameObject:
   - component: {fileID: 477700695}
   - component: {fileID: 477700698}
   m_Layer: 11
-  m_Name: Steel
-  m_TagString: Untagged
+  m_Name: Sword 2
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -802,7 +804,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Adamant   +4
+  m_Text: 
 --- !u!222 &591862580
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1010,7 +1012,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Draconic   +6
+  m_Text: 
 --- !u!222 &936333471
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1089,7 +1091,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Steel   +1
+  m_Text: 
 --- !u!222 &958485268
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1346,7 +1348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: White   +2
+  m_Text: 
 --- !u!222 &1069080179
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1662,8 +1664,8 @@ GameObject:
   - component: {fileID: 1397086127}
   - component: {fileID: 1397086130}
   m_Layer: 11
-  m_Name: Bronze
-  m_TagString: Untagged
+  m_Name: Sword 1
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1811,8 +1813,8 @@ GameObject:
   - component: {fileID: 1506244989}
   - component: {fileID: 1506244988}
   m_Layer: 11
-  m_Name: Rune
-  m_TagString: Untagged
+  m_Name: Sword 6
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2008,8 +2010,8 @@ GameObject:
   - component: {fileID: 1694032043}
   - component: {fileID: 1694032042}
   m_Layer: 11
-  m_Name: Draconic
-  m_TagString: Untagged
+  m_Name: Sword 7
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2183,7 +2185,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rune   +5
+  m_Text: 
 --- !u!222 &1746731016
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2284,8 +2286,8 @@ GameObject:
   - component: {fileID: 1926908689}
   - component: {fileID: 1926908688}
   m_Layer: 11
-  m_Name: Adamant
-  m_TagString: Untagged
+  m_Name: Sword 5
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2502,7 +2504,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bronze  +0
+  m_Text: 
 --- !u!222 &1967890262
 CanvasRenderer:
   m_ObjectHideFlags: 0

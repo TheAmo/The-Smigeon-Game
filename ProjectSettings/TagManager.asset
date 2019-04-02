@@ -12,6 +12,7 @@ TagManager:
   - Doorh
   - Blacksmith
   - MoneyText
+  - Button
   layers:
   - Default
   - TransparentFX
