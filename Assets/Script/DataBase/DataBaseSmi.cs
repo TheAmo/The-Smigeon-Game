@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityNpgsql;
+using UnityNpgsqlTypes;
 
 public class DataBaseSmi : MonoBehaviour
 {
@@ -156,7 +157,7 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     public string getClassName(string table, int id)
     {
-        string strSelect = "SELECT class_name FROM \"" + table + "\"";
+        string strSelect = "SELECT class_name FROM \"material\"";
 
         string className = getTableValue(strSelect, id);
 
@@ -228,13 +229,20 @@ public class DataBaseSmi : MonoBehaviour
     * Get price
     * 
     ===================================================================================================================*/
-    public int getPrice(string table, int id)
+    public float getPrice(int id)
     {
-        string strSelect = "SELECT price FROM \"" + table + "\"";
+        string strSelect = "SELECT price FROM \"material\"";
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+        int[] price = new int[8];
+        
 
-        int price = getIntegerValue(strSelect, id);
+        for (int i = 0; i < m_dbTable.Rows.Count; i++)
+        {
+            price[i] = Convert.ToInt32(m_dbTable.Rows[i]["price"]);
+        }
 
-        return price;
+        return price[id];
     }
 
     /*===================================================================================================================
@@ -286,12 +294,43 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     //public double getTableInfo(String info, String id, String table)
     //{
-        //string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
+    //string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
 
-        //double valInfo = Convert.ToDouble(getTableValue(strSelect, id));
+    //double valInfo = Convert.ToDouble(getTableValue(strSelect, id));
 
-        //return valInfo;
+    //return valInfo;
     //}
+    /*===================================================================================================================
+   * Sauvegarde
+   * 
+    ===================================================================================================================*/
+    public void UpdateWeapon(string infoToSave, int id, string oldValue, string newValue)
+    {
+
+        string strQuery = "UPDATE player_entry SET \"weapon\" = :Weapon WHERE \"id\" = :ID";
+        dbConnection = new NpgsqlConnection(strConnection);
+
+        dbConnection.Open();
+
+        dbCmd = new NpgsqlCommand(strQuery, dbConnection);
+        dbCmd.Parameters.Add(new NpgsqlParameter("Weapon", NpgsqlDbType.Text));
+        dbCmd.Parameters.Add(new NpgsqlParameter("ID", NpgsqlDbType.Integer));
+        dbCmd.Parameters[0].Value = infoToSave;
+        dbCmd.Parameters[1].Value = id;
+        dbCmd.ExecuteNonQuery();
+
+        Debug.Log("UpdateWeapon");
+
+        dbConnection.Close();
+    }
+
+    public void SavePlayer(string name, int experience, string weapon, string armor, float[] position)
+    {
+
+
+
+
+    }
 
     // Start is called before the first frame update
     void Start()
