@@ -78,6 +78,7 @@ public class Player : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
+        
         rb2d = this.GetComponent<Rigidbody2D>();
         initialisePlayer(0, 0);
         isShowing = true;
