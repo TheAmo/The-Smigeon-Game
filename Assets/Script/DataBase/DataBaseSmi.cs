@@ -134,11 +134,12 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     public string getMaterialName(int i)
     {
-        string strSelect = "SELECT name FROM \"material\" WHERE id = " + (i + 1);
+        i++;
+        string strSelect = "SELECT name FROM \"material\" WHERE id = " + i;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
-
+        
         string name = (m_dbTable.Rows[0]["name"]).ToString();
         
         return name;
@@ -209,13 +210,14 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     public int getMaterialDamage(int id)
     {
-        string strSelect = "SELECT damage FROM \"material\" WHERE id = " + id + 1;
+        id++;
+        string strSelect = "SELECT damage FROM \"material\" WHERE id = " + id;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
         int damage = Convert.ToInt16(m_dbTable.Rows[0]["damage"]);
 
-        Debug.Log("--------------------------------------getMaterialDamage" + damage);
+        //Debug.Log();
 
         return damage;
     }
@@ -238,8 +240,9 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     public int getPrice(int i)
     {
+       // i--;
         string temp;
-        string strSelect = "SELECT price FROM \"material\" WHERE id = " + i + 1;
+        string strSelect = "SELECT price FROM \"material\" WHERE id = " + i;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);

@@ -21,7 +21,7 @@ public class BuyingSword: MonoBehaviour
         textm = GameObject.Find("Current Money").GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         db = new DataBaseSmi();
-
+        price = db.getPrice(id);
 
         float money = player.GetComponent<Stats>().getGold();
         if (money >= price)
@@ -30,7 +30,7 @@ public class BuyingSword: MonoBehaviour
             SwordType = GameObject.Find("Sword Stats").GetComponent<Text>();
             Debug.Log(id);
             player.GetComponent<Stats>().setGold((int)(money - price));
-            player.GetComponent<Player>().equipement.setWeapon(id);
+            player.GetComponent<Player>().equipement.setWeapon(id-1);
             Debug.Log(player.GetComponent<Player>().equipement.getWeapon());
             textm.text = (money - price).ToString();
 

@@ -328,14 +328,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
-  price: 50
+  id: 3
   player: {fileID: 0}
-  spriteDefault: {fileID: 0}
-  spriteAttack: {fileID: 0}
-  spriteInteraction: {fileID: 0}
-  sprites: []
   textm: {fileID: 0}
+  weapon: 0
+  SwordType: {fileID: 0}
 --- !u!1 &216205872
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,14 +475,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
-  price: 50
+  id: 4
   player: {fileID: 0}
-  spriteDefault: {fileID: 0}
-  spriteAttack: {fileID: 0}
-  spriteInteraction: {fileID: 0}
-  sprites: []
   textm: {fileID: 0}
+  weapon: 0
+  SwordType: {fileID: 0}
 --- !u!1 &223805354
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,14 +783,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  price: 50
+  id: 2
   player: {fileID: 0}
-  spriteDefault: {fileID: 0}
-  spriteAttack: {fileID: 0}
-  spriteInteraction: {fileID: 0}
-  sprites: []
   textm: {fileID: 0}
+  weapon: 0
+  SwordType: {fileID: 0}
 --- !u!1 &591862577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,14 +1846,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  price: 50
+  id: 1
   player: {fileID: 0}
-  spriteDefault: {fileID: 0}
-  spriteAttack: {fileID: 0}
-  spriteInteraction: {fileID: 0}
-  sprites: []
   textm: {fileID: 0}
+  weapon: 0
+  SwordType: {fileID: 0}
 --- !u!1 &1506244986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,14 +1993,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 5
-  price: 50
+  id: 6
   player: {fileID: 0}
-  spriteDefault: {fileID: 0}
-  spriteAttack: {fileID: 0}
-  spriteInteraction: {fileID: 0}
-  sprites: []
   textm: {fileID: 0}
+  weapon: 0
+  SwordType: {fileID: 0}
 --- !u!1 &1638621445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,14 +2219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 6
-  price: 50
+  id: 7
   player: {fileID: 0}
-  spriteDefault: {fileID: 0}
-  spriteAttack: {fileID: 0}
-  spriteInteraction: {fileID: 0}
-  sprites: []
   textm: {fileID: 0}
+  weapon: 0
+  SwordType: {fileID: 0}
 --- !u!1 &1746731013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,14 +2524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 4
-  price: 50
+  id: 5
   player: {fileID: 0}
-  spriteDefault: {fileID: 0}
-  spriteAttack: {fileID: 0}
-  spriteInteraction: {fileID: 0}
-  sprites: []
   textm: {fileID: 0}
+  weapon: 0
+  SwordType: {fileID: 0}
 --- !u!1 &1948605176
 GameObject:
   m_ObjectHideFlags: 0

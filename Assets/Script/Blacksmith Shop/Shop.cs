@@ -14,6 +14,7 @@ public class Shop : MonoBehaviour
     private DataBaseSmi db;
 
     public GameObject[] button;
+    public List<Items> listItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +26,16 @@ public class Shop : MonoBehaviour
 
 
         db = new DataBaseSmi();
-
-        Debug.Log(db.getMaterialName(player.GetComponent<Equipement>().getWeapon()));
-
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop"));
 
 
         button = GameObject.FindGameObjectsWithTag("Button");
 
 
-        List<Items> listItem = db.getAllMaterials();
+        listItem = db.getAllMaterials();
         foreach (Items item in listItem)
         {
-            button[item.id - 1].GetComponentInChildren<Text>().text = item.material + " " + item.price + "gp  +" + item.damage;
+            button[item.id-1].GetComponentInChildren<Text>().text = item.material + " " + item.price + "gp  +" + item.damage;
         }
 
         SwordType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon());       
