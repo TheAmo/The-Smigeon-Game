@@ -19,6 +19,8 @@ public class MoveWASD : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (hasAuthority == false) return;
+
         float horizontalAxis = Input.GetAxisRaw("Horizontal");
         float verticalAxis = Input.GetAxisRaw("Vertical");
 

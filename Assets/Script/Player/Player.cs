@@ -12,8 +12,9 @@ public class Player : NetworkBehaviour
      * 
      ===================================================================================================================*/
     public Stats stats;
-    
+
     public Sprite spriteKill;
+
     private SpriteRenderer spriteRenderer;
 
     public GameObject sliderHealth;
@@ -24,8 +25,8 @@ public class Player : NetworkBehaviour
     private bool isShowing;
     private bool dead;
 
-    private PlayerDatabase playerDatabase;
-    private ClassDatabase classDatabase;
+    //private PlayerDatabase playerDatabase;
+    //private ClassDatabase classDatabase;
 
     private int m_player_id;
 
@@ -38,23 +39,23 @@ public class Player : NetworkBehaviour
     ===================================================================================================================*/
     public void ininitialisePlayer(int player_id, int class_id)
     {
-        GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().LoadPlayer();
+        //GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().LoadPlayer();
         Debug.Log("Constructeur du player");
         m_player_id = player_id;
-        //get PlayerEntry
-        playerDatabase = GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().playerDB;
+        //get PlayerEntryDB
+       // playerDatabase = GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().playerDB;
         //get ClassEntry
-        classDatabase = GameObject.Find("DB Class Manager").GetComponent<DBClassManagement>().classDB;
+        //classDatabase = GameObject.Find("DB Class Manager").GetComponent<DBClassManagement>().classDB;
 
         //Add Entry's info in Stats
-        stats = new Stats(playerDatabase.playerList[player_id], classDatabase.classList[class_id]);
+        //stats = new Stats(playerDatabase.playerList[player_id], classDatabase.classList[class_id]);
 
         //Calculate everything for player level
 
         //Put player on good position
         Vector3 temp = new Vector3(0,0, 0);
         rb2d.MovePosition(temp);
-        temp= new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
+        //temp= new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
         rb2d.position=(temp);
     }
 
@@ -83,7 +84,7 @@ public class Player : NetworkBehaviour
         dead = false ;
 
 
-        canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
+        //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
 
         if (hasAuthority)
         {

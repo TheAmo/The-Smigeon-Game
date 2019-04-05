@@ -23,7 +23,7 @@ public class MonsterCore : MonoBehaviour
 
     private bool dead;
 
-    private MonsterDatabase monsterDatabase;
+    //private MonsterDatabase monsterDatabase;
    
  
     /*===================================================================================================================
@@ -32,11 +32,11 @@ public class MonsterCore : MonoBehaviour
     ===================================================================================================================*/
     public void ininitialiseMonster(int monster_id, int positionX, int positionY)
     {
-        GameObject.Find("DB Monsters Manager").GetComponent<DBMonsterManager>().LoadMonster();
+        //GameObject.Find("DB Monsters Manager").GetComponent<DBMonsterManager>().LoadMonster();
         Debug.Log("Constructeur du Monster");
         m_monster_id = monster_id;
         //get MonsterEntry
-        monsterDatabase = GameObject.Find("DB Monsters Manager").GetComponent<DBMonsterManager>().monsterDB;
+        //monsterDatabase = GameObject.Find("DB Monsters Manager").GetComponent<DBMonsterManager>().monsterDB;
 
         //Put monster on good position
         Vector3 temp = new Vector3(positionX, positionY, 0);

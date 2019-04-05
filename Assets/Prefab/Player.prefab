@@ -286,7 +286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b6fd14f51379f43b6cd61db78749d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteDefault: {fileID: 0}
+  spriteAttack: {fileID: 0}
   attackKnockback: 50000
+  isAttacking: 0
+  spriteRenderer: {fileID: 0}
   player: {fileID: 3690426719176018748}
 --- !u!114 &6944542531686902729
 MonoBehaviour:

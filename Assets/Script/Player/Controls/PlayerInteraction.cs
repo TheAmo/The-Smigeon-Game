@@ -13,10 +13,12 @@ public class PlayerInteraction : NetworkBehaviour
     private Sprite spriteDefault;
     private Sprite spriteInteraction;
 
-    [SyncVar]
     private SpriteRenderer spriteRenderer;
 
     public GameObject player;
+
+    [SyncVar]
+    public bool isInteracting;
 
     private BoxCollider2D bc2d;
     List<GameObject> interact = new List<GameObject>();
@@ -39,15 +41,29 @@ public class PlayerInteraction : NetworkBehaviour
      ===================================================================================================================*/
     void Update()
     {
+        spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
+        spriteInteraction = player.GetComponent<PlayerChangeEquipment>().spriteInteraction;
+        if (isInteracting)
+        {
+            spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
+        }
+        else
+        {
+            if (this.GetComponent<PlayerAttack>().isAttacking==false)
+                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+        }
+
+
+        if (hasAuthority == false) return;
         if (Input.GetKeyUp(KeyCode.F))
         {
-            spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+            isInteracting = false;
+            CmdChangeSprite(false);
         }
         if (Input.GetKeyDown(KeyCode.F)) //If key is pushed
         {
-            spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
-            spriteInteraction = player.GetComponent<PlayerChangeEquipment>().spriteInteraction;
-            spriteRenderer.sprite = spriteInteraction;//Change sprite to attack animation
+            isInteracting = true;
+            CmdChangeSprite(true);
             Vector2 playerPosition = transform.position;
             foreach (GameObject target in interact)
             {
@@ -70,12 +86,6 @@ public class PlayerInteraction : NetworkBehaviour
             }
         }
     }
-    [Command]
-    void CmdChangeSprite(Sprite spriterio)
-    {
-        spriteRenderer.sprite = spriterio;
-    }
-
 
     /*===================================================================================================================
      * Collider for interactable range
@@ -160,5 +170,10 @@ public class PlayerInteraction : NetworkBehaviour
                 target.transform.Rotate(0, 0, 90, Space.Self);
             }
         }
+    }
+    [Command]
+    void CmdChangeSprite(bool attack)
+    {
+        isInteracting = attack;
     }
 }

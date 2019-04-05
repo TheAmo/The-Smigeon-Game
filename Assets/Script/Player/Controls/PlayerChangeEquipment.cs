@@ -11,10 +11,16 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     private SpriteRenderer spriteRenderer;
 
+    [SyncVar]
+    private int weaponId;
+    [SyncVar]
+    private int armorId;
+
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     public Sprite spriteInteraction;
 
+    
     public Equipement item = new Equipement(1, 1);
 
     public Sprite[] sprites;
@@ -25,6 +31,7 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
+    
         sprites = Resources.LoadAll<Sprite>("rogue_sheet");
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
@@ -38,11 +45,16 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     void Update()
     {
-        if (hasAuthority == false) return;
+        item.setArmor(armorId);
+        item.setWeapon(weaponId);
+        WearEquipment(armorId, weaponId);
+
+        //if (hasAuthority == false) return;
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeEquipement();
+            Debug.Log("Changing armor to" + armorId + "Changing Weapon to " + weaponId);
         }
         if (Input.GetKeyUp(KeyCode.G))
         {
@@ -60,12 +72,33 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     public void ChangeEquipement()
     {
+        if (hasAuthority == false) return;
         int weapon = Random.Range(0, 7);// item.getWeapon();
         int armor = Random.Range(0, 4);// item.getArmor();
+
+        CmdChangePlayerEquipment(armor, weapon);
+
+        if (hasAuthority == false) return;
+        item.setArmor(armor);
+        item.setWeapon(weapon);
+
+
+    }
+
+    public void WearEquipment(int armor,int weapon)
+    {
         int combination = (armor * 21 + weapon * 3);
         spriteDefault = sprites[combination];
         spriteAttack = sprites[combination + 1];
         spriteInteraction = sprites[combination + 2];
-        spriteRenderer.sprite = spriteDefault;
+    }
+
+    [Command]
+    void CmdChangePlayerEquipment(int armor, int weapon)
+    {
+        Debug.Log("Sending new Equipment");
+
+        weaponId = weapon;
+        armorId = armor;
     }
 }

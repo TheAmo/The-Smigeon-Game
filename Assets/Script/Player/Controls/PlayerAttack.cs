@@ -9,11 +9,15 @@ public class PlayerAttack : NetworkBehaviour
      * Attribute
      * 
      ===================================================================================================================*/
-    private Sprite spriteDefault;
-    private Sprite spriteAttack;
+    public Sprite spriteDefault;
+    public Sprite spriteAttack;
 
     public int attackKnockback;
-    private SpriteRenderer spriteRenderer;
+
+    [SyncVar]
+    public bool isAttacking=false;
+
+    public SpriteRenderer spriteRenderer;
 
     private BoxCollider2D bc2d;
     List<GameObject> enemy = new List<GameObject>();
@@ -26,10 +30,11 @@ public class PlayerAttack : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
-        spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
-        spriteAttack = player.GetComponent<PlayerChangeEquipment>().spriteAttack;
+        spriteDefault = this.GetComponent<PlayerChangeEquipment>().spriteDefault;
+        spriteAttack = this.GetComponent<PlayerChangeEquipment>().spriteAttack;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        CmdChangeSprite(spriteRenderer.sprite);
     }
 
     /*===================================================================================================================
@@ -38,22 +43,35 @@ public class PlayerAttack : NetworkBehaviour
      ===================================================================================================================*/
     void Update()
     {
-        if (hasAuthority == false) return;
+        spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
+        spriteAttack = player.GetComponent<PlayerChangeEquipment>().spriteAttack;
+        if (isAttacking)
+        {
+            spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
+        }
+        else
+        {
+            if (this.GetComponent<PlayerInteraction>().isInteracting == false)
+                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
 
+
+            if (hasAuthority == false) return;
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
         {
-            spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
-            spriteAttack = player.GetComponent<PlayerChangeEquipment>().spriteAttack;
-            spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
-            attack();
+            isAttacking = true;
+            CmdChangeSprite(true);
+            //attack();
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+                isAttacking = false;
+                CmdChangeSprite(false);
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
+            isAttacking = false;
+            CmdChangeSprite(false);
         }
     }
 
@@ -81,8 +99,10 @@ public class PlayerAttack : NetworkBehaviour
      * Attack function
      * 
      ===================================================================================================================*/
-    Vector2 knockbackDirection;
-    bool tmpbool;
+    //Vector2 knockbackDirection;
+    //bool tmpbool;
+
+    /*
     public void attack()
     {
         foreach (GameObject target in enemy)
@@ -94,7 +114,7 @@ public class PlayerAttack : NetworkBehaviour
                 if (tmpbool == true)//Target is dead
                 {
                     enemy.Remove(target);
-                    //target.GetComponent<MonsterSuperAi>().kill();
+                    target.GetComponent<MonsterAI>().kill();
                 }
                 else
                 {
@@ -104,5 +124,11 @@ public class PlayerAttack : NetworkBehaviour
             }
             break;
         }
+    }
+    */
+    [Command]
+    void CmdChangeSprite(bool attack)
+    {
+        isAttacking=attack;
     }
 }

@@ -102,8 +102,8 @@ public class Stats
 
         Debug.Log("Stats Generated: Str: "+m_strength+ "Dex: " + m_dexterity + "Con: " + m_constitution + "Int: " + m_intelligence + "Wis: " + m_wisdom + "Cha: " + m_charisma );
     }
-
-    public Stats(PlayerEntry player, ClassEntry playerClass)
+    /*
+    public Stats(PlayerEntryDB player, ClassEntry playerClass)
     {
         Debug.Log("Generating from player: " + player.name);
 
@@ -136,6 +136,7 @@ public class Stats
 
         Debug.Log("Stats Generated Succesfully: Str: " + m_strength + " Dex: " + m_dexterity + " Con: " + m_constitution + " Int: " + m_intelligence + " Wis: " + m_wisdom + " Cha: " + m_charisma + " On position (" + player.position[0]+","+player.position[1] + ")");
     }
+    */
     /*===================================================================================================================
     * Stats Calculator
     * 
