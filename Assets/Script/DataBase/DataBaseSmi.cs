@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityNpgsql;
+using UnityNpgsqlTypes;
 
 public class DataBaseSmi : ScriptableObject
 {
@@ -135,21 +136,16 @@ public class DataBaseSmi : ScriptableObject
     * Get Name 
     * 
     ===================================================================================================================*/
-
-    public string getMaterialName(int id)
+    public string getName(int i)
     {
-        string strSelect = "SELECT name FROM \"material\"";
+        string strSelect = "SELECT name FROM \"material\" WHERE id = " + (i + 1);
+
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
-        string[] name = new String[8];
-        string nameid;
+
+        string name = (m_dbTable.Rows[0]["name"]).ToString();
         
-        for(int i = 0; i < m_dbTable.Rows.Count; i++)
-        {
-            name[i] = (m_dbTable.Rows[i]["name"]).ToString();
-        }
-        nameid = name[id];
-        return nameid;
+        return name;
     }
     /*===================================================================================================================
     * Get Class name 
@@ -157,11 +153,14 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public string getClassName(string table, int id)
     {
-        string strSelect = "SELECT class_name FROM \"" + table + "\"";
+        string strSelect = "SELECT class_name FROM \""+ table +"\" WHERE id = " + id;
 
-        string className = getTableValue(strSelect, id);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
 
-        return className;
+        string class_name = (m_dbTable.Rows[0]["class_name"]).ToString();
+
+        return class_name;
     }
     /*===================================================================================================================
     * Get position x and position y
@@ -169,11 +168,12 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public int getPosition(string table, int id, string pos)
     {
-        string strSelect = "SELECT position" + pos + " FROM \"" + table + "\"";
+        string strSelect = "SELECT position" + pos + " FROM \"" + table + "\" WHERE id = " + id;
 
-        int position = getIntegerValue(strSelect, id);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
 
-        Debug.Log("position" + pos + " : " + position);
+        int position = Convert.ToInt32(m_dbTable.Rows[0]["position"]);
 
         return position;
     }
@@ -183,9 +183,12 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public int getExperience(string table, int id)
     {
-        string strSelect = "SELECT experience FROM \"" + table + "\"";
+        string strSelect = "SELECT experience FROM \"" + table + "\" WHERE id = " + id;
 
-        int experience = getIntegerValue(strSelect, id);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+
+        int experience = Convert.ToInt32(m_dbTable.Rows[0]["experience"]);
 
         return experience;
     }
@@ -195,9 +198,12 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public int getGold(string table, int id)
     {
-        string strSelect = "SELECT gold FROM \"" + table + "\"";
+        string strSelect = "SELECT gold FROM \"" + table + "\" WHERE id = " + id;
 
-        int gold = getIntegerValue(strSelect, id);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+
+        int gold = Convert.ToInt32(m_dbTable.Rows[0]["gold"]);
 
         return gold;
     }
@@ -207,9 +213,11 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public int getDamage(string table, int id)
     {
-        string strSelect = "SELECT damage FROM \"" + table + "\"";
+        string strSelect = "SELECT damage FROM \"" + table + "\" WHERE id = " + id;
 
-        int damage = getIntegerValue(strSelect, id);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+        int damage = Convert.ToInt32(m_dbTable.Rows[0]["damage"]);
 
         return damage;
     }
@@ -219,22 +227,26 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public int getDefense(string table, int id)
     {
-        string strSelect = "SELECT defense FROM \"" + table + "\"";
+        string strSelect = "SELECT defense FROM \"" + table + "\" WHERE id = " + id;
 
-        int defense = getIntegerValue(strSelect, id);
-
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+        int defense = Convert.ToInt16(m_dbTable.Rows[0]["defense"]);
         return defense;
     }
     /*===================================================================================================================
     * Get price
     * 
     ===================================================================================================================*/
-    public int getPrice(string table, int id)
+    public int getPrice(int i)
     {
-        string strSelect = "SELECT price FROM \"" + table + "\"";
+        string strSelect = "SELECT price FROM \"material\" WHERE id = " + i + 1;
 
-        int price = getIntegerValue(strSelect, id);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
 
+        int price = Convert.ToInt32(m_dbTable.Rows[0]["price"]);
+        
         return price;
     }
 
@@ -242,7 +254,7 @@ public class DataBaseSmi : ScriptableObject
     * Get string value
     * 
     ===================================================================================================================*/
-    private string getTableValue(String strSelect, int id)
+    /*private string getTableValue(String strSelect, int id)
     {
         dbConnection = new NpgsqlConnection(strConnection);
         dbConnection.Open();
@@ -252,19 +264,19 @@ public class DataBaseSmi : ScriptableObject
             dbReader = dbCmd.ExecuteReader();
            
                 // m_val = dbReader[0].ToString();
-                m_val= dbReader[id-8].ToString();
+                m_val= dbReader[id].ToString();
             
             
         }
         dbConnection.Close();
 
         return m_val;
-    }
+    }*/
     /*===================================================================================================================
     * Get integer value
     * 
     ===================================================================================================================*/
-    private int getIntegerValue(String strSelect, int id)
+    /*private int getIntegerValue(String strSelect, int id)
     {
         dbConnection = new NpgsqlConnection(strConnection);
         dbConnection.Open();
@@ -280,23 +292,57 @@ public class DataBaseSmi : ScriptableObject
         dbConnection.Close();
 
         return m_valI;
-    }
+    }*/
     /*===================================================================================================================
     * Get Table info by id
     * 
     ===================================================================================================================*/
     //public double getTableInfo(String info, String id, String table)
     //{
-        //string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
+    //string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
 
-        //double valInfo = Convert.ToDouble(getTableValue(strSelect, id));
+    //double valInfo = Convert.ToDouble(getTableValue(strSelect, id));
 
-        //return valInfo;
+    //return valInfo;
     //}
+
+    /*===================================================================================================================
+     * Sauvegarde
+     * 
+    ===================================================================================================================*/
+    public void SaveInfoPlayerEntry(string infoToSave, int id, string newValue)
+    {
+
+        string strQuery = "UPDATE player_entry SET \"" + infoToSave + "\" = :infoToSave WHERE \"id\" = :ID";
+        dbConnection = new NpgsqlConnection(strConnection);
+
+        dbConnection.Open();
+
+        dbCmd = new NpgsqlCommand(strQuery, dbConnection);
+        dbCmd.Parameters.Add(new NpgsqlParameter("infoToSave", NpgsqlDbType.Text));
+        dbCmd.Parameters.Add(new NpgsqlParameter("ID", NpgsqlDbType.Integer));
+        dbCmd.Parameters[0].Value = newValue;
+        dbCmd.Parameters[1].Value = id;
+        dbCmd.ExecuteNonQuery();
+
+        Debug.Log("UpdateWeapon");
+
+        dbConnection.Close();
+    }
+
+    public void SavePlayer(string name, int experience, string weapon, string armor, float[] position)
+    {
+
+
+
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        string name = getName(6);
+        Debug.Log("Start ----------- name = " + name);
         int positon = getPosition("player_entry", 1, "x");
     }
 
