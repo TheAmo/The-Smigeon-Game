@@ -7,18 +7,14 @@ using UnityEngine;
 using UnityNpgsql;
 using UnityNpgsqlTypes;
 
-public class DataBaseSmi : ScriptableObject
+public class DataBaseSmi : MonoBehaviour
 {
     /*===================================================================================================================
     * Data Table
     * 
     ===================================================================================================================*/
     private DataTable m_dbTable;
-    private DataTable m_dbTableWeapon;
-    private DataTable m_dbTablePLayerEntry;
-    private DataTable m_dbTableMaterial;
-    private DataTable m_dbTableMaterialWeapon;
-    private DataTable m_dbTableMonsterStats;
+
     private DataTable m_dbtmpTable;
 
     private string m_val;
@@ -65,10 +61,10 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public DataTable getMonsterInfoById(int id)
     {
-        m_dbTableMonsterStats = new DataTable();
-        m_dbTableMonsterStats = Connection("SELECT * FROM monster_stats WHERE id=" + id);
+        m_dbTable = new DataTable();
+        m_dbTable = Connection("SELECT * FROM monster_stats WHERE id=" + id);
 
-        return m_dbTableMonsterStats;
+        return m_dbTable;
     }
 
     /*===================================================================================================================
@@ -83,18 +79,18 @@ public class DataBaseSmi : ScriptableObject
         int id, damage, defense;
         double price;
 
-        string strSelect = "SELECT id, name, price, damage, defense FROM \"material\"";
+        string strSelect = "SELECT id, name, price, damage, defense FROM material";
 
-        m_dbTableMaterial = new DataTable();
-        m_dbTableMaterial = Select(strSelect);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
 
-        for (int i = 0; i < m_dbTableMaterial.Rows.Count; i++)
+        for (int i = 0; i < m_dbTable.Rows.Count; i++)
         {
-            id = Convert.ToInt32(m_dbTableMaterial.Rows[i]["id"]);
-            name = (m_dbTableMaterial.Rows[i]["name"]).ToString();
-            damage = Convert.ToInt32(m_dbTableMaterial.Rows[i]["damage"]);
-            defense = Convert.ToInt32(m_dbTableMaterial.Rows[i]["defense"]);
-            price = Convert.ToDouble(m_dbTableMaterial.Rows[i]["price"]);
+            id = Convert.ToInt32(m_dbTable.Rows[i]["id"]);
+            name = (m_dbTable.Rows[i]["name"]).ToString();
+            damage = Convert.ToInt32(m_dbTable.Rows[i]["damage"]);
+            defense = Convert.ToInt32(m_dbTable.Rows[i]["defense"]);
+            price = Convert.ToDouble(m_dbTable.Rows[i]["price"]);
 
             materials.Add(new Items(id, name, damage, defense, price));
 
@@ -115,17 +111,17 @@ public class DataBaseSmi : ScriptableObject
 
         string strSelect = "SELECT name, class_name, positionx, positiony, gold FROM \"player_entry\"";
 
-        m_dbTablePLayerEntry = new DataTable();
-        m_dbTablePLayerEntry = Select(strSelect);
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
 
-        for (int i = 0; i < m_dbTablePLayerEntry.Rows.Count; i++)
+        for (int i = 0; i < m_dbTable.Rows.Count; i++)
         {
-            name = (m_dbTablePLayerEntry.Rows[i]["name"]).ToString();
-            className = (m_dbTablePLayerEntry.Rows[i]["class_name"]).ToString();
-            experience = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["experience"]);
-            position[0] = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["positionx"]);
-            position[1] = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["positiony"]);
-            gold = Convert.ToInt32(m_dbTablePLayerEntry.Rows[i]["gold"]);
+            name = (m_dbTable.Rows[i]["name"]).ToString();
+            className = (m_dbTable.Rows[i]["class_name"]).ToString();
+            experience = Convert.ToInt32(m_dbTable.Rows[i]["experience"]);
+            position[0] = Convert.ToInt32(m_dbTable.Rows[i]["positionx"]);
+            position[1] = Convert.ToInt32(m_dbTable.Rows[i]["positiony"]);
+            gold = Convert.ToInt32(m_dbTable.Rows[i]["gold"]);
 
             playerList.Add(new PlayerEntryDB(name, className, experience, position, gold));
         }
@@ -136,7 +132,7 @@ public class DataBaseSmi : ScriptableObject
     * Get Name 
     * 
     ===================================================================================================================*/
-    public string getName(int i)
+    public string getMaterialName(int i)
     {
         string strSelect = "SELECT name FROM \"material\" WHERE id = " + (i + 1);
 
@@ -173,7 +169,7 @@ public class DataBaseSmi : ScriptableObject
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
 
-        int position = Convert.ToInt32(m_dbTable.Rows[0]["position"]);
+        int position = Convert.ToInt16(m_dbTable.Rows[0]["position"]);
 
         return position;
     }
@@ -211,13 +207,15 @@ public class DataBaseSmi : ScriptableObject
     * Get damage
     * 
     ===================================================================================================================*/
-    public int getDamage(string table, int id)
+    public int getMaterialDamage(int id)
     {
-        string strSelect = "SELECT damage FROM \"" + table + "\" WHERE id = " + id;
+        string strSelect = "SELECT damage FROM \"material\" WHERE id = " + id + 1;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
-        int damage = Convert.ToInt32(m_dbTable.Rows[0]["damage"]);
+        int damage = Convert.ToInt16(m_dbTable.Rows[0]["damage"]);
+
+        Debug.Log("--------------------------------------getMaterialDamage" + damage);
 
         return damage;
     }
@@ -240,71 +238,16 @@ public class DataBaseSmi : ScriptableObject
     ===================================================================================================================*/
     public int getPrice(int i)
     {
+        string temp;
         string strSelect = "SELECT price FROM \"material\" WHERE id = " + i + 1;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
-
-        int price = Convert.ToInt32(m_dbTable.Rows[0]["price"]);
-        
+        temp = (m_dbTable.Rows[0]["price"]).ToString();
+        int price = Convert.ToInt16(temp);
         return price;
     }
 
-    /*===================================================================================================================
-    * Get string value
-    * 
-    ===================================================================================================================*/
-    /*private string getTableValue(String strSelect, int id)
-    {
-        dbConnection = new NpgsqlConnection(strConnection);
-        dbConnection.Open();
-
-        using (dbCmd = new NpgsqlCommand(strSelect, dbConnection))
-        {
-            dbReader = dbCmd.ExecuteReader();
-           
-                // m_val = dbReader[0].ToString();
-                m_val= dbReader[id].ToString();
-            
-            
-        }
-        dbConnection.Close();
-
-        return m_val;
-    }*/
-    /*===================================================================================================================
-    * Get integer value
-    * 
-    ===================================================================================================================*/
-    /*private int getIntegerValue(String strSelect, int id)
-    {
-        dbConnection = new NpgsqlConnection(strConnection);
-        dbConnection.Open();
-
-        using (dbCmd = new NpgsqlCommand(strSelect, dbConnection))
-        {
-            dbReader = dbCmd.ExecuteReader();
-            while (dbReader.Read())
-            {
-                m_valI = Convert.ToInt16(dbReader[id-1]);
-            }
-        }
-        dbConnection.Close();
-
-        return m_valI;
-    }*/
-    /*===================================================================================================================
-    * Get Table info by id
-    * 
-    ===================================================================================================================*/
-    //public double getTableInfo(String info, String id, String table)
-    //{
-    //string strSelect = "SELECT " + info + " FROM "+ table +" WHERE " + table + "." + info + " =  \'" + name + "\'";
-
-    //double valInfo = Convert.ToDouble(getTableValue(strSelect, id));
-
-    //return valInfo;
-    //}
 
     /*===================================================================================================================
      * Sauvegarde
@@ -341,9 +284,7 @@ public class DataBaseSmi : ScriptableObject
     // Start is called before the first frame update
     void Start()
     {
-        string name = getName(6);
-        Debug.Log("Start ----------- name = " + name);
-        int positon = getPosition("player_entry", 1, "x");
+       
     }
 
     // Update is called once per frame

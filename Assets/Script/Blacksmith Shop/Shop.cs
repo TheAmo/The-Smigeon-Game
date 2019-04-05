@@ -34,10 +34,10 @@ public class Shop : MonoBehaviour
         button = GameObject.FindGameObjectsWithTag("Button");
 
 
-    List<Items> items = db.getAllMaterials();
-        for (int i = 0; i < 7; i++)
+        List<Items> listItem = db.getAllMaterials();
+        foreach (Items item in listItem)
         {
-            button[i].GetComponentInChildren<Text>().text = db.getMaterialName(i);
+            button[item.id - 1].GetComponentInChildren<Text>().text = item.material + " " + item.price + "gp  +" + item.damage;
         }
 
         SwordType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon());       

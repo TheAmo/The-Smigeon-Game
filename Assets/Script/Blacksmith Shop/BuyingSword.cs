@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BuyingSword: MonoBehaviour
 {
     public int id;
-    public float price;
+    private float price;
     public GameObject player;
     private Shop shop;
     public Text textm;
@@ -21,6 +21,7 @@ public class BuyingSword: MonoBehaviour
         textm = GameObject.Find("Current Money").GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
         db = new DataBaseSmi();
+
 
         float money = player.GetComponent<Stats>().getGold();
         if (money >= price)
