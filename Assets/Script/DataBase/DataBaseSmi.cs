@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityNpgsql;
 
-public class DataBaseSmi : MonoBehaviour
+public class DataBaseSmi : ScriptableObject
 {
     /*===================================================================================================================
     * Data Table
@@ -135,7 +135,8 @@ public class DataBaseSmi : MonoBehaviour
     * Get Name 
     * 
     ===================================================================================================================*/
-    public string getName(int id)
+
+    public string getMaterialName(int id)
     {
         string strSelect = "SELECT name FROM \"material\"";
         m_dbTable = new DataTable();
@@ -296,8 +297,6 @@ public class DataBaseSmi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string name = getName(2);
-        Debug.Log(name + " name ");
         int positon = getPosition("player_entry", 1, "x");
     }
 

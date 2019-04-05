@@ -9,39 +9,47 @@ public class Shop : MonoBehaviour
     public GameObject player;
     public Text CurrentMoney;
     private float money;
-    private Text text;
+    private Text SwordType;
+    private string currentText;
+    private DataBaseSmi db;
+
     public GameObject[] button;
     // Start is called before the first frame update
     void Start()
     {
+        SwordType = GameObject.Find("Sword Stats").GetComponent<Text>();
+
         player = GameObject.FindGameObjectWithTag("Player");
-       // money = player.GetComponent<Stats>().getGold();
+        money = player.GetComponent<Stats>().getGold();
         CurrentMoney.GetComponent<Text>().text = money.ToString();
+
+
+        db = new DataBaseSmi();
+
+        Debug.Log(db.getMaterialName(player.GetComponent<Equipement>().getWeapon()));
+
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop"));
-        DataBaseSmi db = new DataBaseSmi();
 
-    //Debug.Log(db.getName("material", 1));
 
-    button = GameObject.FindGameObjectsWithTag("Button");
+        button = GameObject.FindGameObjectsWithTag("Button");
+
+
     List<Items> items = db.getAllMaterials();
-
         for (int i = 0; i < 7; i++)
         {
-
-            button[i].GetComponentInChildren<Text>().text = db.getName(i);
-
-
-
-            string name = "Sword " + i;
-            Debug.Log(name);
-            Debug.Log(i);
+            button[i].GetComponentInChildren<Text>().text = db.getMaterialName(i);
         }
+
+        SwordType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon());       
     }
 
     // Update is called once per frame
     void Update()
     {
-      
+      if(SwordType.text != db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon()))
+        {
+            SwordType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon());
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -50,5 +58,7 @@ public class Shop : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("BlacksmithShop");
         }
+       
     }
+   
 }

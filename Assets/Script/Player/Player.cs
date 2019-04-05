@@ -120,6 +120,10 @@ public class Player : NetworkBehaviour
                 {
                     this.GetComponent<PlayerInteraction>().enabled = true;
                 }
+                if(this.GetComponent<Money>().enabled == false)
+                {
+                    this.GetComponent<Money>().enabled = true;
+                }
             } else
             {
 
@@ -130,6 +134,10 @@ public class Player : NetworkBehaviour
                 if (this.GetComponent<PlayerInteraction>().enabled == true)
                 {
                     this.GetComponent<PlayerInteraction>().enabled = false;
+                }
+                if (this.GetComponent<Money>().enabled == true)
+                {
+                    this.GetComponent<Money>().enabled = false;
                 }
             }
             
