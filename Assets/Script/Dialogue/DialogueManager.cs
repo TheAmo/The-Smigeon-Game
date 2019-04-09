@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     public GameObject player;
     public Animator a1;
+    private string m_name;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +30,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartText(Dialogue d)
+    public void StartText(Dialogue d, string name)
     {
+        m_name = name;
         a1.SetBool("isOpen", true);
-        Debug.Log("START DIALOGUE CALISS");
         Name.text = d.name;
         sentences.Clear();
 
@@ -48,11 +49,17 @@ public class DialogueManager : MonoBehaviour
     public void EndText()
     {
         a1.SetBool("isOpen", false);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("BlacksmithShop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UI");
-        player = GameObject.FindGameObjectWithTag("Player");
-        
-
+        if(m_name == "Blacksmith")
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("BlacksmithShop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UI");
+        }
+        else if(m_name == "Armorer")
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("ArmorShop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UI");
+        }
+        //player = GameObject.FindGameObjectWithTag("Player");
     }
     public void DisplayNextText()
     {

@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ArmorShop.cs" />
     <Compile Include="Assets\EnableButtons.cs" />
     <Compile Include="Assets\Light2D\Examples\Scripts\Bat.cs" />
     <Compile Include="Assets\Light2D\Examples\Scripts\BlockSetProfile.cs" />
