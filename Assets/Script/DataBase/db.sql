@@ -4,21 +4,20 @@ CREATE TABLE material(
 	id serial PRIMARY KEY,
 	name varchar(255) NOT NULL,
 	price int NOT NULL,
-	damage int NOT NULL, 
-	defense int NOT NULL
+	damage int NOT NULL
 );
 
 -- INSERT INFO INTO MATERIAL TABLE 
-INSERT INTO material (name, price, damage, defense) VALUES ('bronze', 0, 1, 1);
-INSERT INTO material (name, price, damage, defense) VALUES ('steel', 20, 2, 2);
-INSERT INTO material (name, price, damage, defense) VALUES ('white', 100, 3, 3);
-INSERT INTO material (name, price, damage, defense) VALUES ('mithril', 500, 4, 4);
-INSERT INTO material (name, price, damage, defense) VALUES ('adamant', 1250, 5, 5);
-INSERT INTO material (name, price, damage, defense) VALUES ('rune', 3000, 6, 6);
-INSERT INTO material (name, price, damage, defense) VALUES ('draconic', 10000, 7, 7);
+INSERT INTO material (name, price, damage) VALUES ('bronze', 0, 1);
+INSERT INTO material (name, price, damage) VALUES ('steel', 20, 2);
+INSERT INTO material (name, price, damage) VALUES ('white', 100, 3);
+INSERT INTO material (name, price, damage) VALUES ('mithril', 500, 4);
+INSERT INTO material (name, price, damage) VALUES ('adamant', 1250, 5);
+INSERT INTO material (name, price, damage) VALUES ('rune', 3000, 6);
+INSERT INTO material (name, price, damage) VALUES ('draconic', 10000, 7);
 
 --SHOW
-SELECT name, price, damage, defense FROM material;
+SELECT name, price, damage FROM material;
 
 --PLAYER INVENTORY TABLE
 --DROP TABLE IF EXISTS player_inventory CASCADE;
@@ -80,6 +79,17 @@ CREATE TABLE class_player(
 	damagedice int NOT NULL
 );
 
+-- ARMOR TABLE
+DROP TABLE IF EXISTS armor CASCADE;
+CREATE TABLE armor(
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	price int NOT NULL,
+	defense int NOT NULL
+);
+
+INSERT INTO armor (name, price, defense) VALUES ('armor1', 1, 2);
+SELECT name, price, defense FROM armor;
 
 
 
