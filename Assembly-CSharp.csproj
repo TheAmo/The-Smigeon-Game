@@ -155,7 +155,6 @@
     <None Include="Assets\Light2D\Resources\Shaders\Light40.shader" />
     <None Include="Assets\Light2D\Resources\Shaders\Light90.shader" />
     <None Include="Assets\Light2D\Resources\Shaders\LightOverlaySingleCamera.shader" />
-    <None Include="Assets\Script\DataBase\db.txt" />
     <None Include="Assets\Light2D\Examples\Resources\Shaders\TransparentVertexColor.shader" />
     <None Include="Assets\Light2D\Resources\Shaders\LightOverlay.shader" />
     <None Include="Assets\StreamingFiles\XML\class_data.xml" />

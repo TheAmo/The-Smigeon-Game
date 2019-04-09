@@ -55,8 +55,16 @@ public class PlayerInteraction : NetworkBehaviour
                 }
                 else if (target.tag == "Blacksmith")
                 {
-                    FindObjectOfType<DialogueTrigger>().TriggerDialogue();
+                    if(target.name == "Armorer")
+                    {
+                        GameObject.Find("Armorer").GetComponent<DialogueTrigger>().TriggerDialogue();
+                    }
+                    else
+                    {
+                        GameObject.Find("Blacksmith").GetComponent<DialogueTrigger>().TriggerDialogue();
+                    }
                 }
+                
                 if (target.tag == "Lootbag")
                 {
                     PickLoot(target);

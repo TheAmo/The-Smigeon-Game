@@ -13,6 +13,7 @@ TagManager:
   - Blacksmith
   - MoneyText
   - Button
+  - Armorer
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class BuyingSword: MonoBehaviour
     private Shop shop;
     public Text textm;
     public int weapon;
-    public Text SwordType;
+    public Text equipementType;
 
     private DataBaseSmi db;
 
@@ -26,16 +26,30 @@ public class BuyingSword: MonoBehaviour
         float money = player.GetComponent<Stats>().getGold();
         if (money >= price)
         {
+            if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == true)
+            {
+                equipementType = GameObject.Find("Sword Stats").GetComponent<Text>();
+                Debug.Log(id);
+                player.GetComponent<Stats>().setGold((int)(money - price));
+                player.GetComponent<Player>().equipement.setWeapon(id - 1);
+                Debug.Log(player.GetComponent<Player>().equipement.getWeapon());
+                textm.text = (money - price).ToString();
 
-            SwordType = GameObject.Find("Sword Stats").GetComponent<Text>();
-            Debug.Log(id);
-            player.GetComponent<Stats>().setGold((int)(money - price));
-            player.GetComponent<Player>().equipement.setWeapon(id-1);
-            Debug.Log(player.GetComponent<Player>().equipement.getWeapon());
-            textm.text = (money - price).ToString();
+                equipementType.text = db.getItemName(id, "material");
+                Debug.Log(db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"));
+            }else if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == true)
+            {
+                equipementType = GameObject.Find("Armor Stats").GetComponent<Text>();
+                Debug.Log(id);
+                player.GetComponent<Stats>().setGold((int)(money - price));
+                player.GetComponent<Player>().equipement.setArmor(id - 1);
+                Debug.Log(player.GetComponent<Player>().equipement.getWeapon());
+                textm.text = (money - price).ToString();
 
-            SwordType.text = db.getItemName(id, "material");
-            Debug.Log(db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"));
+                equipementType.text = db.getItemName(id, "material");
+                Debug.Log(db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "material"));
+            }
+            
 
         }
 

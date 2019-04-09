@@ -15,7 +15,7 @@ public class DialogueTrigger : MonoBehaviour
     }
     public void TriggerDialogue()
     {
-        Debug.Log("-------------------------------------------------" + name);
-        FindObjectOfType<DialogueManager>().StartText(dialogue, name);
+        Debug.Log("-------------------------------------------------" + Shopname);
+        FindObjectOfType<DialogueManager>().StartText(dialogue, Shopname);
     }
 }

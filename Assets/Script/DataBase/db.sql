@@ -89,6 +89,10 @@ CREATE TABLE armor(
 );
 
 INSERT INTO armor (name, price, defense) VALUES ('armor1', 1, 2);
+INSERT INTO armor (name, price, defense) VALUES ('armor2', 1, 2);
+INSERT INTO armor (name, price, defense) VALUES ('armor3', 1, 2);
+INSERT INTO armor (name, price, defense) VALUES ('armor4', 1, 2);
+INSERT INTO armor (name, price, defense) VALUES ('armor5', 1, 2);
 SELECT name, price, defense FROM armor;
 
 
