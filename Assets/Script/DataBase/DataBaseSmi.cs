@@ -28,7 +28,6 @@ public class DataBaseSmi : MonoBehaviour
     private string strConnection = "Server=localhost; Port=5432; DataBase=dbsmigeon; Username=postgres; Password=Milena14";
     private NpgsqlConnection dbConnection = null;
     private NpgsqlCommand dbCmd = null;
-    private NpgsqlDataReader dbReader = null;
 
     private DataTable Connection(string strQuery)
     {

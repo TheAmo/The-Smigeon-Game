@@ -32,21 +32,21 @@ public class ArmorShop : MonoBehaviour
         button = GameObject.FindGameObjectsWithTag("Button");
 
 
-        listItem = db.getAllMaterials();
+        listItem = db.getAllArmors();
         foreach (Items item in listItem)
         {
-            button[item.id - 1].GetComponentInChildren<Text>().text = item.material + " " + item.price + "gp  +" + item.damage;
+            button[item.id - 1].GetComponentInChildren<Text>().text = item.name + " " + item.price + "gp  +" + item.damage_defense;
         }
 
-        ArmorType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getArmor());
+        ArmorType.text = db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "armor");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ArmorType.text != db.getMaterialName(player.GetComponent<Player>().equipement.getArmor()))
+        if (ArmorType.text != db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "armor"))
         {
-            ArmorType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon());
+            ArmorType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "armor");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
