@@ -26,6 +26,7 @@ public class PlayerFireball : MonoBehaviour
             //fb = (GameObject.FindGameObjectWithTag("Projectile"));
             Vector2 v2 = this.GetComponent<Rigidbody2D>().transform.position;
             fb.transform.position = v2;
+            //fb.GetComponent<Rigidbody2D>.add
             Debug.Log(fb.transform.position.ToString());
 
            // fb.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(GameObject.FindGameObjectWithTag("Player").transform.eulerAngles.y), Mathf.Sin(GameObject.FindGameObjectWithTag("Player").transform.eulerAngles.y));
