@@ -7,20 +7,17 @@ using UnityNpgsql;
 public class Items
 {
     public int id;
-    public string material;
-    public int damage;
-    public int defense;
-    public double price;
+    public string name;
+    public int price;
+    public int damage_defense;
 
-    public Items(int id, string material, int damage, int defense, double price)
+    public Items(int id, string name, int damage_defense, int price)
     {
         this.id = id;
-        this.material = material;
-        this.damage = damage;
-        this.defense = defense;
+        this.name = name;
+        this.damage_defense = damage_defense;
         this.price = price;
     }
-
 
     public Items()
     {
@@ -32,19 +29,14 @@ public class Items
         return id;
     }
 
-    public string getMaterial()
+    public string getName()
     {
-        return material;
+        return name;
     }
 
-    public int getDamage()
+    public int getDamageDefense()
     {
-        return damage;
-    }
-
-    public int getDefense()
-    {
-        return defense;
+        return damage_defense;
     }
 
     public double getPrice()

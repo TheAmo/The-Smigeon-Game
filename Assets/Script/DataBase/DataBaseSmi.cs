@@ -74,29 +74,57 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     public List<Items> getAllMaterials()
     {
-        List<Items> materials = new List<Items>();
+        List<Items> material = new List<Items>();
         string name;
-        int id, damage, defense;
-        double price;
+        int id, damage, price;
 
-        string strSelect = "SELECT id, name, price, damage, defense FROM material";
+        string strSelect = "SELECT id, name, price, damage FROM material";
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
 
         for (int i = 0; i < m_dbTable.Rows.Count; i++)
         {
-            id = Convert.ToInt32(m_dbTable.Rows[i]["id"]);
+            id = Convert.ToInt16(m_dbTable.Rows[i]["id"]);
             name = (m_dbTable.Rows[i]["name"]).ToString();
-            damage = Convert.ToInt32(m_dbTable.Rows[i]["damage"]);
-            defense = Convert.ToInt32(m_dbTable.Rows[i]["defense"]);
-            price = Convert.ToDouble(m_dbTable.Rows[i]["price"]);
+            damage = Convert.ToInt16(m_dbTable.Rows[i]["damage"]);
+            price = Convert.ToInt16(m_dbTable.Rows[i]["price"]);
 
-            materials.Add(new Items(id, name, damage, defense, price));
+            material.Add(new Items(id, name, damage, price));
 
         }
 
-        return materials;
+        return material;
+    }
+    /*===================================================================================================================
+    * Get all armors
+    * Select Armor
+    * 
+    ===================================================================================================================*/
+    public List<Items> getAllArmors()
+    {
+        List<Items> armor = new List<Items>();
+        string name;
+        int id, defense, price;
+
+        string strSelect = "SELECT id, name, price, defense FROM armor";
+
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+
+        for (int i = 0; i < m_dbTable.Rows.Count; i++)
+        {
+            id = Convert.ToInt16(m_dbTable.Rows[i]["id"]);
+            name = (m_dbTable.Rows[i]["name"]).ToString();
+            price = Convert.ToInt16(m_dbTable.Rows[i]["price"]);
+            defense = Convert.ToInt16(m_dbTable.Rows[i]["defense"]);
+
+            Debug.Log("ID : " + id + " name : " + name + " price : " + price + " defense : " + defense);
+
+            armor.Add(new Items(id, name, defense, price));
+        }
+
+        return armor;
     }
     /*===================================================================================================================
     * Select player entry
@@ -130,18 +158,18 @@ public class DataBaseSmi : MonoBehaviour
     }
     /*===================================================================================================================
     * Get Name 
-    * 
+    * Get material name or armor name
     ===================================================================================================================*/
-    public string getMaterialName(int i)
+    public string getItemName(int id, string table)
     {
-        i++;
-        string strSelect = "SELECT name FROM \"material\" WHERE id = " + i;
+        id++;
+        string strSelect = "SELECT name FROM " + table + " WHERE id = " + id;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
-        
+
         string name = (m_dbTable.Rows[0]["name"]).ToString();
-        
+
         return name;
     }
     /*===================================================================================================================
@@ -150,7 +178,7 @@ public class DataBaseSmi : MonoBehaviour
     ===================================================================================================================*/
     public string getClassName(string table, int id)
     {
-        string strSelect = "SELECT class_name FROM \""+ table +"\" WHERE id = " + id;
+        string strSelect = "SELECT class_name FROM \"" + table + "\" WHERE id = " + id;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
@@ -225,9 +253,9 @@ public class DataBaseSmi : MonoBehaviour
     * Get defense
     * 
     ===================================================================================================================*/
-    public int getDefense(string table, int id)
+    public int getArmorDefense(int id)
     {
-        string strSelect = "SELECT defense FROM \"" + table + "\" WHERE id = " + id;
+        string strSelect = "SELECT defense FROM armor WHERE id = " + id;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
@@ -238,16 +266,16 @@ public class DataBaseSmi : MonoBehaviour
     * Get price
     * 
     ===================================================================================================================*/
-    public int getPrice(int i)
+    public int getPrice(int id, string table)
     {
-       // i--;
         string temp;
-        string strSelect = "SELECT price FROM \"material\" WHERE id = " + i;
+        string strSelect = "SELECT price FROM " + table + " WHERE id = " + id;
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
         temp = (m_dbTable.Rows[0]["price"]).ToString();
         int price = Convert.ToInt16(temp);
+
         return price;
     }
 
@@ -287,7 +315,7 @@ public class DataBaseSmi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        List<Items> armor = getAllArmors();
     }
 
     // Update is called once per frame

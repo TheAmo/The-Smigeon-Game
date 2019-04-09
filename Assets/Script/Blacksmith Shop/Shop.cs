@@ -35,18 +35,18 @@ public class Shop : MonoBehaviour
         listItem = db.getAllMaterials();
         foreach (Items item in listItem)
         {
-            button[item.id-1].GetComponentInChildren<Text>().text = item.material + " " + item.price + "gp  +" + item.damage;
+            button[item.id - 1].GetComponentInChildren<Text>().text = item.name + " " + item.price + "gp  +" + item.damage_defense;
         }
 
-        SwordType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon());       
+        SwordType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material");
     }
 
     // Update is called once per frame
     void Update()
     {
-      if(SwordType.text != db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon()))
+        if (SwordType.text != db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"))
         {
-            SwordType.text = db.getMaterialName(player.GetComponent<Player>().equipement.getWeapon());
+            SwordType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -56,7 +56,7 @@ public class Shop : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("BlacksmithShop");
         }
-       
+
     }
-   
+
 }
