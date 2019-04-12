@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BuyingSword: MonoBehaviour
 {
     public int id;
-    private float price;
+    private int price;
 
     public GameObject player;
 
@@ -57,7 +57,7 @@ public class BuyingSword: MonoBehaviour
             {
                 
                 equipementType = GameObject.Find("Sword Stats").GetComponent<Text>();
-                player.GetComponent<Stats>().setGold((int)(money - price));
+                player.GetComponent<Stats>().changeGoldByValue(price*-1);
                 player.GetComponent<Player>().equipement.setWeapon(id - 1);
                 textm.text = (money - price).ToString();
 
@@ -67,7 +67,7 @@ public class BuyingSword: MonoBehaviour
             {
                 equipementType = GameObject.Find("Armor Stats").GetComponent<Text>();
                 Debug.Log(id);
-                player.GetComponent<Stats>().setGold((int)(money - price));
+                player.GetComponent<Stats>().changeGoldByValue(price * -1);
                 player.GetComponent<Player>().equipement.setArmor(id - 1);
                 Debug.Log(player.GetComponent<Player>().equipement.getWeapon());
                 textm.text = (money - price).ToString();

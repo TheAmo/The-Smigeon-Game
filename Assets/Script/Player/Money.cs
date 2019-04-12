@@ -24,7 +24,7 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         money = player.GetComponent<Stats>().getGold();
         moneys = money.ToString();
         if (textm.text != moneys)
@@ -38,5 +38,12 @@ public class Money : MonoBehaviour
             moneys = money.ToString();
             Debug.Log(money);
         }
+       
+    }
+    public void changeMoney(int currentGold)
+    {
+        textm = GameObject.Find("Current Money").GetComponent<Text>();
+        moneys = currentGold.ToString();
+        textm.text = moneys;
     }
 }

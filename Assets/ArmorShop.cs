@@ -44,16 +44,15 @@ public class ArmorShop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (ArmorType.text != db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "armor"))
-        {
-            ArmorType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "armor");
-        }*/
+      
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ShopCamera.enabled = false;
             UnityEngine.SceneManagement.SceneManager.LoadScene("UI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));
+            Money money = new Money();
+            money.changeMoney(player.GetComponent<Player>().stats.getGold());
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("ArmorShop");
         }
 

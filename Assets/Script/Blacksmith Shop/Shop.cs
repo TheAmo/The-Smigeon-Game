@@ -12,7 +12,6 @@ public class Shop : MonoBehaviour
     private Text SwordType;
     private string currentText;
     private DataBaseSmi db;
-    public Text textError;
     public GameObject[] button;
     public List<Items> listItem;
     // Start is called before the first frame update
@@ -55,6 +54,9 @@ public class Shop : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("UI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("BlacksmithShop");
+            Money money = new Money();
+            money.changeMoney(player.GetComponent<Player>().stats.getGold());
+            
         }
 
     }

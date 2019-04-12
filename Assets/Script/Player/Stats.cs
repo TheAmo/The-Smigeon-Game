@@ -42,7 +42,7 @@ public class Stats : MonoBehaviour
     private int m_damageDie;
 
     //Gold
-    private float m_gold;
+    private int m_gold;
 
     //Experience
     private int m_experience;
@@ -176,7 +176,7 @@ public class Stats : MonoBehaviour
     public int getDamageDie() { return (m_damageDie); }
 
     //Gold
-    public float getGold() { return(m_gold); }
+    public int getGold() { return(m_gold); }
 
     //Experience
     public int getExperience() { return(m_experience); }
@@ -206,7 +206,11 @@ public class Stats : MonoBehaviour
 
     //Gold
     public void setGold(int gold) { m_gold = gold; }
-    public void changeGoldByValue(float gold) { m_gold += gold; }
+    public void changeGoldByValue(int gold) {
+        m_gold += gold;
+        Money money = new Money();
+        money.changeMoney(m_gold);
+    }
 
     //Experience
     public void setExperience(int experience) { m_experience = experience; }
