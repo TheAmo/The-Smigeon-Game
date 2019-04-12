@@ -88,12 +88,12 @@ CREATE TABLE armor(
 	defense int NOT NULL
 );
 
-INSERT INTO armor (name, price, defense) VALUES ('armor1', 1, 2);
-INSERT INTO armor (name, price, defense) VALUES ('armor2', 1, 2);
-INSERT INTO armor (name, price, defense) VALUES ('armor3', 1, 2);
-INSERT INTO armor (name, price, defense) VALUES ('armor4', 1, 2);
-INSERT INTO armor (name, price, defense) VALUES ('armor5', 1, 2);
-SELECT name, price, defense FROM armor;
+INSERT INTO armor (name, price, defense) VALUES ('armor1', 0, 0.15);
+INSERT INTO armor (name, price, defense) VALUES ('armor2', 500, 0.3);
+INSERT INTO armor (name, price, defense) VALUES ('armor3', 2500, 0.45);
+INSERT INTO armor (name, price, defense) VALUES ('armor4', 5000, 0.60);
+INSERT INTO armor (name, price, defense) VALUES ('armor5', 10000, 0.75);
+SELECT * FROM material;
 
 
 

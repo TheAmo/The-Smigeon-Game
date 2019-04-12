@@ -169,6 +169,8 @@ public class DataBaseSmi : MonoBehaviour
 
         string name = (m_dbTable.Rows[0]["name"]).ToString();
 
+        Debug.Log("id : " + id + "name : " + name);
+
         return name;
     }
     /*===================================================================================================================

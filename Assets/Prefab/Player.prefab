@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+  equipement: {fileID: 0}
   spriteKill: {fileID: 0}
   sliderHealth: {fileID: 0}
   canvas: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b, type: 3}
@@ -320,6 +321,7 @@ MonoBehaviour:
   spriteDefault: {fileID: 0}
   spriteAttack: {fileID: 0}
   spriteInteraction: {fileID: 0}
+  item: {fileID: 0}
   sprites: []
 --- !u!212 &3690426719176018749
 SpriteRenderer:
@@ -477,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3338537e398fb0e4ba648745d6c37969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 10
+  money: 10000000
   textm: {fileID: 0}
   player: {fileID: 3690426719176018748}
 --- !u!114 &1547931205940582880

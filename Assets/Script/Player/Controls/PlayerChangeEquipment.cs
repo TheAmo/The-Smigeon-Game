@@ -67,6 +67,8 @@ public class PlayerChangeEquipment : NetworkBehaviour
 
 
         int combination = (armor * 21 + weapon * 3);
+        Debug.Log(combination);
+
         spriteDefault = sprites[combination];
         spriteAttack = sprites[combination + 1];
         spriteInteraction = sprites[combination + 2];

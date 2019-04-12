@@ -112,6 +112,85 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &160092163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160092166}
+  - component: {fileID: 160092165}
+  - component: {fileID: 160092164}
+  m_Layer: 5
+  m_Name: Error
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &160092164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160092163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &160092165
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160092163}
+  m_CullTransparentMesh: 0
+--- !u!224 &160092166
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160092163}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1360378873}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.6000366, y: -103.1}
+  m_SizeDelta: {x: 713.2, y: 86.2}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &305208960
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,11 +243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   player: {fileID: 0}
   textm: {fileID: 0}
   weapon: 0
-  SwordType: {fileID: 0}
+  equipementType: {fileID: 0}
+  errorText: {fileID: 0}
 --- !u!114 &305208963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,11 +552,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
   player: {fileID: 0}
   textm: {fileID: 0}
   weapon: 0
-  SwordType: {fileID: 0}
+  equipementType: {fileID: 0}
+  errorText: {fileID: 0}
 --- !u!114 &500781601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,11 +853,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  id: 3
   player: {fileID: 0}
   textm: {fileID: 0}
   weapon: 0
-  SwordType: {fileID: 0}
+  equipementType: {fileID: 0}
+  errorText: {fileID: 0}
 --- !u!114 &803200651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,7 +983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -45}
+  m_AnchoredPosition: {x: 160, y: -15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &996201687
@@ -998,11 +1080,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
+  id: 4
   player: {fileID: 0}
   textm: {fileID: 0}
   weapon: 0
-  SwordType: {fileID: 0}
+  equipementType: {fileID: 0}
+  errorText: {fileID: 0}
 --- !u!114 &1000993955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1511,6 +1594,7 @@ RectTransform:
   - {fileID: 1439334051}
   - {fileID: 520393534}
   - {fileID: 1098309009}
+  - {fileID: 160092166}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1846,11 +1930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8196ba6c73eef42a2b96813e061591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 4
+  id: 5
   player: {fileID: 0}
   textm: {fileID: 0}
   weapon: 0
-  SwordType: {fileID: 0}
+  equipementType: {fileID: 0}
+  errorText: {fileID: 0}
 --- !u!114 &1897186361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2015,7 +2100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -70}
+  m_AnchoredPosition: {x: 160, y: -45}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2011606709

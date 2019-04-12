@@ -12,7 +12,7 @@ public class Shop : MonoBehaviour
     private Text SwordType;
     private string currentText;
     private DataBaseSmi db;
-
+    public Text textError;
     public GameObject[] button;
     public List<Items> listItem;
     // Start is called before the first frame update
@@ -44,10 +44,10 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SwordType.text != db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"))
+        /*if (SwordType.text != db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"))
         {
             SwordType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material");
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

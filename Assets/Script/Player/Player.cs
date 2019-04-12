@@ -110,7 +110,7 @@ public class Player : NetworkBehaviour
        
             if (!dead)
         {
-            if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false)
+            if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
             {
                 if (this.GetComponent<MoveWASD>().enabled == false)
                 {

@@ -44,10 +44,10 @@ public class ArmorShop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ArmorType.text != db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "armor"))
+        /*if (ArmorType.text != db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "armor"))
         {
             ArmorType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "armor");
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
