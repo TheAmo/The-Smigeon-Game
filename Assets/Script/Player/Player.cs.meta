@@ -3,7 +3,12 @@ guid: 8dc9c54a774178f4094e2c3edd42e503
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spriteKill: {instanceID: 0}
+  - sliderHealth: {instanceID: 0}
+  - canvas: {fileID: 8207394199707271998, guid: 53c62507dc334cb47ab311c42abdb15f,
+      type: 3}
+  - camera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

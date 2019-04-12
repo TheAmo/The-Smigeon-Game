@@ -26,7 +26,6 @@ public class MoveWASD : NetworkBehaviour
 
         Vector2 movement = new Vector2(horizontalAxis, verticalAxis);
 
-
         //Speed vector
         if (Input.GetKeyDown(KeyCode.LeftControl) && isFast == false)
         {

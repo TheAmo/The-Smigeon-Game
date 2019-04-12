@@ -19,10 +19,8 @@ public class Player : NetworkBehaviour
 
     public GameObject sliderHealth;
 
-    private BoxCollider2D bc2d;
-    public GameObject canvas;
-
-    private bool isShowing;
+    private BoxCollider2D bc2d;  
+     
     private bool dead;
 
     //private PlayerDatabase playerDatabase;
@@ -56,7 +54,7 @@ public class Player : NetworkBehaviour
         Vector3 temp = new Vector3(0,0, 0);
         rb2d.MovePosition(temp);
         //temp= new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
-        rb2d.position=(temp);
+        rb2d.position=(temp); 
     }
 
     /*===================================================================================================================
@@ -79,9 +77,8 @@ public class Player : NetworkBehaviour
     void Start()
     {
         rb2d = this.GetComponent<Rigidbody2D>();
-        ininitialisePlayer(0, 0);
-        isShowing = true;
-        dead = false ;
+        ininitialisePlayer(0, 0); 
+        dead = false;
 
 
         //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
@@ -113,13 +110,7 @@ public class Player : NetworkBehaviour
         {
             //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
 
-
-
-            if (Input.GetKeyDown("escape")) //TO Open Inventory. Doesn't work.
-            {
-                isShowing = !isShowing;
-                canvas.SetActive(isShowing);
-            }
+            
             if (Input.GetKeyDown(KeyCode.K)) //TO Open Inventory. Doesn't work.
             {
                 ReceiveDamage(1);

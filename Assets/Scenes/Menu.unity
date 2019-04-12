@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 557247664}
   - component: {fileID: 557247663}
   m_Layer: 5
-  m_Name: Setting_Text
+  m_Name: Settings_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +483,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Setting
+  m_Text: Settings
 --- !u!222 &557247664
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ GameObject:
   - component: {fileID: 881160018}
   - component: {fileID: 881160017}
   m_Layer: 5
-  m_Name: Setting_Button
+  m_Name: Settings_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
