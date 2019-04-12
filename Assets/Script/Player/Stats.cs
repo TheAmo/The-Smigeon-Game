@@ -32,6 +32,7 @@ public class Stats : MonoBehaviour
 
     //Hp
     private int m_hitPoint;
+    private int m_mana = 100;
 
     //Attack / defence
     private int m_armorClass;
@@ -125,6 +126,8 @@ public class Stats : MonoBehaviour
     ===================================================================================================================*/
     private int calculateModifier(int abilityScore) { return (Mathf.RoundToInt(Mathf.Floor((m_strength - 10) / 2)));}
 
+
+
     private void calculateAllModifier()
     {
         //Ability Modifier
@@ -166,6 +169,7 @@ public class Stats : MonoBehaviour
 
     //Hp
     public int getHitPoint() { return (m_hitPoint); }
+    public int getMana() { return (m_mana); }
 
     //Attack / defence
     public int getArmorClass() { return (m_armorClass); }
@@ -195,6 +199,7 @@ public class Stats : MonoBehaviour
 
     //Hp
     public void setHitPoint(int hitPoint) {  m_hitPoint=hitPoint; }
+    public void setMana(int mana) { m_mana = mana; }
 
     //Attack / defence
     public void setArmorClass(int armorClass) {  m_armorClass=armorClass; }

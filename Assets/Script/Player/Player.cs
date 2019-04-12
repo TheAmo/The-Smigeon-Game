@@ -86,7 +86,7 @@ public class Player : NetworkBehaviour
 
 
         canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
-
+        canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getMana();
         if (hasAuthority)
         {
             
