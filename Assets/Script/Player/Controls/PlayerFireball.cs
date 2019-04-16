@@ -10,7 +10,7 @@ public class PlayerFireball : MonoBehaviour
     private bool fireActivated = false;
     private GameObject canvas;
     private GameObject fb;
-    private int cost = 10;
+    private int cost = 0;
 
     // Jo helped with float :)
 

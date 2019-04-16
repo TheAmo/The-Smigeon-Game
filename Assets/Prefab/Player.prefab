@@ -62,11 +62,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-<<<<<<< HEAD
   orthographic size: 12
-=======
-  orthographic size: 15
->>>>>>> Projectile
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -102,11 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9b6871d3cdbba478825c4b041a7f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   LightPixelSize: 0.029296875
-=======
-  LightPixelSize: 0.03515625
->>>>>>> Projectile
   LightCameraSizeAdd: 3
   LightCameraFovAdd: 30
   EnableAmbientLight: 1
@@ -196,7 +188,7 @@ GameObject:
   - component: {fileID: 7063573848319029845}
   - component: {fileID: 2444193630508139745}
   - component: {fileID: 1547931205940582880}
-  - component: {fileID: 3441642338939474327}
+  - component: {fileID: 5289311225089021595}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -504,7 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
---- !u!114 &3441642338939474327
+--- !u!114 &5289311225089021595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387c50f408ed354692f2fa8a415a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fb2: {fileID: 4500485049831174234, guid: 6f4ab5091a7b4924499b8dbbe07af5f2, type: 3}
+  fb2: {fileID: 0}
   fbSprite: {fileID: 21300000, guid: 94c2172db4ca42e46ab9a56e2b1d1187, type: 3}
 --- !u!1 &6215596099443315851
 GameObject:

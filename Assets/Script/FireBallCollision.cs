@@ -28,7 +28,7 @@ public class FireBallCollision : MonoBehaviour
                 }
                 else
                 {
-                    col.gameObject.GetComponent<Stats>().setHitPoint(col.gameObject.GetComponent<Stats>().getHitPoint() - 1);
+                    col.gameObject.GetComponent<Stats>().setHitPoint(col.gameObject.GetComponent<Stats>().getHitPoint() - 10);
                 }
             }
            
