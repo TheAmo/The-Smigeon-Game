@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
+using UnityEngine.Networking;
 
-public class Stats
+public class Stats:NetworkBehaviour
 {
     /*===================================================================================================================
      * Stats
@@ -41,7 +42,7 @@ public class Stats
     private int m_charismaModifier;
 
     //Hp
-
+    [SyncVar]
     private int m_hitPoint;
 
     //Attack / defence
@@ -212,7 +213,10 @@ public class Stats
     public void setCharisma(int charisma) {  m_charisma=charisma; }
 
     //Hp
-    public void setHitPoint(int hitPoint) {  m_hitPoint=hitPoint; }
+    public void setHitPoint(int hitPoint) {
+        m_hitPoint =hitPoint;
+        CmdUpdateHitPoint(hitPoint);
+    }
 
     //Attack / defence
     public void setArmorClass(int armorClass) {  m_armorClass=armorClass; }
@@ -229,6 +233,12 @@ public class Stats
     //Experience
     public void setExperience(int experience) { m_experience = experience; }
     public void changeExperienceByValue(int experience) { m_experience += experience; }
+
+    [Command]
+    void CmdUpdateHitPoint(int hitpoint)
+    {
+        m_hitPoint = hitpoint;
+    }
 }
 
 

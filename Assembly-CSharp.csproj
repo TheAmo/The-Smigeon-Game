@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{41E90272-AF03-E9EA-85AA-3906034CF702}</ProjectGuid>
+    <ProjectGuid>{4DFD08B1-B4C5-9D14-3133-D0A4494CD4FB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -212,19 +212,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -428,16 +428,16 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityNpgsql">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Assets/Plugins/UnityNpgsql.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Assets/Plugins/UnityNpgsql.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game-b3af1d9f2ba2bb9180ff850811f13d7872eac5f9/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/greniemx/Desktop/The-Smigeon-Game/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

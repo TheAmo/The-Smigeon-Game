@@ -83,14 +83,15 @@ public class Player : NetworkBehaviour
         isShowing = true;
         dead = false ;
 
-
-        //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
+        sliderHealth = GameObject.Find("SliderHealth");
+        sliderHealth.GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
 
         if (hasAuthority)
         {
             
         }
-
+        
+         
         //Initialize stats
     }
 
@@ -101,17 +102,18 @@ public class Player : NetworkBehaviour
       ===================================================================================================================*/
     void Update()
     {
-
+       
         if (hasAuthority == false)
         {
             camera.enabled = false;
             return;
         }
+        //Debug.Log(stats.getHitPoint());
         if (camera.enabled==false) camera.enabled = true;
 
         if (!dead)
         {
-            //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+            sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
 
 
 

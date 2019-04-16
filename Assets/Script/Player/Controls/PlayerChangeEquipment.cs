@@ -20,7 +20,7 @@ public class PlayerChangeEquipment : NetworkBehaviour
     public Sprite spriteAttack;
     public Sprite spriteInteraction;
 
-    
+    public Stats stats;
     public Equipement item = new Equipement(1, 1);
 
     public Sprite[] sprites;
@@ -45,6 +45,7 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     void Update()
     {
+        if (stats.getHitPoint() <= 0) { return; }
         item.setArmor(armorId);
         item.setWeapon(weaponId);
         WearEquipment(armorId, weaponId);

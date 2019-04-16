@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1158557540122994538}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,6 @@ MonoBehaviour:
   spriteAttack: {fileID: 21300000, guid: 766bb20d5b730e242b923569f8bf21e3, type: 3}
   spriteKill: {fileID: 21300000, guid: 6dad0c255bdb40c4889014dd2a87a6a9, type: 3}
   attackCooldown: 1
-  player: {fileID: 0}
   collidableAi: []
 --- !u!50 &105839632668281854
 Rigidbody2D:
@@ -104,8 +103,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 10
+  m_UseAutoMass: 1
+  m_Mass: 2.5298
   m_LinearDrag: 100
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -127,7 +126,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.32289124, y: -0.331388}
+  m_Offset: {x: -0.32289124, y: -0.48240685}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -138,7 +137,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5634723, y: 1.2889023}
+  m_Size: {x: 2.5634723, y: 0.98686457}
   m_EdgeRadius: 0
 --- !u!114 &2979956943619082721
 MonoBehaviour:
@@ -229,11 +228,11 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7370719340387286514}
   m_Enabled: 1
-  m_Density: 1
+  m_Density: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.34, y: 0.98}
   serializedVersion: 2
-  m_Radius: 1.3501048
+  m_Radius: 15

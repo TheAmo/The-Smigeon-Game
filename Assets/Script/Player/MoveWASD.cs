@@ -9,7 +9,7 @@ public class MoveWASD : NetworkBehaviour
     float sqrt2 = 1 / Mathf.Sqrt(2);
     private Rigidbody2D rb2d;
     private bool isFast = false;
-
+    public Stats stat;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,7 @@ public class MoveWASD : NetworkBehaviour
     void FixedUpdate()
     {
         if (hasAuthority == false) return;
-
+        if (stat.getHitPoint() <= 0) return;
         float horizontalAxis = Input.GetAxisRaw("Horizontal");
         float verticalAxis = Input.GetAxisRaw("Vertical");
 

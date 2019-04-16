@@ -47,7 +47,7 @@ namespace Light
         /// <summary>
         /// AmbientLightBlurMaterial is applied to ambient light texture if enabled. Disable to improve performance.
         /// </summary>
-        public bool BlurAmbientLight = true;
+        public bool BlurAmbientLight = false;
 
         /// <summary>
         /// If true RGBHalf RenderTexture type will be used for light processing.
