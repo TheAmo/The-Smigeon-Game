@@ -25,6 +25,7 @@ public class Shop : MonoBehaviour
 
 
         db = new DataBaseSmi();
+        //Set the shop scene to be active
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop"));
 
 
@@ -32,24 +33,25 @@ public class Shop : MonoBehaviour
 
 
         listItem = db.getAllMaterials();
-        foreach (Items item in listItem)
+        foreach (Items item in listItem)//Assign the name, price and damage to the button
         {
             button[item.id - 1].GetComponentInChildren<Text>().text = item.name + " " + item.price + "gp  +" + item.damage_defense;
         }
 
-        SwordType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material");
+        SwordType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"); //Show the name of the current sword
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (SwordType.text != db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"))
-        {
-            SwordType.text = db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material");
-        }*/
+
 
         if (Input.GetKeyDown(KeyCode.Escape))
+        /* when the player press escape
+         the shop camera is disabled, the UI scene is loaded, the shop is unloaded
+         and the main Scene is activated*/
         {
+
             ShopCamera.enabled = false;
             UnityEngine.SceneManagement.SceneManager.LoadScene("UI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));

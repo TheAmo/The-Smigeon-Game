@@ -31,7 +31,7 @@ public class BuyingSword: MonoBehaviour
 
         db = new DataBaseSmi();
         float money = player.GetComponent<Stats>().getGold();
-
+        //Blacksmith shop
         if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == true)
         {
             bsShopIsOpen = true;
@@ -41,45 +41,62 @@ public class BuyingSword: MonoBehaviour
 
         }
         else
+        //Armor shop
         {
             price = db.getPrice(id, "armor");
             itemMaterial = player.GetComponent<Player>().equipement.getArmor();
             itemMaterial++;
         }
-        Debug.Log(itemMaterial + " " + id);
         if(itemMaterial == id)
+            //Item is already bought
         {
             errorText.GetComponent<Text>().text = "You already have this item";
         }
         else if(money >= price)
         {
             if(bsShopIsOpen == true)
+                //Blacksmith shop
             {
-                
                 equipementType = GameObject.Find("Sword Stats").GetComponent<Text>();
+
+                //remove gold
                 player.GetComponent<Stats>().changeGoldByValue(price*-1);
+
+                //Set player weapon and damage
                 player.GetComponent<Player>().equipement.setWeapon(id - 1);
+                player.GetComponent<Stats>().setAttackBonus(db.getMaterialDamage(id - 1));
+
+                //show gold amount
                 textm.text = (money - price).ToString();
 
+                //show current sword
                 equipementType.text = db.getItemName(id - 1, "material");
-                Debug.Log(db.getItemName(player.GetComponent<Player>().equipement.getWeapon(), "material"));
-            }else if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == true)
+
+            }
+            else if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == true)
+                //Armor shop
             {
                 equipementType = GameObject.Find("Armor Stats").GetComponent<Text>();
-                Debug.Log(id);
+
+                //remove gold
                 player.GetComponent<Stats>().changeGoldByValue(price * -1);
+
+                //Change armor and defense
                 player.GetComponent<Player>().equipement.setArmor(id - 1);
-                Debug.Log(player.GetComponent<Player>().equipement.getWeapon());
+                player.GetComponent<Stats>().setArmorClass(db.getArmorDefense(id - 1));
+
+                //Show new gold amount
                 textm.text = (money - price).ToString();
 
+                //Show current armor
                 equipementType.text = db.getItemName(id - 1, "armor");
-                Debug.Log(db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "material"));
             }
         }
         else
         {
             errorText.GetComponent<Text>().text = "You don't have enough money to buy this";
         }
+        //Call the function to change the sprite of the player
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetComponentInChildren<PlayerChangeEquipment>().ChangeEquipement();        
     }
 }

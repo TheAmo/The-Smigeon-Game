@@ -26,19 +26,18 @@ public class ArmorShop : MonoBehaviour
 
 
         db = new DataBaseSmi();
+        //Set the shop scene to be active
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop"));
 
 
         button = GameObject.FindGameObjectsWithTag("Button");
-
-
         listItem = db.getAllArmors();
-        foreach (Items item in listItem)
+        foreach (Items item in listItem) //Assign the name, price and defense to the button
         {
             button[item.id - 1].GetComponentInChildren<Text>().text = item.name + " " + item.price + "gp  +" + item.damage_defense;
         }
 
-        ArmorType.text = db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "armor");
+        ArmorType.text = db.getItemName(player.GetComponent<Player>().equipement.getArmor(), "armor");//Show the name of the current armor
     }
 
     // Update is called once per frame
@@ -47,7 +46,9 @@ public class ArmorShop : MonoBehaviour
       
 
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
+        { /* when the player press escape
+         the shop camera is disabled, the UI scene is loaded, the shop is unloaded
+         and the main Scene is activated*/
             ShopCamera.enabled = false;
             UnityEngine.SceneManagement.SceneManager.LoadScene("UI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
             UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));
