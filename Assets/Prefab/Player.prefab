@@ -61,8 +61,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 15
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9b6871d3cdbba478825c4b041a7f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LightPixelSize: 0.028904416
+  LightPixelSize: 0.03515625
   LightCameraSizeAdd: 3
   LightCameraFovAdd: 30
   EnableAmbientLight: 1
@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387c50f408ed354692f2fa8a415a004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fb2: {fileID: 4500485049831174234, guid: 6f4ab5091a7b4924499b8dbbe07af5f2, type: 3}
   fbSprite: {fileID: 21300000, guid: 94c2172db4ca42e46ab9a56e2b1d1187, type: 3}
 --- !u!1 &6215596099443315851
 GameObject:

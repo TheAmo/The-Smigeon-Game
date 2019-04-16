@@ -14,6 +14,7 @@ TagManager:
   - MoneyText
   - Button
   - Projectile
+  - Wall
   layers:
   - Default
   - TransparentFX
