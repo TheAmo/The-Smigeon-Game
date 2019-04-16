@@ -62,7 +62,7 @@ CREATE TABLE player_entry(
 	gold int NOT NULL	
 );
 INSERT INTO player_entry (name, class_name, experience, positionx, positiony, gold) 
-VALUES ('allo', 'allo2', 3, 0, 1, 4);
+VALUES ('new player', 'allo2', 3, 0, 1, 4);
 
 -- SHOW 
 SELECT name, xp, hitpoint, armorclass, attackbonus,damagebonus, damagedice

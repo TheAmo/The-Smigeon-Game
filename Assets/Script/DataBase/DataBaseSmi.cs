@@ -55,17 +55,34 @@ public class DataBaseSmi : MonoBehaviour
     }
 
     /*===================================================================================================================
-     * Get Monster Stat by Id
+     * Get Monster Stats List by id
      * 
     ===================================================================================================================*/
-    public DataTable getMonsterInfoById(int id)
+    public List<MonsterStats> getMonster(int id)
     {
+        List<MonsterStats> monster = new List<MonsterStats>();
+        string name;
+        int xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice;
+
+        string strSelect = "SELECT name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice FROM monster_stats WHERE id = " + id;
+
         m_dbTable = new DataTable();
-        m_dbTable = Connection("SELECT * FROM monster_stats WHERE id=" + id);
+        m_dbTable = Select(strSelect);
 
-        return m_dbTable;
+        for (int i = 0; i < m_dbTable.Rows.Count; i++)
+        {
+            name = (m_dbTable.Rows[i]["name"]).ToString();
+            xp = Convert.ToInt16(m_dbTable.Rows[i]["xp"]);
+            hitpoint = Convert.ToInt16(m_dbTable.Rows[i]["hitpoint"]);
+            armorclass = Convert.ToInt16(m_dbTable.Rows[i]["armorclass"]);
+            attackbonus = Convert.ToInt16(m_dbTable.Rows[i]["attackbonus"]);
+            damagebonus = Convert.ToInt16(m_dbTable.Rows[i]["damagebonus"]);
+            damagedice = Convert.ToInt16(m_dbTable.Rows[i]["damagedice"]);
+
+            monster.Add(new MonsterStats(id, name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice));
+        }
+        return monster;
     }
-
     /*===================================================================================================================
     * Get all materials
     * Select Material
@@ -126,7 +143,7 @@ public class DataBaseSmi : MonoBehaviour
         return armor;
     }
     /*===================================================================================================================
-    * Select player entry
+    * Select player entry 
     * 
     ===================================================================================================================*/
     public List<PlayerEntryDB> getPlayerEntry()
@@ -136,7 +153,7 @@ public class DataBaseSmi : MonoBehaviour
         int experience, gold;
         var position = new float[2];
 
-        string strSelect = "SELECT name, class_name, positionx, positiony, gold FROM \"player_entry\"";
+        string strSelect = "SELECT name, class_name, positionx, positiony, gold FROM player_entry";
 
         m_dbTable = new DataTable();
         m_dbTable = Select(strSelect);
@@ -156,7 +173,7 @@ public class DataBaseSmi : MonoBehaviour
         return playerList;
     }
     /*===================================================================================================================
-    * Get Name 
+    * Get Name  by id
     * Get material name or armor name
     ===================================================================================================================*/
     public string getItemName(int id, string table)
@@ -174,7 +191,7 @@ public class DataBaseSmi : MonoBehaviour
         return name;
     }
     /*===================================================================================================================
-    * Get Class name 
+    * Get Class name by id
     * 
     ===================================================================================================================*/
     public string getClassName(string table, int id)
@@ -189,7 +206,7 @@ public class DataBaseSmi : MonoBehaviour
         return class_name;
     }
     /*===================================================================================================================
-    * Get position x and position y
+    * Get position x and position y by id
     * 
     ===================================================================================================================*/
     public int getPosition(string table, int id, string pos)
@@ -204,7 +221,7 @@ public class DataBaseSmi : MonoBehaviour
         return position;
     }
     /*===================================================================================================================
-    * Get experience
+    * Get experience by id
     * 
     ===================================================================================================================*/
     public int getExperience(string table, int id)
@@ -219,7 +236,7 @@ public class DataBaseSmi : MonoBehaviour
         return experience;
     }
     /*===================================================================================================================
-    * Get gold
+    * Get gold by id
     * 
     ===================================================================================================================*/
     public int getGold(string table, int id)
@@ -234,7 +251,7 @@ public class DataBaseSmi : MonoBehaviour
         return gold;
     }
     /*===================================================================================================================
-    * Get damage
+    * Get material damage by id
     * 
     ===================================================================================================================*/
     public int getMaterialDamage(int id)
@@ -246,12 +263,10 @@ public class DataBaseSmi : MonoBehaviour
         m_dbTable = Select(strSelect);
         int damage = Convert.ToInt16(m_dbTable.Rows[0]["damage"]);
 
-        //Debug.Log();
-
         return damage;
     }
     /*===================================================================================================================
-    * Get defense
+    * Get armor defense by id
     * 
     ===================================================================================================================*/
     public int getArmorDefense(int id)
@@ -264,7 +279,7 @@ public class DataBaseSmi : MonoBehaviour
         return defense;
     }
     /*===================================================================================================================
-    * Get price
+    * Get price by id
     * 
     ===================================================================================================================*/
     public int getPrice(int id, string table)
@@ -316,7 +331,7 @@ public class DataBaseSmi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<Items> armor = getAllArmors();
+       
     }
 
     // Update is called once per frame
