@@ -13,7 +13,12 @@ TagManager:
   - Blacksmith
   - MoneyText
   - Button
+<<<<<<< HEAD
   - Armorer
+=======
+  - Projectile
+  - Wall
+>>>>>>> Projectile
   layers:
   - Default
   - TransparentFX

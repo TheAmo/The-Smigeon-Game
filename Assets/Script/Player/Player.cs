@@ -78,14 +78,15 @@ public class Player : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
+        
         rb2d = this.GetComponent<Rigidbody2D>();
         initialisePlayer(0, 0);
         isShowing = true;
         dead = false ;
 
-
-        canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
-
+        sliderHealth = GameObject.Find("SliderHealth");
+        sliderHealth.GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
+        canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getMana();
         if (hasAuthority)
         {
             
@@ -110,6 +111,7 @@ public class Player : NetworkBehaviour
        
             if (!dead)
         {
+            sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
             if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
             {
                 if (this.GetComponent<MoveWASD>().enabled == false)
@@ -147,7 +149,7 @@ public class Player : NetworkBehaviour
                 isShowing = !isShowing;
                 canvas.SetActive(isShowing);
             }
-            if (Input.GetKeyDown(KeyCode.K)) //TO Open Inventory. Doesn't work.
+            if (Input.GetKeyDown(KeyCode.K)) //To smack yourself in the face. Doesn't work.
             {
                 ReceiveDamage(1);
                 Debug.Log("Damage player test");
@@ -185,6 +187,7 @@ public class Player : NetworkBehaviour
     {
         stats.setHitPoint(stats.getHitPoint()-damage);
         Debug.Log("Dealt: " + damage + "   HP left: " + stats.getHitPoint());
+        //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
         if (stats.getHitPoint() <= 0)
         {
             return (true); //Is dead
