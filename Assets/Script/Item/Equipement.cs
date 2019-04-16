@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Equipement
+public class Equipement : Component
 {
     public int weaponType;
     public int armorType;

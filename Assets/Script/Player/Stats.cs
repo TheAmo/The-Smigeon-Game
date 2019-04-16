@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 
-public class Stats
+public class Stats : MonoBehaviour
 {
     /*===================================================================================================================
      * Stats
@@ -16,20 +16,10 @@ public class Stats
     //Ability
 
     private int m_strength;
-
-   
     private int m_dexterity;
-
-
-    private int m_constitution;
-
-   
+    private int m_constitution; 
     private int m_intelligence;
-
-
-    private int m_wisdom;
-
-   
+    private int m_wisdom; 
     private int m_charisma;
 
     //Ability Modifier
@@ -41,21 +31,14 @@ public class Stats
     private int m_charismaModifier;
 
     //Hp
-
     private int m_hitPoint;
 
     //Attack / defence
-   
     private int m_armorClass;
-
-
     private int m_attackBonus;
 
     //Damage
-  
     private int m_damageBonus;
-
-
     private int m_damageDie;
 
     //Gold
@@ -94,8 +77,8 @@ public class Stats
         //HitPoint
         setHitPoint(10 + getConstitutionModifier());
 
-        //Gold;
-        setGold(50);
+        //Gold;ge
+        setGold(100000);
 
         //Experience
         setExperience(0);
@@ -223,7 +206,11 @@ public class Stats
 
     //Gold
     public void setGold(int gold) { m_gold = gold; }
-    public void changeGoldByValue(int gold) { m_gold += gold; }
+    public void changeGoldByValue(int gold) {
+        m_gold += gold;
+        Money money = new Money();
+        money.changeMoney(m_gold);
+    }
 
     //Experience
     public void setExperience(int experience) { m_experience = experience; }

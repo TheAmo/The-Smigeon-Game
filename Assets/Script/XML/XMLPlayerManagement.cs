@@ -56,7 +56,7 @@ public class PlayerEntry        //What will be populating the list
     public string className;
     public int experience;
     public float[] position;
-    public int gold;
+    public int gold = 1000000000;
 }
 
 [System.Serializable]

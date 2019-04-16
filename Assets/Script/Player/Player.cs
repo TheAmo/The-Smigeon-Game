@@ -12,6 +12,7 @@ public class Player : NetworkBehaviour
      * 
      ===================================================================================================================*/
     public Stats stats;
+    public Equipement equipement = new Equipement(0, 0);
     
     public Sprite spriteKill;
     private SpriteRenderer spriteRenderer;
@@ -29,14 +30,14 @@ public class Player : NetworkBehaviour
 
     private int m_player_id;
 
-    public Camera camera;
-
+    public Camera PlayerCamera;
     private Rigidbody2D rb2d;
+    public GameObject ObjectCamera;
     /*===================================================================================================================
     * Start
     * 
     ===================================================================================================================*/
-    public void ininitialisePlayer(int player_id, int class_id)
+    public void initialisePlayer(int player_id, int class_id)
     {
         GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().LoadPlayer();
         Debug.Log("Constructeur du player");
@@ -52,10 +53,10 @@ public class Player : NetworkBehaviour
         //Calculate everything for player level
 
         //Put player on good position
-        Vector3 temp = new Vector3(0,0, 0);
-        rb2d.MovePosition(temp);
-        temp= new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
-        rb2d.position=(temp);
+        //Vector3 temp = new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
+        Vector3 temp = new Vector3(70, 70, 0);
+        rb2d.position = temp;
+
     }
 
     /*===================================================================================================================
@@ -78,7 +79,7 @@ public class Player : NetworkBehaviour
     void Start()
     {
         rb2d = this.GetComponent<Rigidbody2D>();
-        ininitialisePlayer(0, 0);
+        initialisePlayer(0, 0);
         isShowing = true;
         dead = false ;
 
@@ -100,17 +101,44 @@ public class Player : NetworkBehaviour
       ===================================================================================================================*/
     void Update()
     {
-
+       
         if (hasAuthority == false)
         {
-            camera.enabled = false;
+            PlayerCamera.enabled = false;
             return;
         }
-        if (camera.enabled==false) camera.enabled = true;
-
-        if (!dead)
+       
+            if (!dead)
         {
-            //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+            if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
+            {
+                if (this.GetComponent<MoveWASD>().enabled == false)
+                {
+                    this.GetComponent<MoveWASD>().enabled = true;
+                }
+                if (this.GetComponent<PlayerInteraction>().enabled == false)
+                {
+                    this.GetComponent<PlayerInteraction>().enabled = true;
+                }
+        
+            } else
+            {
+
+                if (this.GetComponent<MoveWASD>().enabled == true)
+                {
+                    this.GetComponent<MoveWASD>().enabled = false;
+                }
+                if (this.GetComponent<PlayerInteraction>().enabled == true)
+                {
+                    this.GetComponent<PlayerInteraction>().enabled = false;
+                }
+
+            }
+            
+            
+
+            if (PlayerCamera.enabled == false) PlayerCamera.enabled = true;
+            if (ObjectCamera.activeSelf == false) ObjectCamera.SetActive(true);
 
 
 
@@ -169,5 +197,6 @@ public class Player : NetworkBehaviour
     {
         return (Random.Range(1, stats.getDamageDie()) + stats.getDamageBonus());
     }
+   
 
 }

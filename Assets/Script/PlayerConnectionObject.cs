@@ -37,9 +37,9 @@ public class PlayerConnectionObject : NetworkBehaviour
     {
         //We are on the server
         GameObject go = Instantiate(PlayerObjectPrefab);
-
+        
         player = go;
-    
+        player.SetActive(true);
         //We have to propagate the object on all the client
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
 

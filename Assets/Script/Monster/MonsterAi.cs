@@ -9,6 +9,7 @@ public class MonsterAi : MonoBehaviour
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     public Sprite spriteKill;
+    public Sprite spriteLootbag;
 
     float degfactor = 360 / (2 * Mathf.PI);
     float sqrt2 = 1 / Mathf.Sqrt(2);
@@ -49,6 +50,16 @@ public class MonsterAi : MonoBehaviour
     //To kill the monster
     public void kill()
     {
+        GameObject lootbag = new GameObject();
+        lootbag.name = "loot" + this.name;
+        lootbag.AddComponent<SpriteRenderer>();
+        lootbag.AddComponent<BoxCollider2D>().size = new Vector2(3, 3);
+        lootbag.GetComponent<BoxCollider2D>().isTrigger = true;
+        lootbag.tag = "Lootbag";
+        lootbag.GetComponent<SpriteRenderer>().sprite = spriteLootbag;
+        lootbag.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        lootbag.transform.position = this.transform.position;
+
         Destroy(bc2d, 0);
         speed = 0;
         updateInterval = -1;
@@ -75,10 +86,10 @@ public class MonsterAi : MonoBehaviour
     }
 
     //===================================begin AI================================
-    float BasicEstimination(Vector3 currentPosiiton, Vector3 targetPosition)
+    float BasicEstimation(Vector3 currentPositon, Vector3 targetPosition)
     {
         //pythagore
-        return Vector3.Distance(currentPosiiton, targetPosition);
+        return Vector3.Distance(currentPositon, targetPosition);
     }
 
     bool isRayCastAllObject(RaycastHit2D[] hits, string nameObject)

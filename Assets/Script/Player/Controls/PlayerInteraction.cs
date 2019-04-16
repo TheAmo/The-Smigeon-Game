@@ -16,7 +16,6 @@ public class PlayerInteraction : NetworkBehaviour
     private SpriteRenderer spriteRenderer;
 
     public GameObject player;
-
     private BoxCollider2D bc2d;
     List<GameObject> interact = new List<GameObject>();
 
@@ -56,8 +55,16 @@ public class PlayerInteraction : NetworkBehaviour
                 }
                 else if (target.tag == "Blacksmith")
                 {
-
+                    if(target.name == "Armorer")
+                    {
+                        GameObject.Find("Armorer").GetComponent<DialogueTrigger>().TriggerDialogue();
+                    }
+                    else
+                    {
+                        GameObject.Find("Blacksmith").GetComponent<DialogueTrigger>().TriggerDialogue();
+                    }
                 }
+                
                 if (target.tag == "Lootbag")
                 {
                     PickLoot(target);
@@ -120,6 +127,7 @@ public class PlayerInteraction : NetworkBehaviour
      ===================================================================================================================*/
     public void PickLoot(GameObject target)
     {
+       
         Loot loot = new Loot();
         loot.DropType(target.name);
         Destroy(target);

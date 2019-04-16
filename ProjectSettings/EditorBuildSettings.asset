@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: dc87b7ef9054f1d4f9dfbb044fc6da26
+  - enabled: 1
+    path: Assets/Scenes/UI.unity
+    guid: be1e1b049994b884e8d44868c3198fa3
+  - enabled: 1
+    path: Assets/Scenes/BlacksmithShop.unity
+    guid: c4888e8d71c42cd4685c9c695e6966fc
   m_configObjects: {}
