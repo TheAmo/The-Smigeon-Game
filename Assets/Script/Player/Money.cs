@@ -15,7 +15,6 @@ public class Money : MonoBehaviour
     void Start()
     {
         textm = GameObject.Find("Current Money").GetComponent<Text>();
-        player = GameObject.FindGameObjectWithTag("Player");
         money = player.GetComponent<Stats>().getGold();
         moneys = money.ToString();
         textm.text = moneys;
@@ -24,14 +23,25 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        money = player.GetComponent<Stats>().getGold();
-        moneys = money.ToString();
-        if (textm.text != moneys)
+        if (player.name != "P1")
+        {
+            if (player.active == true)
+            {
+                player = GameObject.FindGameObjectWithTag("Player");
+                player.name = "P1";
+                money = player.GetComponent<Stats>().getGold();
+                moneys = money.ToString();
+            }
+                
+        }
+        else
         {
             textm = GameObject.Find("Current Money").GetComponent<Text>();
-            textm.text = moneys;
+            money = player.GetComponent<Stats>().getGold();
+            textm.text = money.ToString();
         }
+        
+  
         if (Input.GetKeyUp(KeyCode.T))
         {
             money += 1;

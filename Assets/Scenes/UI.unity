@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 337495744}
   - component: {fileID: 337495746}
   - component: {fileID: 337495745}
+  - component: {fileID: 337495747}
   m_Layer: 5
   m_Name: Current Money
   m_TagString: Untagged
@@ -422,9 +423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Jacty
-
-'
+  m_Text: 
 --- !u!222 &337495746
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -433,6 +432,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337495743}
   m_CullTransparentMesh: 0
+--- !u!114 &337495747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337495743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3338537e398fb0e4ba648745d6c37969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+  textm: {fileID: 337495745}
+  player: {fileID: 3690426719176018748, guid: 33d57348f3606044a8d120ef6dbe84b3, type: 3}
 --- !u!1 &348242307
 GameObject:
   m_ObjectHideFlags: 0
