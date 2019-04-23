@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityNpgsql;
 using UnityNpgsqlTypes;
 
+
 public class DataBaseSmi : MonoBehaviour
 {
     /*===================================================================================================================
@@ -320,24 +321,94 @@ public class DataBaseSmi : MonoBehaviour
         dbConnection.Close();
     }
 
-    public void SavePlayer(string name, int experience, string weapon, string armor, float[] position)
+    public void UpdatePlayerInfo(string infoToSave, int id, string newValue)
     {
+        string strQuery = "UPDATE save_player SET " + infoToSave + " = :infoToSave WHERE id = :ID";
+        dbConnection = new NpgsqlConnection(strConnection);
+
+        dbConnection.Open();
+
+        dbCmd = new NpgsqlCommand(strQuery, dbConnection);
+        dbCmd.Parameters.Add(new NpgsqlParameter("infoToSave", NpgsqlDbType.Text));
+        dbCmd.Parameters.Add(new NpgsqlParameter("ID", NpgsqlDbType.Integer));
+        dbCmd.Parameters[0].Value = newValue;
+        dbCmd.Parameters[1].Value = id;
+        dbCmd.ExecuteNonQuery();
+
+        Debug.Log("UpdateWeapon");
+
+        dbConnection.Close();
+    }
+
+    public List<PlayerEntryDB> getPlayerByName(string name)
+    {
+        List<PlayerEntryDB> playerList = new List<PlayerEntryDB>();
+
+        int experience, gold;
+        string weapon, armor;
+        var position = new float[2];
+
+        string strSelect = "SELECT experience, weapon, armor, positionx, positiony, gold FROM player_entry WHERE name = " + name;
+
+        m_dbTable = new DataTable();
+        m_dbTable = Select(strSelect);
+
+        
+        experience = Convert.ToInt32(m_dbTable.Rows[0]["experience"]);
+        weapon = (m_dbTable.Rows[1]["weapon"]).ToString();
+        armor = (m_dbTable.Rows[1]["armor"]).ToString();
+        position[0] = Convert.ToInt32(m_dbTable.Rows[2]["positionx"]);
+        position[1] = Convert.ToInt32(m_dbTable.Rows[3]["positiony"]);
+        gold = Convert.ToInt32(m_dbTable.Rows[4]["gold"]);
+
+        playerList.Add(new PlayerEntryDB(name, experience, weapon, armor, position, gold));
+        
+        return playerList;
+    }
+
+    public void SaveNewPlayer(string name, int experience, string weapon, string armor, float[] position, int gold)
+    {
+        NpgsqlDataAdapter dbAdapter = new NpgsqlDataAdapter();
+        NpgsqlParameter dbParam = new NpgsqlParameter();
+        dbConnection = new NpgsqlConnection(strConnection);
+
+        string strQuery = "INSERT INTO save_player (name, experience, weapon, armor, positionx, positiony, gold) VALUES(@name, @experience, @weapon, @armor, @positionx, @positiony, @gold)";
+
+        dbConnection.Open();
+
+        dbCmd = new NpgsqlCommand(strQuery, dbConnection);
+
+        dbCmd.Parameters.Add(new NpgsqlParameter("@name", NpgsqlDbType.Text));
+        dbCmd.Parameters.Add(new NpgsqlParameter("@experience", NpgsqlDbType.Integer));
+        dbCmd.Parameters.Add(new NpgsqlParameter("@weapon", NpgsqlDbType.Text));
+        dbCmd.Parameters.Add(new NpgsqlParameter("@armor", NpgsqlDbType.Text));
+        dbCmd.Parameters.Add(new NpgsqlParameter("@positionx", NpgsqlDbType.Integer));
+        dbCmd.Parameters.Add(new NpgsqlParameter("@positiony", NpgsqlDbType.Integer));
+        dbCmd.Parameters.Add(new NpgsqlParameter("@gold", NpgsqlDbType.Integer));
 
 
+        dbCmd.Parameters[0].Value = name;
+        dbCmd.Parameters[1].Value = experience;
+        dbCmd.Parameters[2].Value = weapon;
+        dbCmd.Parameters[3].Value = armor;
+        dbCmd.Parameters[4].Value = position[0];
+        dbCmd.Parameters[5].Value = position[1];
+        dbCmd.Parameters[6].Value = gold;
 
-
+        dbCmd.ExecuteNonQuery();
+        Debug.Log("Player saved");
+        dbConnection.Close();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
 
     }
 

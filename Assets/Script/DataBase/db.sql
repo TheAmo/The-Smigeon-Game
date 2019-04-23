@@ -88,15 +88,27 @@ CREATE TABLE armor(
 	defense int NOT NULL
 );
 
+-- INSERT INFO INTO ARMOR TABLE
 INSERT INTO armor (name, price, defense) VALUES ('armor1', 0, 0.15);
 INSERT INTO armor (name, price, defense) VALUES ('armor2', 500, 0.3);
 INSERT INTO armor (name, price, defense) VALUES ('armor3', 2500, 0.45);
 INSERT INTO armor (name, price, defense) VALUES ('armor4', 5000, 0.60);
 INSERT INTO armor (name, price, defense) VALUES ('armor5', 10000, 0.75);
-SELECT * FROM material;
 
-
-
+-- SAVE PLAYER
+DROP TABLE IF EXISTS save_player CASCADE;
+CREATE TABLE save_player(
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	experience int NOT NULL,
+	weapon varchar(255) NOT NULL,
+	armor varchar(255) NOT NULL,
+	positionx int NOT NULL,
+	positiony int NOT NULL, 
+	gold int NOT NULL
+);
+INSERT INTO save_player (name, experience, weapon, armor, positionx, positiony, gold) VALUES ('new', 1, 'bronze', 'bronze', 1,2, 100);
+SELECT * FROM save_player;
 
 
 
