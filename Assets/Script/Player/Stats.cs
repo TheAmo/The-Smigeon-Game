@@ -199,7 +199,11 @@ public class Stats : MonoBehaviour
 
     //Hp
     public void setHitPoint(int hitPoint) {  m_hitPoint=hitPoint; }
-    public void setMana(int mana) { m_mana = mana; }
+    public void setMana(int mana) {
+        m_mana = mana;
+        GameObject canvas = GameObject.Find("HUDCanvas");
+        canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().value = m_mana;
+    }
 
     //Attack / defence
     public void setArmorClass(int armorClass) {  m_armorClass=armorClass; }

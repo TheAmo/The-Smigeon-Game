@@ -25,6 +25,8 @@ public class Player : NetworkBehaviour
     private bool isShowing;
     private bool dead;
 
+    private float time;
+
     private PlayerDatabase playerDatabase;
     private ClassDatabase classDatabase;
 
@@ -78,7 +80,7 @@ public class Player : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
-        
+        time = 0;
         rb2d = this.GetComponent<Rigidbody2D>();
         initialisePlayer(0, 0);
         isShowing = true;
@@ -111,6 +113,15 @@ public class Player : NetworkBehaviour
        
             if (!dead)
         {
+           
+            time = Time.deltaTime + time;
+
+            if (time >= 1)
+            {
+                this.GetComponent<Stats>().setMana(this.GetComponent<Stats>().getMana() + 1);
+                time = 0;
+            }
+
             sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
             if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
             {
