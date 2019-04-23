@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Equipement : Component
+public class Equipement:MonoBehaviour
 {
-    public int weaponType;
-    public int armorType;
+    public int weaponType=1;
+    public int armorType=1;
+
+    public Equipement()
+    {
+        armorType = 1;
+        weaponType = 1;
+
+        Debug.Log("Generating new Equipment");
+    }
 
     public Equipement(int weapon, int armor)
     {
-        armor = armorType;
-        weapon = weaponType;
+        armorType = armor;
+        weaponType = weapon;
+   
+        Debug.Log("Generating Equipment W:" + weapon + " A:" + armor);
     }
     public void setWeapon(int weapon)
     {

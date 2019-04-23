@@ -12,13 +12,16 @@ public class Player : NetworkBehaviour
      * 
      ===================================================================================================================*/
     public Stats stats;
-    public Equipement equipement = new Equipement(0, 0);
+    public Equipement equipement;
     
     public Sprite spriteKill;
 
     private SpriteRenderer spriteRenderer;
 
     public GameObject sliderHealth;
+    public GameObject sliderMana;
+    public GameObject textMoney;  
+
 
     private BoxCollider2D bc2d;
     public GameObject canvas;
@@ -28,14 +31,12 @@ public class Player : NetworkBehaviour
 
     private float time;
 
-    private PlayerDatabase playerDatabase;
-    private ClassDatabase classDatabase;
 
     private int m_player_id;
 
     public Camera PlayerCamera;
     private Rigidbody2D rb2d;
-    public GameObject ObjectCamera;
+
     /*===================================================================================================================
     * Start
     * 
@@ -45,6 +46,8 @@ public class Player : NetworkBehaviour
         //GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().LoadPlayer();
         Debug.Log("Constructeur du player");
         m_player_id = player_id;
+
+        stats.setGold(5000);
         //get PlayerEntryDB
        // playerDatabase = GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().playerDB;
         //get ClassEntry
@@ -56,7 +59,7 @@ public class Player : NetworkBehaviour
         //Calculate everything for player level
 
         //Put player on good position
-        Vector3 temp = new Vector3(0,0, 0);
+        Vector3 temp = new Vector3(70,70, 0);
         rb2d.MovePosition(temp);
         //temp= new Vector3(playerDatabase.playerList[player_id].position[0], playerDatabase.playerList[player_id].position[1], 0);
         rb2d.position=(temp);
@@ -88,8 +91,13 @@ public class Player : NetworkBehaviour
         dead = false ;
 
         sliderHealth = GameObject.Find("SliderHealth");
+        sliderMana = GameObject.Find("SliderMana");
+        textMoney = GameObject.Find("Current Money");
+
         sliderHealth.GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
-        canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getMana();
+        sliderMana.GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getMana();
+        textMoney.GetComponent<UnityEngine.UI.Text>().text = stats.getGold().ToString();
+
         if (hasAuthority)
         {
             
@@ -113,22 +121,23 @@ public class Player : NetworkBehaviour
             return;
         }
         //Debug.Log(stats.getHitPoint());
-        if (camera.enabled==false) camera.enabled = true;
+        if (PlayerCamera.enabled==false) PlayerCamera.enabled = true;
 
         if (!dead)
         {
            
             time = Time.deltaTime + time;
-            sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+
 
             if (time >= 1)
             {
-                this.GetComponent<Stats>().setMana(this.GetComponent<Stats>().getMana() + 1);
+                stats.setMana(stats.getMana() + 1);
                 time = 0;
             }
+            if (sliderHealth) sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+            if (sliderMana) sliderMana.GetComponent<UnityEngine.UI.Slider>().value = stats.getMana();
 
-            sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
-            if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
+            if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
             {
                 if (this.GetComponent<MoveWASD>().enabled == false)
                 {
@@ -156,7 +165,7 @@ public class Player : NetworkBehaviour
             
 
             if (PlayerCamera.enabled == false) PlayerCamera.enabled = true;
-            if (ObjectCamera.activeSelf == false) ObjectCamera.SetActive(true);
+            
 
 
 

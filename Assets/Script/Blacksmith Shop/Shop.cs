@@ -20,7 +20,7 @@ public class Shop : MonoBehaviour
         SwordType = GameObject.Find("Sword Stats").GetComponent<Text>();
 
         player = GameObject.FindGameObjectWithTag("Player");
-        money = player.GetComponent<Stats>().getGold();
+        money = player.GetComponent<Player>().stats.getGold();
         CurrentMoney.GetComponent<Text>().text = money.ToString();
 
 

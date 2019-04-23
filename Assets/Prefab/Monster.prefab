@@ -85,13 +85,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb060cff15e74574fba7c3923feb000d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0
   distanceDetection: 0
   spriteDefault: {fileID: 21300000, guid: 5e1afb52bc26fda47b1feedc43376a2d, type: 3}
   spriteAttack: {fileID: 21300000, guid: 766bb20d5b730e242b923569f8bf21e3, type: 3}
   spriteKill: {fileID: 21300000, guid: 6dad0c255bdb40c4889014dd2a87a6a9, type: 3}
   attackCooldown: 1
-  collidableAi: []
+  player: {fileID: 0}
 --- !u!50 &105839632668281854
 Rigidbody2D:
   serializedVersion: 4

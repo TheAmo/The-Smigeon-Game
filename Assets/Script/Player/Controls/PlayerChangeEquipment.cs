@@ -12,20 +12,20 @@ public class PlayerChangeEquipment : NetworkBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SyncVar]
-    private int weaponId;
+    private int weaponId=1;
     [SyncVar]
-    private int armorId;
+    private int armorId=1;
 
     public Sprite spriteDefault;
     public Sprite spriteAttack;
     public Sprite spriteInteraction;
 
     public Stats stats;
-    public Equipement item = new Equipement(1, 1);
+    public Equipement item;
 
     public Sprite[] sprites;
 
-    private GameObject player;
+    public GameObject player;
 
     /*===================================================================================================================
      * On Start
@@ -33,7 +33,8 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
-    
+        item.setArmor(1);
+        item.setWeapon(1);
         sprites = Resources.LoadAll<Sprite>("rogue_sheet");
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
@@ -50,7 +51,6 @@ public class PlayerChangeEquipment : NetworkBehaviour
         if (stats.getHitPoint() <= 0) { return; }
         item.setArmor(armorId);
         item.setWeapon(weaponId);
-        WearEquipment(armorId, weaponId);
 
         //if (hasAuthority == false) return;
 
@@ -75,13 +75,14 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     public void ChangeEquipement()
     {
+        int weapon = item.getWeapon();
+        int armor = item.getArmor();
         if (hasAuthority == false) return;
         CmdChangePlayerEquipment(armor, weapon);
         if (hasAuthority == false) return;
         item.setArmor(armor);
         item.setWeapon(weapon);
-        int weapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getWeapon();
-        int armor = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor();
+       
 
         int combination = (armor * 21 + weapon * 3);
         Debug.Log(combination);
@@ -94,7 +95,7 @@ public class PlayerChangeEquipment : NetworkBehaviour
     [Command]
     void CmdChangePlayerEquipment(int armor, int weapon)
     {
-        Debug.Log("Sending new Equipment");
+        Debug.Log("Sending new Equipment W:"+weapon+" A:"+armor);
 
         weaponId = weapon;
         armorId = armor;

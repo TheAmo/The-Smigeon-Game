@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerFireball : MonoBehaviour
+public class PlayerFireball : NetworkBehaviour
 {
-    public GameObject fb2;
+    public Stats stats;
     public Sprite fbSprite;
     static private float Pi = 3.141592653589f;
     private bool fireActivated = false;
@@ -16,11 +17,13 @@ public class PlayerFireball : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q) && fireActivated == false && this.GetComponent<Stats>().getMana() >= cost)
+        if (hasAuthority == false) return;
+        if (Input.GetKeyUp(KeyCode.H) && fireActivated == false && stats.getMana() >= cost)
         { 
             canvas = GameObject.Find("HUDCanvas");
-            this.GetComponent<Stats>().setMana((this.GetComponent<Stats>().getMana() - cost));
-            canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().value = this.GetComponent<Stats>().getMana();
+            stats.setMana((stats.getMana() - cost));
+            
+
             fb = new GameObject();
             fb.name = "Fireball";
             fb.tag = "Projectile";

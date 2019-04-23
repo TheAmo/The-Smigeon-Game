@@ -5,22 +5,22 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine.Networking;
 
-public class Stats:NetworkBehaviour
+public class Stats : NetworkBehaviour
 {
     /*===================================================================================================================
      * Stats
      * 
      ===================================================================================================================*/
-    
+
     public string name;
 
     //Ability
 
     private int m_strength;
     private int m_dexterity;
-    private int m_constitution; 
+    private int m_constitution;
     private int m_intelligence;
-    private int m_wisdom; 
+    private int m_wisdom;
     private int m_charisma;
 
     //Ability Modifier
@@ -34,6 +34,7 @@ public class Stats:NetworkBehaviour
     //Hp
     [SyncVar]
     private int m_hitPoint;
+    [SyncVar]
     private int m_mana = 100;
 
     //Attack / defence
@@ -45,6 +46,7 @@ public class Stats:NetworkBehaviour
     private int m_damageDie;
 
     //Gold
+    [SyncVar]
     private int m_gold;
 
     //Experience
@@ -86,7 +88,7 @@ public class Stats:NetworkBehaviour
         //Experience
         setExperience(0);
 
-        Debug.Log("Stats Generated: Str: "+m_strength+ "Dex: " + m_dexterity + "Con: " + m_constitution + "Int: " + m_intelligence + "Wis: " + m_wisdom + "Cha: " + m_charisma );
+        Debug.Log("Stats Generated: Str: " + m_strength + "Dex: " + m_dexterity + "Con: " + m_constitution + "Int: " + m_intelligence + "Wis: " + m_wisdom + "Cha: " + m_charisma);
     }
     /*
     public Stats(PlayerEntryDB player, ClassEntry playerClass)
@@ -127,7 +129,7 @@ public class Stats:NetworkBehaviour
     * Stats Calculator
     * 
     ===================================================================================================================*/
-    private int calculateModifier(int abilityScore) { return (Mathf.RoundToInt(Mathf.Floor((m_strength - 10) / 2)));}
+    private int calculateModifier(int abilityScore) { return (Mathf.RoundToInt(Mathf.Floor((m_strength - 10) / 2))); }
 
 
 
@@ -140,11 +142,11 @@ public class Stats:NetworkBehaviour
         m_intelligenceModifier = calculateModifier(m_intelligence);
         m_wisdomModifier = calculateModifier(m_wisdom);
         m_charismaModifier = calculateModifier(m_charisma);
-}
+    }
 
     private void ajustToLevel(int level)
     {
-        m_hitPoint = (10+ m_constitutionModifier) + ((level-1) * (6 + m_constitutionModifier));
+        m_hitPoint = (10 + m_constitutionModifier) + ((level - 1) * (6 + m_constitutionModifier));
 
         m_damageBonus = m_strengthModifier + Mathf.RoundToInt(Mathf.Floor(level / 2));
         m_attackBonus = m_dexterityModifier + Mathf.RoundToInt(Mathf.Floor(level / 2));
@@ -183,48 +185,52 @@ public class Stats:NetworkBehaviour
     public int getDamageDie() { return (m_damageDie); }
 
     //Gold
-    public int getGold() { return(m_gold); }
+    public int getGold() { return (m_gold); }
 
     //Experience
-    public int getExperience() { return(m_experience); }
+    public int getExperience() { return (m_experience); }
 
     /*===================================================================================================================
      * Setter
      * 
      ===================================================================================================================*/
     //Ability
-    public void setStrength(int strength) {  m_strength=strength; }
-    public void setDexterity(int dexterity) { m_dexterity=dexterity; }
-    public void setConstitution(int constitution) { m_constitution=constitution; }
-    public void setIntelligence(int intelligence) {  m_intelligence=intelligence; }
-    public void setWisdom(int wisdom) {  m_wisdom=wisdom; }
-    public void setCharisma(int charisma) {  m_charisma=charisma; }
+    public void setStrength(int strength) { m_strength = strength; }
+    public void setDexterity(int dexterity) { m_dexterity = dexterity; }
+    public void setConstitution(int constitution) { m_constitution = constitution; }
+    public void setIntelligence(int intelligence) { m_intelligence = intelligence; }
+    public void setWisdom(int wisdom) { m_wisdom = wisdom; }
+    public void setCharisma(int charisma) { m_charisma = charisma; }
 
     //Hp
     public void setHitPoint(int hitPoint) {
-        m_hitPoint =hitPoint;
+        m_hitPoint = hitPoint;
         CmdUpdateHitPoint(hitPoint);
     }
     public void setMana(int mana) {
         m_mana = mana;
-        GameObject canvas = GameObject.Find("HUDCanvas");
-        canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().value = m_mana;
+        CmdUpdateMana(mana);
     }
 
     //Attack / defence
-    public void setArmorClass(int armorClass) {  m_armorClass=armorClass; }
-    public void setAttackBonus(int attackBonus) {  m_attackBonus=attackBonus; }
+    public void setArmorClass(int armorClass) { m_armorClass = armorClass; }
+    public void setAttackBonus(int attackBonus) { m_attackBonus = attackBonus; }
 
     //Damage
-    public void setDamageBonus(int damageBonus) {  m_damageBonus=damageBonus; }
-    public void setDamageDie(int damageDie) {  m_damageDie=damageDie; }
+    public void setDamageBonus(int damageBonus) { m_damageBonus = damageBonus; }
+    public void setDamageDie(int damageDie) { m_damageDie = damageDie; }
 
     //Gold
-    public void setGold(int gold) { m_gold = gold; }
+
+    public void setGold(int gold) {
+        m_gold = gold;
+        CmdUpdateGold(gold);
+    }
+
+
     public void changeGoldByValue(int gold) {
         m_gold += gold;
-        Money money = new Money();
-        money.changeMoney(m_gold);
+        CmdChangeGoldByValue(gold);
     }
 
     //Experience
@@ -235,6 +241,22 @@ public class Stats:NetworkBehaviour
     void CmdUpdateHitPoint(int hitpoint)
     {
         m_hitPoint = hitpoint;
+    }
+    [Command]
+    void CmdUpdateMana(int mana)
+    {
+        m_mana = mana;
+    }
+
+    [Command]
+    void CmdChangeGoldByValue(int gold)
+    {
+        m_gold += gold;
+    }
+    [Command]
+    void CmdUpdateGold(int gold)
+    {
+        m_gold = gold;
     }
 }
 
