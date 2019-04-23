@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2019-04-23, 09:50:30
+    Author     : Amaury
+*/
+
+
+body {
+    background-color: rgb(248, 248, 255);
+}       
+
+div.styleText{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+
+a.styleTextA{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    margin-top: 2%;
+}
+
+div.mainText{
+    text-align: justify;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    margin: 30px;
+}
+
+div.marginStyleTitle{
+    margin-top: 2%;
+}
