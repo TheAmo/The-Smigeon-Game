@@ -42,9 +42,38 @@ CREATE TABLE monster_stats(
 );
 
 -- INSERT INFO INTO MONSTER STATS TABLE 
-INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, 
-						   damagebonus, damagedice) 
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
 VALUES ('Goblin', 50, 7, 15, 4, 2, 6);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Helmed Horror',1100, 60, 20, 6, 4, 8);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Pegasus',450, 59, 12, 6, 4, 6);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Kraken',50000, 472, 18, 18, 10, 8);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Unicorn',1800, 67, 12, 7, 4, 8);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Pixie',50, 1, 15, 7, 5, 4);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Deva',5900, 136, 17, 8, 4, 6);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Griffon',450, 59, 12, 6, 4, 8);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Water Weird',700, 58, 13, 5, 6, 3);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Coualt',1100, 341, 20, 8, 5, 6);
+
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Dragon',18000, 59, 12, 12, 7, 12);
 
 -- SHOW 
 SELECT name, xp, hitpoint, armorclass, attackbonus,damagebonus, damagedice
@@ -61,6 +90,8 @@ CREATE TABLE player_entry(
 	positiony float NOT NULL,
 	gold int NOT NULL	
 );
+
+-- INSERT INFO INTO PLAYER_ENTRY TABLE 
 INSERT INTO player_entry (name, class_name, experience, positionx, positiony, gold) 
 VALUES ('new player', 'allo2', 3, 0, 1, 4);
 
@@ -109,6 +140,8 @@ CREATE TABLE save_player(
 );
 INSERT INTO save_player (name, experience, weapon, armor, positionx, positiony, gold) VALUES ('new', 1, 'bronze', 'bronze', 1,2, 100);
 SELECT * FROM save_player;
+SELECT name, xp, hitpoint, armorclass, attackbonus,damagebonus, damagedice
+FROM monster_stats;
 
 
 
