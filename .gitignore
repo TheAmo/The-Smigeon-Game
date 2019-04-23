@@ -61,5 +61,12 @@ crashlytics-build.properties
 
 
 
+<<<<<<< HEAD
+=======
 
-Assets/
+Packages/manifest\.json
+
+Library/assetDatabase3
+>>>>>>> BlacksmithShop
+
+obj/

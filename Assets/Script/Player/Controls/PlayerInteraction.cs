@@ -73,8 +73,16 @@ public class PlayerInteraction : NetworkBehaviour
                 }
                 else if (target.tag == "Blacksmith")
                 {
-
+                    if(target.name == "Armorer")
+                    {
+                        GameObject.Find("Armorer").GetComponent<DialogueTrigger>().TriggerDialogue();
+                    }
+                    else
+                    {
+                        GameObject.Find("Blacksmith").GetComponent<DialogueTrigger>().TriggerDialogue();
+                    }
                 }
+                
                 if (target.tag == "Lootbag")
                 {
                     PickLoot(target);
@@ -137,6 +145,7 @@ public class PlayerInteraction : NetworkBehaviour
      ===================================================================================================================*/
     public void PickLoot(GameObject target)
     {
+       
         Loot loot = new Loot();
         loot.DropType(target.name);
         Destroy(target);

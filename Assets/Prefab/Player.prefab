@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3985458614659003178}
   - component: {fileID: 8190283040040124238}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Maria
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,13 +186,16 @@ GameObject:
   - component: {fileID: 3690426719176018747}
   - component: {fileID: 3598793998919252502}
   - component: {fileID: 7063573848319029845}
+  - component: {fileID: 2444193630508139745}
+  - component: {fileID: 1547931205940582880}
+  - component: {fileID: 5289311225089021595}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3690426719176018750
 Transform:
   m_ObjectHideFlags: 0
@@ -302,7 +305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3690426719176018748}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a00963eca069755478b5b3cd016bf5b8, type: 3}
   m_Name: 

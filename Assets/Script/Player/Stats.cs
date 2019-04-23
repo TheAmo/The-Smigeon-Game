@@ -17,20 +17,10 @@ public class Stats:NetworkBehaviour
     //Ability
 
     private int m_strength;
-
-   
     private int m_dexterity;
-
-
-    private int m_constitution;
-
-   
+    private int m_constitution; 
     private int m_intelligence;
-
-
-    private int m_wisdom;
-
-   
+    private int m_wisdom; 
     private int m_charisma;
 
     //Ability Modifier
@@ -44,19 +34,14 @@ public class Stats:NetworkBehaviour
     //Hp
     [SyncVar]
     private int m_hitPoint;
+    private int m_mana = 100;
 
     //Attack / defence
-   
     private int m_armorClass;
-
-
     private int m_attackBonus;
 
     //Damage
-  
     private int m_damageBonus;
-
-
     private int m_damageDie;
 
     //Gold
@@ -95,8 +80,8 @@ public class Stats:NetworkBehaviour
         //HitPoint
         setHitPoint(10 + getConstitutionModifier());
 
-        //Gold;
-        setGold(50);
+        //Gold;ge
+        setGold(100000);
 
         //Experience
         setExperience(0);
@@ -144,6 +129,8 @@ public class Stats:NetworkBehaviour
     ===================================================================================================================*/
     private int calculateModifier(int abilityScore) { return (Mathf.RoundToInt(Mathf.Floor((m_strength - 10) / 2)));}
 
+
+
     private void calculateAllModifier()
     {
         //Ability Modifier
@@ -185,6 +172,7 @@ public class Stats:NetworkBehaviour
 
     //Hp
     public int getHitPoint() { return (m_hitPoint); }
+    public int getMana() { return (m_mana); }
 
     //Attack / defence
     public int getArmorClass() { return (m_armorClass); }
@@ -217,6 +205,11 @@ public class Stats:NetworkBehaviour
         m_hitPoint =hitPoint;
         CmdUpdateHitPoint(hitPoint);
     }
+    public void setMana(int mana) {
+        m_mana = mana;
+        GameObject canvas = GameObject.Find("HUDCanvas");
+        canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().value = m_mana;
+    }
 
     //Attack / defence
     public void setArmorClass(int armorClass) {  m_armorClass=armorClass; }
@@ -228,7 +221,11 @@ public class Stats:NetworkBehaviour
 
     //Gold
     public void setGold(int gold) { m_gold = gold; }
-    public void changeGoldByValue(int gold) { m_gold += gold; }
+    public void changeGoldByValue(int gold) {
+        m_gold += gold;
+        Money money = new Money();
+        money.changeMoney(m_gold);
+    }
 
     //Experience
     public void setExperience(int experience) { m_experience = experience; }

@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Chest
-  - Interactable
   - SliderHealth
   - Door
   - Doorh
   - Blacksmith
+  - Button
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -20,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
-  - LightSource
-  - LightObstacle
-  - AmbientLight
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -12,7 +12,8 @@ public class Player : NetworkBehaviour
      * 
      ===================================================================================================================*/
     public Stats stats;
-
+    public Equipement equipement = new Equipement(0, 0);
+    
     public Sprite spriteKill;
 
     private SpriteRenderer spriteRenderer;
@@ -25,19 +26,21 @@ public class Player : NetworkBehaviour
     private bool isShowing;
     private bool dead;
 
-    //private PlayerDatabase playerDatabase;
-    //private ClassDatabase classDatabase;
+    private float time;
+
+    private PlayerDatabase playerDatabase;
+    private ClassDatabase classDatabase;
 
     private int m_player_id;
 
-    public Camera camera;
-
+    public Camera PlayerCamera;
     private Rigidbody2D rb2d;
+    public GameObject ObjectCamera;
     /*===================================================================================================================
     * Start
     * 
     ===================================================================================================================*/
-    public void ininitialisePlayer(int player_id, int class_id)
+    public void initialisePlayer(int player_id, int class_id)
     {
         //GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().LoadPlayer();
         Debug.Log("Constructeur du player");
@@ -78,14 +81,15 @@ public class Player : NetworkBehaviour
      ===================================================================================================================*/
     void Start()
     {
+        time = 0;
         rb2d = this.GetComponent<Rigidbody2D>();
-        ininitialisePlayer(0, 0);
+        initialisePlayer(0, 0);
         isShowing = true;
         dead = false ;
 
         sliderHealth = GameObject.Find("SliderHealth");
         sliderHealth.GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
-
+        canvas.transform.Find("SliderMana").GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getMana();
         if (hasAuthority)
         {
             
@@ -105,7 +109,7 @@ public class Player : NetworkBehaviour
        
         if (hasAuthority == false)
         {
-            camera.enabled = false;
+            PlayerCamera.enabled = false;
             return;
         }
         //Debug.Log(stats.getHitPoint());
@@ -113,7 +117,46 @@ public class Player : NetworkBehaviour
 
         if (!dead)
         {
+           
+            time = Time.deltaTime + time;
             sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+
+            if (time >= 1)
+            {
+                this.GetComponent<Stats>().setMana(this.GetComponent<Stats>().getMana() + 1);
+                time = 0;
+            }
+
+            sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
+            if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
+            {
+                if (this.GetComponent<MoveWASD>().enabled == false)
+                {
+                    this.GetComponent<MoveWASD>().enabled = true;
+                }
+                if (this.GetComponent<PlayerInteraction>().enabled == false)
+                {
+                    this.GetComponent<PlayerInteraction>().enabled = true;
+                }
+        
+            } else
+            {
+
+                if (this.GetComponent<MoveWASD>().enabled == true)
+                {
+                    this.GetComponent<MoveWASD>().enabled = false;
+                }
+                if (this.GetComponent<PlayerInteraction>().enabled == true)
+                {
+                    this.GetComponent<PlayerInteraction>().enabled = false;
+                }
+
+            }
+            
+            
+
+            if (PlayerCamera.enabled == false) PlayerCamera.enabled = true;
+            if (ObjectCamera.activeSelf == false) ObjectCamera.SetActive(true);
 
 
 
@@ -122,7 +165,7 @@ public class Player : NetworkBehaviour
                 isShowing = !isShowing;
                 canvas.SetActive(isShowing);
             }
-            if (Input.GetKeyDown(KeyCode.K)) //TO Open Inventory. Doesn't work.
+            if (Input.GetKeyDown(KeyCode.K)) //To smack yourself in the face. Doesn't work.
             {
                 ReceiveDamage(1);
                 Debug.Log("Damage player test");
@@ -160,6 +203,7 @@ public class Player : NetworkBehaviour
     {
         stats.setHitPoint(stats.getHitPoint()-damage);
         Debug.Log("Dealt: " + damage + "   HP left: " + stats.getHitPoint());
+        //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
         if (stats.getHitPoint() <= 0)
         {
             return (true); //Is dead
@@ -172,5 +216,6 @@ public class Player : NetworkBehaviour
     {
         return (Random.Range(1, stats.getDamageDie()) + stats.getDamageBonus());
     }
+   
 
 }
