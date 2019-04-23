@@ -75,6 +75,9 @@ VALUES ('Coualt',1100, 341, 20, 8, 5, 6);
 INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
 VALUES ('Dragon',18000, 59, 12, 12, 7, 12);
 
+INSERT INTO monster_stats (name, xp, hitpoint, armorclass, attackbonus, damagebonus, damagedice) 
+VALUES ('Death Knight',18000, 180, 20, 11, 5, 8);
+
 -- SHOW 
 SELECT name, xp, hitpoint, armorclass, attackbonus,damagebonus, damagedice
 FROM monster_stats;
