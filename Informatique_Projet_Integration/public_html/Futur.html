@@ -7,11 +7,57 @@ and open the template in the editor.
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <title>TODO supply a title</title>
+        <title>Futur</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="mainCSS.css">
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body>  
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+            
+        <script>
+            $(document).ready(function () {
+
+                /*$(document).ready(function () {
+                    $("p").click(function () {
+                        $("#MainMenu").html("");
+                    });
+                });*/
+                var style = {
+                    "color": "blue",
+                    "font-size": "25px",
+                    "class" : "w3-sidebar"                    
+                }
+                $(".test").css(style); 
+                $(".test").addClass("w3-sidebar w3-bar-block");
+                $(".test").attr("href", "main.html");
+                               
+                $(document).ready(function () {
+                    $(".test").click(function () { 
+                        $(".test").css({"color":"red"}); 
+                    });
+                });
+
+                var text = $("#sous-section").text();
+                $("#sous-section").add(href="main.html");
+                
+                $(".sousClique").css(styleTextA);
+                $(".sousClique").addClass("w3-bar-item w3-button");
+                $(".test").attr("href", "C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Informatique_Projet_Integration/public_html/main.html");
+                
+            });
+        </script>
+
+        <a class="test">fds</a>
+        <div>
+            <a class="sousClique"></a>
+        </div>
+        <!--<div class="w3-sidebar w3-bar-block" style="width:13%"> 
+        <a href="main.html" class="w3-bar-item w3-button styleTextA">Menu principal</a>
+        <a href="#" class="w3-bar-item w3-button styleTextA">Comment obtenir le jeu?</a>
+        <a href="info.html" class="w3-bar-item w3-button styleTextA">Pour la suite...</a>
+        <a href="credit.html" class="w3-bar-item w3-button styleTextA">Credits</a> 
+        </div>--> 
     </body>
 </html>
