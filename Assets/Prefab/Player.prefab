@@ -174,7 +174,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3690426719176018750}
-  - component: {fileID: 8266766487212093096}
   - component: {fileID: 4336124058740051480}
   - component: {fileID: 6707666635540906122}
   - component: {fileID: 2751431095743478540}
@@ -212,28 +211,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8266766487212093096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3690426719176018748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 2
-  m_SendInterval: 0.125
-  m_SyncRotationAxis: 3
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &4336124058740051480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +256,7 @@ MonoBehaviour:
   spriteKill: {fileID: 21300000, guid: 6dad0c255bdb40c4889014dd2a87a6a9, type: 3}
   sliderHealth: {fileID: 0}
   sliderMana: {fileID: 0}
+  textMoney: {fileID: 0}
   canvas: {fileID: 3992412091030314233, guid: 50651ae332da2434eab2708e40d1df4b, type: 3}
   PlayerCamera: {fileID: 369825173140892279}
 --- !u!114 &7080996947961178403

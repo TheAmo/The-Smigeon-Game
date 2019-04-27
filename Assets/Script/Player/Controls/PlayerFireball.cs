@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class PlayerFireball : NetworkBehaviour
+
+public class PlayerFireball : MonoBehaviour
 {
     public Stats stats;
     public Sprite fbSprite;
@@ -17,7 +17,7 @@ public class PlayerFireball : NetworkBehaviour
 
     void Update()
     {
-        if (hasAuthority == false) return;
+        
         if (Input.GetKeyUp(KeyCode.H) && fireActivated == false && stats.getMana() >= cost)
         { 
             canvas = GameObject.Find("HUDCanvas");

@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 
-public class PlayerInteraction : NetworkBehaviour
+public class PlayerInteraction : MonoBehaviour
 {
     /*===================================================================================================================
      * Attribute
@@ -17,7 +16,6 @@ public class PlayerInteraction : NetworkBehaviour
 
     public GameObject player;
 
-    [SyncVar]
     public bool isInteracting;
 
     private BoxCollider2D bc2d;
@@ -54,16 +52,16 @@ public class PlayerInteraction : NetworkBehaviour
         }
 
 
-        if (hasAuthority == false) return;
+       
         if (Input.GetKeyUp(KeyCode.F))
         {
             isInteracting = false;
-            CmdChangeSprite(false);
+           
         }
         if (Input.GetKeyDown(KeyCode.F)) //If key is pushed
         {
             isInteracting = true;
-            CmdChangeSprite(true);
+            
             Vector2 playerPosition = transform.position;
             foreach (GameObject target in interact)
             {
@@ -180,9 +178,5 @@ public class PlayerInteraction : NetworkBehaviour
             }
         }
     }
-    [Command]
-    void CmdChangeSprite(bool attack)
-    {
-        isInteracting = attack;
-    }
+    
 }

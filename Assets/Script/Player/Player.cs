@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.UIElements;
-using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour
+
+public class Player : MonoBehaviour
 {
     /*===================================================================================================================
      * Attribute
@@ -97,11 +97,6 @@ public class Player : NetworkBehaviour
         sliderHealth.GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getHitPoint();
         sliderMana.GetComponent<UnityEngine.UI.Slider>().maxValue = stats.getMana();
         textMoney.GetComponent<UnityEngine.UI.Text>().text = stats.getGold().ToString();
-
-        if (hasAuthority)
-        {
-            
-        }
         
          
         //Initialize stats
@@ -114,12 +109,7 @@ public class Player : NetworkBehaviour
       ===================================================================================================================*/
     void Update()
     {
-       
-        if (hasAuthority == false)
-        {
-            PlayerCamera.enabled = false;
-            return;
-        }
+      
         //Debug.Log(stats.getHitPoint());
         if (PlayerCamera.enabled==false) PlayerCamera.enabled = true;
 

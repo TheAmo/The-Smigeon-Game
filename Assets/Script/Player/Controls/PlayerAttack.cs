@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class PlayerAttack : NetworkBehaviour
-{
+
+public class PlayerAttack : MonoBehaviour { 
     /*===================================================================================================================
      * Attribute
      * 
@@ -14,7 +13,6 @@ public class PlayerAttack : NetworkBehaviour
 
     public int attackKnockback;
 
-    [SyncVar]
     public bool isAttacking=false;
 
     public SpriteRenderer spriteRenderer;
@@ -34,7 +32,7 @@ public class PlayerAttack : NetworkBehaviour
         spriteAttack = this.GetComponent<PlayerChangeEquipment>().spriteAttack;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        CmdChangeSprite(spriteRenderer.sprite);
+        
     }
 
     /*===================================================================================================================
@@ -53,25 +51,22 @@ public class PlayerAttack : NetworkBehaviour
         {
             if (this.GetComponent<PlayerInteraction>().isInteracting == false)
                 spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
-
-
-            if (hasAuthority == false) return;
         }
         if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
         {
             isAttacking = true;
-            CmdChangeSprite(true);
+            
             //attack();
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 isAttacking = false;
-                CmdChangeSprite(false);
+               
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isAttacking = false;
-            CmdChangeSprite(false);
+            
         }
     }
 
@@ -126,9 +121,4 @@ public class PlayerAttack : NetworkBehaviour
         }
     }
     */
-    [Command]
-    void CmdChangeSprite(bool attack)
-    {
-        isAttacking=attack;
-    }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class PlayerChangeEquipment : NetworkBehaviour
+
+public class PlayerChangeEquipment : MonoBehaviour
 {
     /*===================================================================================================================
      * Attribute
@@ -11,9 +11,8 @@ public class PlayerChangeEquipment : NetworkBehaviour
      ===================================================================================================================*/
     private SpriteRenderer spriteRenderer;
 
-    [SyncVar]
     private int weaponId=1;
-    [SyncVar]
+    
     private int armorId=1;
 
     public Sprite spriteDefault;
@@ -77,9 +76,6 @@ public class PlayerChangeEquipment : NetworkBehaviour
     {
         int weapon = item.getWeapon();
         int armor = item.getArmor();
-        if (hasAuthority == false) return;
-        CmdChangePlayerEquipment(armor, weapon);
-        if (hasAuthority == false) return;
         item.setArmor(armor);
         item.setWeapon(weapon);
        
@@ -92,12 +88,5 @@ public class PlayerChangeEquipment : NetworkBehaviour
         spriteInteraction = sprites[combination + 2];
     }
 
-    [Command]
-    void CmdChangePlayerEquipment(int armor, int weapon)
-    {
-        Debug.Log("Sending new Equipment W:"+weapon+" A:"+armor);
-
-        weaponId = weapon;
-        armorId = armor;
-    }
+  
 }

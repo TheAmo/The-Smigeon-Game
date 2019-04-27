@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
-using UnityEngine.Networking;
 
-public class Stats : NetworkBehaviour
+public class Stats : MonoBehaviour
 {
     /*===================================================================================================================
      * Stats
@@ -32,9 +31,9 @@ public class Stats : NetworkBehaviour
     private int m_charismaModifier;
 
     //Hp
-    [SyncVar]
+    
     private int m_hitPoint;
-    [SyncVar]
+    
     private int m_mana = 100;
 
     //Attack / defence
@@ -46,7 +45,6 @@ public class Stats : NetworkBehaviour
     private int m_damageDie;
 
     //Gold
-    [SyncVar]
     private int m_gold;
 
     //Experience
@@ -205,11 +203,11 @@ public class Stats : NetworkBehaviour
     //Hp
     public void setHitPoint(int hitPoint) {
         m_hitPoint = hitPoint;
-        CmdUpdateHitPoint(hitPoint);
+       
     }
     public void setMana(int mana) {
         m_mana = mana;
-        CmdUpdateMana(mana);
+        
     }
 
     //Attack / defence
@@ -224,40 +222,18 @@ public class Stats : NetworkBehaviour
 
     public void setGold(int gold) {
         m_gold = gold;
-        CmdUpdateGold(gold);
+        
     }
 
 
     public void changeGoldByValue(int gold) {
         m_gold += gold;
-        CmdChangeGoldByValue(gold);
+        
     }
 
     //Experience
     public void setExperience(int experience) { m_experience = experience; }
     public void changeExperienceByValue(int experience) { m_experience += experience; }
-
-    [Command]
-    void CmdUpdateHitPoint(int hitpoint)
-    {
-        m_hitPoint = hitpoint;
-    }
-    [Command]
-    void CmdUpdateMana(int mana)
-    {
-        m_mana = mana;
-    }
-
-    [Command]
-    void CmdChangeGoldByValue(int gold)
-    {
-        m_gold += gold;
-    }
-    [Command]
-    void CmdUpdateGold(int gold)
-    {
-        m_gold = gold;
-    }
 }
 
 

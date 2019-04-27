@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class MoveWASD : NetworkBehaviour
-{
+
+public class MoveWASD : MonoBehaviour
+{ 
     public float speed = 1;
     float degfactor = 360 / (2 * Mathf.PI);
     float sqrt2 = 1 / Mathf.Sqrt(2);
@@ -19,7 +19,6 @@ public class MoveWASD : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (hasAuthority == false) return;
         if (stat.getHitPoint() <= 0) return;
         float horizontalAxis = Input.GetAxisRaw("Horizontal");
         float verticalAxis = Input.GetAxisRaw("Vertical");
