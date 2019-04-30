@@ -10,8 +10,9 @@ public class GameInstantiate : MonoBehaviour
     private XMLClassManagement classManagement;
 
     public List<PlayerEntry> players;
-    public List<ClassEntry> classes;
+    public List<ClassEntry> classesf
     */
+    public GameObject prefab;
     void Start()
     {
         GameObject blackSmith = new GameObject();
@@ -31,8 +32,8 @@ public class GameInstantiate : MonoBehaviour
         d.sentences = sentences;
         d.name = "Avencci-chan";
         blackSmith.AddComponent<DialogueTrigger>().dialogue = d;
-            
 
+        Instantiate(prefab, transform.position, Quaternion.identity);
 
 
         /*
