@@ -16,48 +16,29 @@ and open the template in the editor.
     <body>  
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
             
-        <script>
-            $(document).ready(function () {
-
-                /*$(document).ready(function () {
-                    $("p").click(function () {
-                        $("#MainMenu").html("");
-                    });
-                });*/
-                var style = {
-                    "color": "blue",
-                    "font-size": "25px",
-                    "class" : "w3-sidebar"                    
-                }
-                $(".test").css(style); 
-                $(".test").addClass("w3-sidebar w3-bar-block");
-                $(".test").attr("href", "main.html");
-                               
-                $(document).ready(function () {
-                    $(".test").click(function () { 
-                        $(".test").css({"color":"red"}); 
-                    });
-                });
-
-                var text = $("#sous-section").text();
-                $("#sous-section").add(href="main.html");
-                
-                $(".sousClique").css(styleTextA);
-                $(".sousClique").addClass("w3-bar-item w3-button");
-                $(".test").attr("href", "C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Informatique_Projet_Integration/public_html/main.html");
-                
-            });
-        </script>
-
-        <a class="test">fds</a>
-        <div>
-            <a class="sousClique"></a>
+        <script src="script.js"></script>
+  
+        
+        <div class="slider"> 
+            <a class="sousClique" id="main.html">Menu principal</a>
+            <a class="sousClique" id="info.html">Comment obtenir le jeu?</a> 
+            <a class="sousClique" id="Futur.html">Dans un futur proche!</a>  
+            <a class="sousClique" id="credit.html">Credits</a>  
+        </div> 
+        
+        <div style="margin-left:24%;margin-right: 10%;text-align: center;font-size: 20px;margin-bottom: 2%;" class="styleTextTitle" >
+          Dans un futur proche!!!    
         </div>
-        <!--<div class="w3-sidebar w3-bar-block" style="width:13%"> 
-        <a href="main.html" class="w3-bar-item w3-button styleTextA">Menu principal</a>
-        <a href="#" class="w3-bar-item w3-button styleTextA">Comment obtenir le jeu?</a>
-        <a href="info.html" class="w3-bar-item w3-button styleTextA">Pour la suite...</a>
-        <a href="credit.html" class="w3-bar-item w3-button styleTextA">Credits</a> 
-        </div>--> 
+        
+        <div style="margin-left:24%;margin-right: 10%;text-align: justify;" class="mainText">  
+            <p>Prochainement, nous voudrions ajouter des monstres, des classes de joueur et d’autres mécaniques de jeu. Que ce soit d’autres sorts ou d’autres habiletés de classe (passifs et actifs), nous espérons qu’elles ajouteront une complexité aux systèmes déjà présents et qu’elles rendront l’expérience du joueur plus intéressante. De plus, il serait intéressant d’intégrer ces habiletés à un système de niveaux de personnages.
+            </p>
+            
+            <p>Pour le futur, nous nous attendons de pouvoir agrandir la carte et rallonger l’histoire. Éventuellement, notre héros pourra visiter d’autres ville-usines, voir d’autres aventuriers et vivre de nouvelles aventures en dehors des villes. Peut-être que notre personnage aura un nouveau secret à cacher ou un nouveau dilemme à affronter. Tout ce que l’on sait, c’est qu’un beau futur nous attend, un futur rempli d’innovation, de rencontres et de succès (du moins, c’est ce que l’on espère).                
+            </p>
+            
+            <p>Amusez-vous! Mad SMI Team                
+            </p>
+        </div>
     </body>
 </html>

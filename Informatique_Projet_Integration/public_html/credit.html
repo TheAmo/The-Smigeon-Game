@@ -6,14 +6,14 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Credit</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="mainCSS.css">
 
         <style>
-            div.creditText{
+            a.creditText{
                 font-family: "Times New Roman", Times, serif;
                 font-size: 20px;
             }
@@ -22,17 +22,22 @@ and open the template in the editor.
         </style>
     </head>
     <body>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
             
-        <div class="w3-sidebar w3-bar-block" style="width:13%"> 
-        <a href="main.html" class="w3-bar-item w3-button styleTextA">Menu principal</a>
-        <a href="info.html" class="w3-bar-item w3-button styleTextA">Comment obtenir le jeu?</a>
-        <a href="info.html" class="w3-bar-item w3-button styleTextA">Pour la suite...</a>
-        <a href="#" class="w3-bar-item w3-button styleTextA">Credits</a> 
-        </div>
+        <script src="script.js"></script>
         
-        <div style="margin-left:13%"> 
-            
-            <div class ="styleText marginStyleTitle">Smigeon : Credit</div>
+        <div class="slider"> 
+            <a class="sousClique" id="main.html">Menu principal</a>
+            <a class="sousClique" id="info.html">Comment obtenir le jeu?</a> 
+            <a class="sousClique" id="Futur.html">Dans un futur proche!</a>  
+            <a class="sousClique" id="credit.html">Credits</a>  
+        </div>         
+        <div class="styleTextTitle">
+            Smigeon : Credit            
+        </div>
+
+        <div style="margin-left:20%"> 
+             
             <div class="styleText" style="margin-left:5%">Programmeur.euse.s</div>
             <div style="margin-left:10%"> 
                 <div class = "creditText"> Jacty Milena Saenz Rosales </div>
