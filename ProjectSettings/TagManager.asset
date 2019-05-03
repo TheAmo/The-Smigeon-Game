@@ -10,6 +10,8 @@ TagManager:
   - Blacksmith
   - Button
   - Projectile
+  - Enemy
+  - Chest
   layers:
   - Default
   - TransparentFX
