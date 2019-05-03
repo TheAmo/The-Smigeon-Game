@@ -29,7 +29,6 @@ public class MonsterAi : MonoBehaviour
     List<GameObject> playerlist = new List<GameObject>();
 
     private Vector3 startPoint;
-    public GameObject player;
 
     // Start is called before the first frame update
 
@@ -110,6 +109,7 @@ public class MonsterAi : MonoBehaviour
 
     int AroundAIFourDirection() //0(forward), 1(right), 3(left)
     {
+        GameObject currentGameObject = GameObject.Find("Monster");
         RaycastHit2D[] hitsRightFront;
         RaycastHit2D[] hitsLeftFront;
         RaycastHit2D[] hitsRight;
@@ -120,26 +120,27 @@ public class MonsterAi : MonoBehaviour
         //Vector2 direction = new Vector2(Mathf.Cos(transform.rotation.eulerAngles.z), Mathf.Sin(transform.rotation.eulerAngles.z)); 
         //Vector2 direction = new Vector2(horizontalAxis, verticalAxis);
 
-        Vector2 positionLeft = new Vector2(GameObject.Find("Monster").transform.position.x + 0.8f, GameObject.Find("Monster").transform.position.y);
-        Vector2 positionRight = new Vector2(GameObject.Find("Monster").transform.position.x - 1.2f, GameObject.Find("Monster").transform.position.y);
+        Vector2 positionLeft = new Vector2(currentGameObject.transform.position.x + 0.8f, currentGameObject.transform.position.y);
+        Vector2 positionRight = new Vector2(currentGameObject.transform.position.x - 1.2f, currentGameObject.transform.position.y);
 
         //make vector left and right relatif to the AI
-        Vector2 left = new Vector2(-GameObject.Find("Monster").transform.up.y, GameObject.Find("Monster").transform.up.x);
-        Vector2 right = new Vector2(GameObject.Find("Monster").transform.up.y, -GameObject.Find("Monster").transform.up.x);
+        Vector2 left = new Vector2(-currentGameObject.transform.up.y, currentGameObject.transform.up.x);
+        Vector2 right = new Vector2(currentGameObject.transform.up.y, -currentGameObject.transform.up.x);
 
 
         //draw ray  
-        Debug.DrawRay(positionLeft, GameObject.Find("Monster").transform.up * 4, Color.red);
-        Debug.DrawRay(positionRight, GameObject.Find("Monster").transform.up * 4, Color.blue);
-        Debug.DrawRay(GameObject.Find("Monster").transform.position, left * 5, Color.green);
-        Debug.DrawRay(GameObject.Find("Monster").transform.position, right * 5, Color.black);
+        /*
+        Debug.DrawRay(positionLeft, currentGameObject.transform.up * 4, Color.red);
+        Debug.DrawRay(positionRight, currentGameObject.transform.up * 4, Color.blue);
+        Debug.DrawRay(currentGameObject.transform.position, left * 5, Color.green);
+        Debug.DrawRay(currentGameObject.transform.position, right * 5, Color.black);*/
 
-        hitsLeftFront = Physics2D.RaycastAll(positionLeft, GameObject.Find("Monster").transform.up, 4);
-        hitsRightFront = Physics2D.RaycastAll(positionRight, GameObject.Find("Monster").transform.up, 4);
-        hitsLeft = Physics2D.RaycastAll(GameObject.Find("Monster").transform.position, left, 5);
-        hitsRight = Physics2D.RaycastAll(GameObject.Find("Monster").transform.position, right, 5);
+        hitsLeftFront = Physics2D.RaycastAll(positionLeft, currentGameObject.transform.up, 4);
+        hitsRightFront = Physics2D.RaycastAll(positionRight, currentGameObject.transform.up, 4);
+        hitsLeft = Physics2D.RaycastAll(currentGameObject.transform.position, left, 5);
+        hitsRight = Physics2D.RaycastAll(currentGameObject.transform.position, right, 5);
 
-       
+
 
         Debug.Log("Front : " + isRayCastAllObject(hitsRightFront, "Collidable") + " : " + isRayCastAllObject(hitsLeft, "Collidable"));
 
@@ -180,12 +181,154 @@ public class MonsterAi : MonoBehaviour
             return 0;
         }
     }
-
-    private int ancienDirection = 0;
-
-    void BasicAI()
+    int RayCastIndexFinder(RaycastHit2D[] hits, string nameObject)
     {
-        MoveToPoint(ancienDirection, player.transform.position);
+        //i = 2 because 0,1 are the AI object for some reason dont juge
+        for (int i = 1; i < hits.Length; i++)
+        {
+            if (hits[i].collider.name.Equals(nameObject))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+    bool isRayCastObject(RaycastHit2D[] hits, string nameObject)
+    {
+        //i = 2 because 0,1 are the AI object for some reason dont juge
+        for (int i = 1; i < hits.Length; i++)
+        {
+            if (hits[i].collider.name.Equals(nameObject))
+            {
+                //true if the object is in range of the AI
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    //function to move the AI toward a specific point
+    //while going around obstacle
+    void TargetMovement(GameObject currentGameObject, Vector2 target)
+    {
+        RaycastHit2D[] hitsRightFront;
+        RaycastHit2D[] hitsLeftFront;
+        RaycastHit2D[] hitsRight;
+        RaycastHit2D[] hitsLeft;
+        Vector2 positionLeft;
+        Vector2 positionRight;
+        Vector2 positionForward;
+        float constant45angle = 1 / Mathf.Sqrt(2);
+
+        //transforme angle from a degre to a radian 
+        //and put 0 degrees a the right like a normale trigometric cercle
+        float angle = -((currentGameObject.transform.rotation.eulerAngles.z - 90) * Mathf.Deg2Rad);
+
+        //start point in the left and right point
+        positionLeft = new Vector2(currentGameObject.transform.position.x + Mathf.Sin(angle), currentGameObject.transform.position.y + Mathf.Cos(angle));
+        positionRight = new Vector2(currentGameObject.transform.position.x - Mathf.Sin(angle), currentGameObject.transform.position.y - Mathf.Cos(angle));
+
+        //created the vector forward with the position left and right
+        positionForward = positionLeft - positionRight;
+        positionForward = new Vector2(-positionForward.y, positionForward.x);
+
+        //make vector left and right relatif to the AI 
+        Vector2 right = new Vector2((-positionForward.y + positionForward.x) / 2, (positionForward.x + positionForward.y) / 2);
+        Vector2 left = new Vector2((positionForward.y + positionForward.x) / 2, (-positionForward.x + positionForward.y) / 2);
+
+        //make the vector lenght of 1
+        left = left.normalized;
+        right = right.normalized;
+
+        //draw ray (temp) useful for debug
+        Debug.DrawRay(positionLeft, positionForward * 2, Color.red);
+        Debug.DrawRay(positionRight, positionForward * 2, Color.blue);
+        Debug.DrawRay(positionLeft, left * 3, Color.green);
+        Debug.DrawRay(positionRight, right * 3, Color.black);
+
+        //make the raycast
+        hitsLeftFront = Physics2D.RaycastAll(positionLeft, positionForward, 4);
+        hitsRightFront = Physics2D.RaycastAll(positionRight, positionForward, 4);
+        hitsLeft = Physics2D.RaycastAll(positionLeft, left, 6);
+        hitsRight = Physics2D.RaycastAll(positionRight, right, 6);
+        Debug.DrawRay(currentGameObject.transform.position, target * 10, Color.yellow);
+
+        //=====================================movement=====================================
+
+        //null vector ready to be manipulated
+        Vector2 movement = new Vector2(horizontalAxis, verticalAxis);
+
+        //angle is calculate with (arctan / 2) * angle of shift
+        //so to simplifie I put the /2 and angle shift in one constant
+        float angleTurn = Mathf.Atan(-Mathf.Abs(hitsRightFront[RayCastIndexFinder(hitsRightFront, "Collidable")].distance
+                - hitsLeftFront[RayCastIndexFinder(hitsLeftFront, "Collidable")].distance) * Mathf.Deg2Rad * 22.5f);
+        float diff = Mathf.Abs(hitsRightFront[RayCastIndexFinder(hitsRightFront, "Collidable")].distance
+                - hitsLeftFront[RayCastIndexFinder(hitsLeftFront, "Collidable")].distance);
+
+        if (isRayCastObject(hitsLeftFront, "Collidable") && isRayCastObject(hitsRightFront, "Collidable"))
+        {
+            if (hitsRightFront[RayCastIndexFinder(hitsRightFront, "Collidable")].distance == hitsLeftFront[RayCastIndexFinder(hitsLeftFront, "Collidable")].distance)
+            {
+                //case where the player is at the right of the AI
+                if (this.transform.position.x < target.x)
+                {
+                    //go right
+                    transform.localRotation = Quaternion.Euler(0, 0, angle + 2);
+                }
+                //case where the player is at the left of the AI
+                else
+                {
+                    //go left
+                    transform.localRotation = Quaternion.Euler(0, 0, angle - 2);
+                }
+            }
+            else
+            {
+                //calculation for the rate of speed
+                //when both front ray isn't touch at the same distance
+                transform.localRotation = Quaternion.Euler(0, 0, angle - angleTurn);
+
+            }
+            movement = new Vector2(2, diff);
+        }
+        //edge cases
+        else if (isRayCastObject(hitsLeftFront, "Collidable"))
+        {
+            //go right 
+            movement = right;
+        }
+        else if (isRayCastObject(hitsRightFront, "Collidable"))
+        {
+            //go left 
+            movement = left;
+        }
+        else
+        {
+            //just go toward the target 
+            movement = target;
+
+            //turn around towards the target 
+            int angleRotation = (int)Mathf.Floor(degfactor * Mathf.Atan(-(currentGameObject.transform.position.x - target.x) /
+                (currentGameObject.transform.position.y - target.y)));
+            if (target.y < currentGameObject.transform.position.y)
+            {
+                angleRotation = angleRotation - 180;
+            }
+            transform.localRotation = Quaternion.Euler(0, 0, angleRotation);
+        }
+        Debug.Log("movement : " + movement);
+        Debug.Log("targer   : " + target);
+        Debug.Log("position : " + currentGameObject.transform.position);
+
+        //push the AI in the direction of the vector movement
+        //rb2d.AddForce(movement * speed * 2f); 
+        currentGameObject.transform.position = Vector2.MoveTowards(currentGameObject.transform.position, target, 0.1f); ;
+    }
+
+    void BasicAI(GameObject currentGameObject, GameObject player)
+    {
+        TargetMovement(currentGameObject, (player.transform.position));
     }
 
     void MoveToStraightForward(int direction)
@@ -221,7 +364,6 @@ public class MonsterAi : MonoBehaviour
         }
         rb2d.AddForce(movement * speed * 0.5f);
     }
-    //==================================================end AI============================
 
     void MoveToPoint(int direction, Vector2 target)
     {
@@ -249,35 +391,45 @@ public class MonsterAi : MonoBehaviour
         //do the action of moving  
         GameObject.Find("Monster").transform.position = movement;
     }
+
     //==================================================end AI============================
 
     // Update is called once per frame
     void Update()
     {
-        BasicAI();
-        
+        GameObject player = GameObject.Find("Player(Clone)");
+        GameObject monstre = GameObject.Find("Monster");
+
         //Attack
         attacktime += Time.deltaTime;
-        if(attacktime>=attackCooldown && attackCooldown!=-1 && Vector2.Distance(player.transform.position, this.transform.position) < 2 && playerlist.Count > 0)
+        //if the player is in range attack 
+        if (Vector2.Distance(player.transform.position, monstre.transform.position) < 3)
         {
-            spriteRenderer.sprite = spriteAttack;
-            attacktime = 0;
-            Debug.Log("fuck "+player.name);
-            
-            foreach (GameObject target in playerlist)
+            if (attacktime >= attackCooldown && attackCooldown != -1 && playerlist.Count > 0)
             {
-                tmpbool = target.GetComponent<Player>().ReceiveDamage(GameObject.Find("Monster").GetComponent<MonsterCore>().CalculateDamage());
-                if (tmpbool == true)
+                spriteRenderer.sprite = spriteAttack;
+                attacktime = 0;
+
+                foreach (GameObject target in playerlist)
                 {
-                    playerlist.Remove(target);
-                    target.GetComponent<Player>().kill();
+                    tmpbool = target.GetComponent<Player>().ReceiveDamage(GameObject.Find("Monster").GetComponent<MonsterCore>().CalculateDamage());
+                    if (tmpbool == true)
+                    {
+                        playerlist.Remove(target);
+                        target.GetComponent<Player>().kill();
+                    }
+                    break;
                 }
-                break;
+            }
+            if (attacktime > (attackCooldown / 2) && attackCooldown != -1) //To put back the default sprite
+            {
+                spriteRenderer.sprite = spriteDefault;
             }
         }
-        if (attacktime>(attackCooldown/2) && attackCooldown!=-1) //To put back the default sprite
+        //else move toward the player
+        else if (Vector2.Distance(player.transform.position, monstre.transform.position) < 100)
         {
-            spriteRenderer.sprite = spriteDefault;
+            BasicAI(monstre, player);
         }
     }
 }
