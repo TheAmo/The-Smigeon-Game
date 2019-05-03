@@ -127,7 +127,8 @@ public class Player : MonoBehaviour
             if (sliderHealth) sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
             if (sliderMana) sliderMana.GetComponent<UnityEngine.UI.Slider>().value = stats.getMana();
 
-            if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == false|| UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == false)
+            /*if (GameObject.Find("Shop").activeSelf == false)
+
             {
                 if (this.GetComponent<MoveWASD>().enabled == false)
                 {
@@ -150,7 +151,7 @@ public class Player : MonoBehaviour
                     this.GetComponent<PlayerInteraction>().enabled = false;
                 }
 
-            }
+            }*/
             
             
 

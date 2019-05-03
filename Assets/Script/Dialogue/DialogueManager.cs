@@ -51,15 +51,15 @@ public class DialogueManager : MonoBehaviour
         a1.SetBool("isOpen", false);
         if(m_name == "Blacksmith")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("BlacksmithShop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UI");
+
+            GameObject.FindGameObjectWithTag("Blacksmith").transform.FindChild("Shop").gameObject.SetActive(true);
+            //GameObject.FindGameObjectWithTag("ShopB").SetActive(true);
         }
         else if(m_name == "Armorer")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("ArmorShop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UI");
+            GameObject.FindGameObjectWithTag("Armorer").transform.FindChild("Shop").gameObject.SetActive(true);
+
         }
-        //player = GameObject.FindGameObjectWithTag("Player");
     }
     public void DisplayNextText()
     {
