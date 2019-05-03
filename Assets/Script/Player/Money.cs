@@ -14,8 +14,9 @@ public class Money : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         textm = GameObject.Find("Current Money").GetComponent<Text>();
-        money = player.GetComponent<Stats>().getGold();
+        money = player.GetComponent<Player>().stats.getGold();
         moneys = money.ToString();
         textm.text = moneys;
     }
@@ -23,23 +24,25 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.name != "P1")
-        {
-            if (player.active == true)
-            {
-                player = GameObject.FindGameObjectWithTag("Player");
-                player.name = "P1";
-                money = player.GetComponent<Stats>().getGold();
-                moneys = money.ToString();
-            }
-                
-        }
-        else
-        {
-            textm = GameObject.Find("Current Money").GetComponent<Text>();
-            money = player.GetComponent<Stats>().getGold();
-            textm.text = money.ToString();
-        }
+        /*   if (player.name != "P1")
+           {
+               if (player.active == true)
+               {
+                   player = GameObject.FindGameObjectWithTag("Player");
+                   player.name = "P1";
+                   money = player.GetComponent<Stats>().getGold();
+                   moneys = money.ToString();
+               }
+
+           }*/
+
+
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        textm = GameObject.Find("Current Money").GetComponent<Text>();
+        money = player.GetComponent<Player>().stats.getGold();
+        textm.text = money.ToString();
+        
         
   
         if (Input.GetKeyUp(KeyCode.T))

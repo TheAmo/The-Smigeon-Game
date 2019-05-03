@@ -30,9 +30,9 @@ public class BuyingSword: MonoBehaviour
 
 
         db = new DataBaseSmi();
-        float money = player.GetComponent<Stats>().getGold();
+        float money = player.GetComponent<Player>().stats.getGold();
         //Blacksmith shop
-        if (UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop").isLoaded == true)
+        if (GameObject.Find("Blacksmith").transform.Find("Shop").gameObject.activeSelf == true)
         {
             bsShopIsOpen = true;
             price = db.getPrice(id, "material");
@@ -60,11 +60,11 @@ public class BuyingSword: MonoBehaviour
                 equipementType = GameObject.Find("Sword Stats").GetComponent<Text>();
 
                 //remove gold
-                player.GetComponent<Stats>().changeGoldByValue(price*-1);
+                player.GetComponent<Player>().stats.changeGoldByValue(price*-1);
 
                 //Set player weapon and damage
                 player.GetComponent<Player>().equipement.setWeapon(id - 1);
-                player.GetComponent<Stats>().setAttackBonus(db.getMaterialDamage(id - 1));
+                player.GetComponent<Player>().stats.setAttackBonus(db.getMaterialDamage(id - 1));
 
                 //show gold amount
                 textm.text = (money - price).ToString();
@@ -73,17 +73,17 @@ public class BuyingSword: MonoBehaviour
                 equipementType.text = db.getItemName(id - 1, "material");
 
             }
-            else if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop").isLoaded == true)
+            else 
                 //Armor shop
             {
                 equipementType = GameObject.Find("Armor Stats").GetComponent<Text>();
 
                 //remove gold
-                player.GetComponent<Stats>().changeGoldByValue(price * -1);
+                player.GetComponent<Player>().stats.changeGoldByValue(price * -1);
 
                 //Change armor and defense
                 player.GetComponent<Player>().equipement.setArmor(id - 1);
-                player.GetComponent<Stats>().setArmorClass(db.getArmorDefense(id - 1));
+                player.GetComponent<Player>().stats.setArmorClass(db.getArmorDefense(id - 1));
 
                 //Show new gold amount
                 textm.text = (money - price).ToString();

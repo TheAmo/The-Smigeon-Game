@@ -11,9 +11,9 @@ public class PlayerChangeEquipment : MonoBehaviour
      ===================================================================================================================*/
     private SpriteRenderer spriteRenderer;
 
-    private int weaponId=1;
+    private int weaponId;
     
-    private int armorId=1;
+    private int armorId;
 
     public Sprite spriteDefault;
     public Sprite spriteAttack;
@@ -32,8 +32,9 @@ public class PlayerChangeEquipment : MonoBehaviour
      ===================================================================================================================*/
     void Start()
     {
-        item.setArmor(1);
-        item.setWeapon(1);
+        
+        item.setArmor(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getArmor());
+        item.setWeapon(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().equipement.getWeapon());
         sprites = Resources.LoadAll<Sprite>("rogue_sheet");
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
@@ -47,26 +48,9 @@ public class PlayerChangeEquipment : MonoBehaviour
      ===================================================================================================================*/
     void Update()
     {
-        if (stats.getHitPoint() <= 0) { return; }
-        item.setArmor(armorId);
-        item.setWeapon(weaponId);
+ 
 
-        //if (hasAuthority == false) return;
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ChangeEquipement();
-            Debug.Log("Changing armor to" + armorId + "Changing Weapon to " + weaponId);
-        }
-        if (Input.GetKeyUp(KeyCode.G))
-        {
-            string[] ss = { "asdas", "ffff", "wader" };
-            Dialogue d = new Dialogue();
-            d.sentences = ss;
-            d.name = "The Rock";
-            DialogueTrigger dt = new DialogueTrigger(d);
-            dt.TriggerDialogue();
-        }
+        
     }
     /*===================================================================================================================
      * Function

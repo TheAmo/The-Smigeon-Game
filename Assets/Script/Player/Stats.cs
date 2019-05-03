@@ -81,7 +81,7 @@ public class Stats : MonoBehaviour
         setHitPoint(10 + getConstitutionModifier());
 
         //Gold;ge
-        setGold(100000);
+        setGold(0);
 
         //Experience
         setExperience(0);

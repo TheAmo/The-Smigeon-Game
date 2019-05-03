@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public Camera ShopCamera;
     public GameObject player;
-    public Text CurrentMoney;
     private float money;
     private Text SwordType;
     private string currentText;
@@ -21,12 +19,11 @@ public class Shop : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         money = player.GetComponent<Player>().stats.getGold();
-        CurrentMoney.GetComponent<Text>().text = money.ToString();
 
 
         db = new DataBaseSmi();
         //Set the shop scene to be active
-        GameObject.Find("BlacksmithShop").SetActive(true);
+        //GameObject.Find("BlacksmithShop").SetActive(true);
 
 
         button = GameObject.FindGameObjectsWithTag("Button");
@@ -45,18 +42,13 @@ public class Shop : MonoBehaviour
     void Update()
     {
 
-
         if (Input.GetKeyDown(KeyCode.Escape))
         /* when the player press escape
          the shop camera is disabled, the UI scene is loaded, the shop is unloaded
          and the main Scene is activated*/
         {
 
-            ShopCamera.enabled = false;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("UI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            GameObject.Find("BlacksmithShop").SetActive(true);
-            Money money = new Money();
-            money.changeMoney(player.GetComponent<Player>().stats.getGold());
+            GameObject.Find("BlacksmithShop").SetActive(false);
             
         }
 

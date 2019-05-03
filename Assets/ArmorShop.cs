@@ -7,8 +7,6 @@ public class ArmorShop : MonoBehaviour
 {
     public Camera ShopCamera;
     public GameObject player;
-    public Text CurrentMoney;
-    private float money;
     private Text ArmorType;
     private string currentText;
     private DataBaseSmi db;
@@ -21,13 +19,10 @@ public class ArmorShop : MonoBehaviour
         ArmorType = GameObject.Find("Armor Stats").GetComponent<Text>();
 
         player = GameObject.FindGameObjectWithTag("Player");
-        money = player.GetComponent<Stats>().getGold();
-        CurrentMoney.GetComponent<Text>().text = money.ToString();
 
 
         db = new DataBaseSmi();
         //Set the shop scene to be active
-        UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("ArmorShop"));
 
 
         button = GameObject.FindGameObjectsWithTag("Button");
@@ -49,12 +44,8 @@ public class ArmorShop : MonoBehaviour
         { /* when the player press escape
          the shop camera is disabled, the UI scene is loaded, the shop is unloaded
          and the main Scene is activated*/
-            ShopCamera.enabled = false;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("UI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));
-            Money money = new Money();
-            money.changeMoney(player.GetComponent<Player>().stats.getGold());
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("ArmorShop");
+            GameObject.Find("ShopArmor").SetActive(false);
+
         }
 
     }

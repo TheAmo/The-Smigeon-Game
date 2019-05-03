@@ -127,21 +127,9 @@ public class Player : MonoBehaviour
             if (sliderHealth) sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
             if (sliderMana) sliderMana.GetComponent<UnityEngine.UI.Slider>().value = stats.getMana();
 
-            /*if (GameObject.Find("Shop").activeSelf == false)
+            if ((GameObject.Find("Blacksmith").transform.Find("Shop").gameObject.activeSelf == true)|| (GameObject.Find("Armorer").transform.Find("ShopArmor").gameObject.activeSelf == true))
 
             {
-                if (this.GetComponent<MoveWASD>().enabled == false)
-                {
-                    this.GetComponent<MoveWASD>().enabled = true;
-                }
-                if (this.GetComponent<PlayerInteraction>().enabled == false)
-                {
-                    this.GetComponent<PlayerInteraction>().enabled = true;
-                }
-        
-            } else
-            {
-
                 if (this.GetComponent<MoveWASD>().enabled == true)
                 {
                     this.GetComponent<MoveWASD>().enabled = false;
@@ -150,8 +138,20 @@ public class Player : MonoBehaviour
                 {
                     this.GetComponent<PlayerInteraction>().enabled = false;
                 }
+        
+            } else
+            {
 
-            }*/
+                if (this.GetComponent<MoveWASD>().enabled == false)
+                {
+                    this.GetComponent<MoveWASD>().enabled = true;
+                }
+                if (this.GetComponent<PlayerInteraction>().enabled == false)
+                {
+                    this.GetComponent<PlayerInteraction>().enabled = true;
+                }
+
+            }
             
             
 

@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Equipement:MonoBehaviour
 {
-    public int weaponType=1;
-    public int armorType=1;
+    public int weaponType = 0;
+    public int armorType = 0;
 
     public Equipement()
     {
-        armorType = 1;
-        weaponType = 1;
-
+        
         Debug.Log("Generating new Equipment");
     }
 
