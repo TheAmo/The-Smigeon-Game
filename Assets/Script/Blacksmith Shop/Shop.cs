@@ -26,7 +26,7 @@ public class Shop : MonoBehaviour
 
         db = new DataBaseSmi();
         //Set the shop scene to be active
-        UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("BlacksmithShop"));
+        GameObject.Find("BlacksmithShop").SetActive(true);
 
 
         button = GameObject.FindGameObjectsWithTag("Button");
@@ -54,8 +54,7 @@ public class Shop : MonoBehaviour
 
             ShopCamera.enabled = false;
             UnityEngine.SceneManagement.SceneManager.LoadScene("UI", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-            UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("SampleScene"));
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("BlacksmithShop");
+            GameObject.Find("BlacksmithShop").SetActive(true);
             Money money = new Money();
             money.changeMoney(player.GetComponent<Player>().stats.getGold());
             

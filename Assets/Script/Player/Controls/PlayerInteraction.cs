@@ -61,7 +61,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F)) //If key is pushed
         {
             isInteracting = true;
-            
+            Debug.Log("F");
             Vector2 playerPosition = transform.position;
             foreach (GameObject target in interact)
             {
@@ -71,16 +71,14 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 else if (target.tag == "Blacksmith")
                 {
-                    if(target.name == "Armorer")
-                    {
-                        GameObject.Find("Armorer").GetComponent<DialogueTrigger>().TriggerDialogue();
-                    }
-                    else
-                    {
-                        GameObject.Find("Blacksmith").GetComponent<DialogueTrigger>().TriggerDialogue();
-                    }
+                        target.GetComponent<DialogueTrigger>().TriggerDialogue();
                 }
-                
+                else if(target.tag == "Armorer")
+                {
+                    Debug.Log("Yeet wtf");
+                    target.GetComponent<DialogueTrigger>().TriggerDialogue();
+                }
+                Debug.Log("YEEEEET");
                 if (target.tag == "Lootbag")
                 {
                     PickLoot(target);
@@ -113,6 +111,10 @@ public class PlayerInteraction : MonoBehaviour
             interact.Add(range.gameObject);
         }
         else if (range.gameObject.tag == ("Lootbag"))
+        {
+            interact.Add(range.gameObject);
+        }
+        else if(range.gameObject.tag == ("Armorer"))
         {
             interact.Add(range.gameObject);
         }

@@ -11,7 +11,9 @@ TagManager:
   - Button
   - Projectile
   - Enemy
-  - Chest
+  - Armorer
+  - Undefined
+  - Shop
   layers:
   - Default
   - TransparentFX
