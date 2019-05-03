@@ -73,6 +73,7 @@
     <Compile Include="Assets\Light2D\Examples\Editor\ScriptableObjectCreatorWindow.cs" />
     <Compile Include="Assets\QPathFinder\Script\Editor\CustomEditor.cs" />
     <Compile Include="Assets\QPathFinder\Script\Editor\PathFinderEditor.cs" />
+<<<<<<< HEAD
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Utilisateur/Desktop/The-Smigeon-Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -88,6 +89,8 @@
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>C:/Users/Utilisateur/Desktop/The-Smigeon-Game/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
+=======
+>>>>>>> Backup
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
@@ -323,6 +326,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityNpgsql">
+<<<<<<< HEAD
       <HintPath>C:/Users/Utilisateur/Desktop/The-Smigeon-Game/Assets/Plugins/UnityNpgsql.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
@@ -339,6 +343,24 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>C:/Users/Utilisateur/Desktop/The-Smigeon-Game/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
+=======
+      <HintPath>C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Assets/Plugins/UnityNpgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Editor">
+      <HintPath>C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>C:/Users/Amaury/Desktop/Smigeon/The-Smigeon-Game/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
+>>>>>>> Backup
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
