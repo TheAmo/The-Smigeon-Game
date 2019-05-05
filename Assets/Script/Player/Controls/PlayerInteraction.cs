@@ -21,6 +21,8 @@ public class PlayerInteraction : MonoBehaviour
     private BoxCollider2D bc2d;
     List<GameObject> interact = new List<GameObject>();
 
+    private int chest_bonus;
+
     /*===================================================================================================================
      * On Start
      * 
@@ -78,11 +80,17 @@ public class PlayerInteraction : MonoBehaviour
                     Debug.Log("Yeet wtf");
                     target.GetComponent<DialogueTrigger>().TriggerDialogue();
                 }
-                Debug.Log("YEEEEET");
+                //Debug.Log("YEEEEET");
                 if (target.tag == "Lootbag")
                 {
                     PickLoot(target);
                 }
+                if(target.tag == "Chest" || target.tag == "Chest2" || target.tag == "Chest3" || target.tag == "Chest4" || target.tag == "Chest5" || target.tag == "Chest_open")
+                {
+                    Debug.Log("Tag : " + target.tag);
+                    Chest(target);
+                }
+
 
                 /* Destroy(target, 0);
                  interact.Remove(target);*/
@@ -118,6 +126,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Add(range.gameObject);
         }
+        else if (range.gameObject.tag == ("Chest") || range.gameObject.tag == ("Chest2") || range.gameObject.tag == ("Chest3") || range.gameObject.tag == ("Chest4") || range.gameObject.tag == ("Chest5") || range.gameObject.tag == ("Chest_open"))
+        {
+            interact.Add(range.gameObject);
+        }
     }
     void OnTriggerExit2D(Collider2D range)
     {
@@ -138,6 +150,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Remove(range.gameObject);
         }
+        else if (range.gameObject.tag == ("Chest") || range.gameObject.tag == ("Chest2") || range.gameObject.tag == ("Chest3") || range.gameObject.tag == ("Chest4") || range.gameObject.tag == ("Chest5") || range.gameObject.tag == ("Chest_open"))
+        {
+            interact.Remove(range.gameObject);
+        }
     }
     /*===================================================================================================================
      * Function
@@ -145,7 +161,6 @@ public class PlayerInteraction : MonoBehaviour
      ===================================================================================================================*/
     public void PickLoot(GameObject target)
     {
-       
         Loot loot = new Loot();
         loot.DropType(target.name);
         Destroy(target);
@@ -179,6 +194,57 @@ public class PlayerInteraction : MonoBehaviour
                 target.transform.Rotate(0, 0, 90, Space.Self);
             }
         }
+    }
+    public void Chest(GameObject target)
+    {
+        int goldUpdated;
+        Money money = new Money();
+
+        if (target.tag == "Chest")
+        {
+            chest_bonus = 10;
+            changeChestSprite(target);
+            Debug.Log("Chest");
+        }
+        else if (target.tag == "Chest2")
+        {
+            chest_bonus = 30;
+            changeChestSprite(target);
+            Debug.Log("Chest2");
+
+        }
+        else if (target.tag == "Chest3")
+        {
+            chest_bonus = 350;
+            changeChestSprite(target);
+
+        }
+        else if (target.tag == "Chest4")
+        {
+            chest_bonus = 500;
+            changeChestSprite(target);
+
+        }
+        else if (target.tag == "Chest5")
+        {
+            chest_bonus = 750;
+            changeChestSprite(target);
+
+        }
+        else if (target.tag == "Chest_open")
+        {
+            goldUpdated = (player.GetComponent<Player>().stats.getGold()) + chest_bonus;
+            money.changeMoney(goldUpdated);
+            player.GetComponent<Player>().stats.setGold(goldUpdated);
+            Destroy(target);
+            Debug.Log("Target destroyed " + chest_bonus);
+        }
+    }
+    public void changeChestSprite(GameObject target)
+    {
+        SpriteRenderer spriteRendererChest = target.GetComponent<SpriteRenderer>();
+        spriteRendererChest.sprite = Resources.Load<Sprite>("Chest-2");
+        target.tag = "Chest_open";
     }
     
 }

@@ -14,6 +14,13 @@ TagManager:
   - Armorer
   - Undefined
   - Shop
+  - ShopA
+  - Chest
+  - Chest2
+  - Chest_open
+  - Chest3
+  - Chest4
+  - Chest5
   layers:
   - Default
   - TransparentFX
