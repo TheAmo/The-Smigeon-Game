@@ -52,12 +52,12 @@ public class DialogueManager : MonoBehaviour
         if(m_name == "Blacksmith")
         {
 
-            GameObject.FindGameObjectWithTag("Blacksmith").transform.FindChild("Shop").gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Blacksmith").transform.Find("Shop").gameObject.SetActive(true);
             //GameObject.FindGameObjectWithTag("ShopB").SetActive(true);
         }
         else if(m_name == "Armorer")
         {
-            GameObject.FindGameObjectWithTag("Armorer").transform.FindChild("Shop").gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Armorer").transform.Find("Shop").gameObject.SetActive(true);
 
         }
     }
