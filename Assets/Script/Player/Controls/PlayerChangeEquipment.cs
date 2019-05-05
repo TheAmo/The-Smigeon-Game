@@ -78,7 +78,6 @@ public class PlayerChangeEquipment : MonoBehaviour
         int armor = item.getArmor();
         item.setArmor(armor);
         item.setWeapon(weapon);
-       
 
         int combination = (armor * 21 + weapon * 3);
         Debug.Log(combination);
