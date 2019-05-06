@@ -157,7 +157,11 @@ public class Player : MonoBehaviour
 
             if (PlayerCamera.enabled == false) PlayerCamera.enabled = true;
             
-
+            if  (this.GetComponent<Player>().stats.getHitPoint() == 0)
+            {
+                this.transform.position = new Vector2(192, 207);
+                this.GetComponent<Player>().stats.changeGoldByValue(-(this.GetComponent<Player>().stats.getGold() / 10));
+            }
 
 
             if (Input.GetKeyDown("escape")) //TO Open Inventory. Doesn't work.

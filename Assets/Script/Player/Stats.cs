@@ -205,6 +205,10 @@ public class Stats : MonoBehaviour
         m_hitPoint = hitPoint;
        
     }
+    public void FillHitpoint()
+    {
+        m_hitPoint = 10 + getConstitutionModifier();
+    }
     public void setMana(int mana) {
         m_mana = mana;
         
