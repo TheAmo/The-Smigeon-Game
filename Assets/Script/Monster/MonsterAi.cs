@@ -18,6 +18,7 @@ public class MonsterAi : MonoBehaviour
     private float updatetime = 0;
     private float attacktime = 0;
     private bool tmpbool;
+    public float health;
 
     private float horizontalAxis;
     private float verticalAxis;
@@ -74,12 +75,6 @@ public class MonsterAi : MonoBehaviour
     }
 
     //===================================begin AI================================
-    float BasicEstimination(Vector3 currentPosiiton, Vector3 targetPosition)
-    {
-        //pythagore
-        return Vector3.Distance(currentPosiiton, targetPosition);
-    }
-
     bool isRayCastAllObject(RaycastHit2D[] hits, string nameObject)
     {
         //i = 2 because 0,1 are the AI object for some reason dont juge
@@ -242,10 +237,10 @@ public class MonsterAi : MonoBehaviour
         right = right.normalized;
 
         //draw ray (temp) useful for debug
-        Debug.DrawRay(positionLeft, positionForward * 2, Color.red);
-        Debug.DrawRay(positionRight, positionForward * 2, Color.blue);
-        Debug.DrawRay(positionLeft, left * 3, Color.green);
-        Debug.DrawRay(positionRight, right * 3, Color.black);
+        /* Debug.DrawRay(positionLeft, positionForward * 2, Color.red);
+         Debug.DrawRay(positionRight, positionForward * 2, Color.blue);
+         Debug.DrawRay(positionLeft, left * 3, Color.green);
+         Debug.DrawRay(positionRight, right * 3, Color.black);*/
 
         //make the raycast
         hitsLeftFront = Physics2D.RaycastAll(positionLeft, positionForward, 4);
@@ -317,9 +312,6 @@ public class MonsterAi : MonoBehaviour
             }
             transform.localRotation = Quaternion.Euler(0, 0, angleRotation);
         }
-        Debug.Log("movement : " + movement);
-        Debug.Log("targer   : " + target);
-        Debug.Log("position : " + currentGameObject.transform.position);
 
         //push the AI in the direction of the vector movement
         //rb2d.AddForce(movement * speed * 2f); 
@@ -394,42 +386,67 @@ public class MonsterAi : MonoBehaviour
 
     //==================================================end AI============================
 
+    //Receive Damage
+    public bool ReceiveDamage(int damage)
+    {
+        health = health - damage;
+        Debug.Log("Dealt: " + damage + "   HP left: " + health);
+        if (health <= 0) return (true); //Is dead
+        else return (false); //Is alive
+    }
+
+    void DeathAI(GameObject itself)
+    {
+        spriteRenderer.sprite = spriteKill;
+        //object to destroy, time in seconde before destruction 
+        Destroy(itself, 2);
+    }
+
     // Update is called once per frame
     void Update()
     {
         GameObject player = GameObject.Find("Player(Clone)");
         GameObject monstre = GameObject.Find("Monster");
 
-        //Attack
-        attacktime += Time.deltaTime;
-        //if the player is in range attack 
-        if (Vector2.Distance(player.transform.position, monstre.transform.position) < 3)
+        //----------------------------------------------------------------ReceiveDamage(get the damage)---------------------------
+        Debug.Log("Monstre health : " + health);
+        if (health <= 0)
         {
-            if (attacktime >= attackCooldown && attackCooldown != -1 && playerlist.Count > 0)
+            DeathAI(monstre);
+        }
+        else
+        {
+            //Attack
+            attacktime += Time.deltaTime;
+            //if the player is in range attack 
+            if (Vector2.Distance(player.transform.position, monstre.transform.position) < 3)
             {
-                spriteRenderer.sprite = spriteAttack;
-                attacktime = 0;
-
-                foreach (GameObject target in playerlist)
+                if (attacktime >= attackCooldown && attackCooldown != -1 && playerlist.Count > 0)
                 {
-                    tmpbool = target.GetComponent<Player>().ReceiveDamage(GameObject.Find("Monster").GetComponent<MonsterCore>().CalculateDamage());
-                    if (tmpbool == true)
+                    spriteRenderer.sprite = spriteAttack;
+                    attacktime = 0;
+
+                    foreach (GameObject target in playerlist)
                     {
-                        playerlist.Remove(target);
-                        target.GetComponent<Player>().kill();
+                        tmpbool = target.GetComponent<Player>().ReceiveDamage(GameObject.Find("Monster").GetComponent<MonsterCore>().CalculateDamage());
+                        if (tmpbool == true)
+                        {
+                            playerlist.Remove(target);
+                            target.GetComponent<Player>().kill();
+                        }
+                        break;
                     }
-                    break;
+                }
+                if (attacktime > (attackCooldown / 2) && attackCooldown != -1) //To put back the default sprite
+                {
+                    spriteRenderer.sprite = spriteDefault;
                 }
             }
-            if (attacktime > (attackCooldown / 2) && attackCooldown != -1) //To put back the default sprite
+            //else move toward the player
+            else if (Vector2.Distance(player.transform.position, monstre.transform.position) < 100)
             {
-                spriteRenderer.sprite = spriteDefault;
+                BasicAI(monstre, player);
             }
         }
-        //else move toward the player
-        else if (Vector2.Distance(player.transform.position, monstre.transform.position) < 100)
-        {
-            BasicAI(monstre, player);
-        }
     }
-}
+ }

@@ -46,6 +46,7 @@ public class PlayerAttack : MonoBehaviour {
         if (isAttacking)
         {
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
+            attack();
         }
         else
         {
@@ -94,12 +95,12 @@ public class PlayerAttack : MonoBehaviour {
      * Attack function
      * 
      ===================================================================================================================*/
-    //Vector2 knockbackDirection;
-    //bool tmpbool;
 
-    /*
+    
     public void attack()
     {
+        Vector2 knockbackDirection;
+        bool tmpbool;
         foreach (GameObject target in enemy)
         {
             tmpbool = target.GetComponent<Monster>().getAttack(GetComponent<Player>().stats.getAttackBonus());
@@ -109,7 +110,7 @@ public class PlayerAttack : MonoBehaviour {
                 if (tmpbool == true)//Target is dead
                 {
                     enemy.Remove(target);
-                    target.GetComponent<MonsterAI>().kill();
+                    target.GetComponent<MonsterAi>().kill();
                 }
                 else
                 {
@@ -120,5 +121,5 @@ public class PlayerAttack : MonoBehaviour {
             break;
         }
     }
-    */
+    
 }
