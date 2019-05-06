@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
             time = Time.deltaTime + time;
 
 
-            if (time >= 1)
+            if (time >= 1 && stats.getMana()<100)
             {
                 stats.setMana(stats.getMana() + 1);
                 time = 0;

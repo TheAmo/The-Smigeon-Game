@@ -18,7 +18,7 @@ public class PlayerFireball : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyUp(KeyCode.H) && fireActivated == false && stats.getMana() >= cost)
+        if (Input.GetKeyUp(KeyCode.Q) && fireActivated == false && stats.getMana() >= cost)
         { 
             canvas = GameObject.Find("HUDCanvas");
             stats.setMana((stats.getMana() - cost));
