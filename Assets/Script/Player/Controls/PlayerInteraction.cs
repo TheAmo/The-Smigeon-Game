@@ -85,7 +85,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     PickLoot(target);
                 }
-                if(target.tag == "Chest" || target.tag == "Chest2" || target.tag == "Chest3" || target.tag == "Chest4" || target.tag == "Chest5" || target.tag == "Chest_open")
+                if(target.tag == "Chest" || target.tag == "Chest2" || target.tag == "Chest3" || target.tag == "Chest4" || target.tag == "Chest5")
                 {
                     Debug.Log("Tag : " + target.tag);
                     Chest(target);
@@ -126,7 +126,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Add(range.gameObject);
         }
-        else if (range.gameObject.tag == ("Chest") || range.gameObject.tag == ("Chest2") || range.gameObject.tag == ("Chest3") || range.gameObject.tag == ("Chest4") || range.gameObject.tag == ("Chest5") || range.gameObject.tag == ("Chest_open"))
+        else if (range.gameObject.tag == ("Chest") || range.gameObject.tag == ("Chest2") || range.gameObject.tag == ("Chest3") || range.gameObject.tag == ("Chest4") || range.gameObject.tag == ("Chest5"))
         {
             interact.Add(range.gameObject);
         }
@@ -150,7 +150,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Remove(range.gameObject);
         }
-        else if (range.gameObject.tag == ("Chest") || range.gameObject.tag == ("Chest2") || range.gameObject.tag == ("Chest3") || range.gameObject.tag == ("Chest4") || range.gameObject.tag == ("Chest5") || range.gameObject.tag == ("Chest_open"))
+        else if (range.gameObject.tag == ("Chest") || range.gameObject.tag == ("Chest2") || range.gameObject.tag == ("Chest3") || range.gameObject.tag == ("Chest4") || range.gameObject.tag == ("Chest5"))
         {
             interact.Remove(range.gameObject);
         }
@@ -211,34 +211,25 @@ public class PlayerInteraction : MonoBehaviour
             chest_bonus = 30;
             changeChestSprite(target);
             Debug.Log("Chest2");
-
         }
         else if (target.tag == "Chest3")
         {
             chest_bonus = 350;
             changeChestSprite(target);
-
         }
         else if (target.tag == "Chest4")
         {
             chest_bonus = 500;
             changeChestSprite(target);
-
         }
         else if (target.tag == "Chest5")
         {
             chest_bonus = 750;
             changeChestSprite(target);
-
         }
-        else if (target.tag == "Chest_open")
-        {
-            goldUpdated = (player.GetComponent<Player>().stats.getGold()) + chest_bonus;
-            money.changeMoney(goldUpdated);
-            player.GetComponent<Player>().stats.setGold(goldUpdated);
-            Destroy(target);
-            Debug.Log("Target destroyed " + chest_bonus);
-        }
+        goldUpdated = (player.GetComponent<Player>().stats.getGold()) + chest_bonus;
+        money.changeMoney(goldUpdated);
+        player.GetComponent<Player>().stats.setGold(goldUpdated);
     }
     public void changeChestSprite(GameObject target)
     {
