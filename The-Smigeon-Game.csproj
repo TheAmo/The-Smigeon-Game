@@ -678,6 +678,7 @@
     <Compile Include="Assets\Script\Blacksmith Shop\Shop.cs" />
     <Compile Include="Assets\Script\Core\GameInstantiate.cs" />
     <Compile Include="Assets\Script\DataBase\DataBaseSmi.cs" />
+    <Compile Include="Assets\Script\DataBase\MonsterStats.cs" />
     <Compile Include="Assets\Script\DataBase\PlayerEntryDB.cs" />
     <Compile Include="Assets\Script\Dialogue\Dialogue.cs" />
     <Compile Include="Assets\Script\Dialogue\DialogueManager.cs" />
