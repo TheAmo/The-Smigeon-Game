@@ -146,6 +146,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Remove(range.gameObject);
         }
+        else if (range.gameObject.tag == ("Armorer"))
+        {
+            interact.Remove(range.gameObject);
+        }
         else if (range.gameObject.tag == ("Lootbag"))
         {
             interact.Remove(range.gameObject);

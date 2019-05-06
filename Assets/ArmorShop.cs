@@ -22,7 +22,6 @@ public class ArmorShop : MonoBehaviour
 
 
         db = new DataBaseSmi();
-        //Set the shop scene to be active
 
 
         button = GameObject.FindGameObjectsWithTag("Button");
