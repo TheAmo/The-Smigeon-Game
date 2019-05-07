@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteDefault: {fileID: 0}
   spriteAttack: {fileID: 0}
-  attackKnockback: 50000
+  attackKnockback: 20
   isAttacking: 0
   spriteRenderer: {fileID: 0}
   player: {fileID: 3690426719176018748}

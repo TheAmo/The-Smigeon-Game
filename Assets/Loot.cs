@@ -31,19 +31,19 @@ public class Loot : MonoBehaviour
         int rand = Random.Range(1, 100);
         if (rand == 100)
         {
-            gold = 10000;
+            gold = 100;
         }
         if (rand < 99 && rand > 80)
         {
-            gold = 500;
+            gold = 50;
         }
         if (rand < 75 && rand > 50)
         {
-            gold = 100;
+            gold = 10;
         }
         else
         {
-            gold = 10;
+            gold = 1;
         }
         Debug.Log(gold);
         return gold;

@@ -21,6 +21,7 @@ TagManager:
   - Chest3
   - Chest4
   - Chest5
+  - Lootbag
   layers:
   - Default
   - TransparentFX

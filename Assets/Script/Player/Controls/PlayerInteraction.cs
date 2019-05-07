@@ -77,10 +77,8 @@ public class PlayerInteraction : MonoBehaviour
                 }
                 else if(target.tag == "Armorer")
                 {
-                    Debug.Log("Yeet wtf");
                     target.GetComponent<DialogueTrigger>().TriggerDialogue();
                 }
-                //Debug.Log("YEEEEET");
                 if (target.tag == "Lootbag")
                 {
                     PickLoot(target);
@@ -146,6 +144,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             interact.Remove(range.gameObject);
         }
+        else if (range.gameObject.tag == ("Armorer"))
+        {
+            interact.Remove(range.gameObject);
+        }
         else if (range.gameObject.tag == ("Lootbag"))
         {
             interact.Remove(range.gameObject);
@@ -162,7 +164,7 @@ public class PlayerInteraction : MonoBehaviour
     public void PickLoot(GameObject target)
     {
         Loot loot = new Loot();
-        loot.DropType(target.name);
+        player.GetComponent<Player>().stats.changeGoldByValue(loot.DropType(target.name));
         Destroy(target);
         interact.Remove(target);
     }

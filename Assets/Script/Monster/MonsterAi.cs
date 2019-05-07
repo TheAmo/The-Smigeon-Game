@@ -18,6 +18,7 @@ public class MonsterAi : MonoBehaviour
     private float updatetime = 0;
     private float attacktime = 0;
     private bool tmpbool;
+    public float health;
 
     private float horizontalAxis;
     private float verticalAxis;
@@ -34,10 +35,10 @@ public class MonsterAi : MonoBehaviour
 
     void Start()
     {
-        startPoint = GameObject.Find("Monster").transform.position;
-        spriteRenderer = GameObject.Find("Monster").GetComponent<SpriteRenderer>();
-        rb2d = GameObject.Find("Monster").GetComponent<Rigidbody2D>();
-        bc2d = GameObject.Find("Monster").GetComponent<BoxCollider2D>();
+        startPoint = this.gameObject.transform.position;
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        rb2d = this.gameObject.GetComponent<Rigidbody2D>();
+        bc2d = this.gameObject.GetComponent<BoxCollider2D>();
 
         if (spriteRenderer == null)
             spriteRenderer.sprite = spriteDefault;
@@ -45,17 +46,6 @@ public class MonsterAi : MonoBehaviour
         updateInterval = Random.Range(1.0f, 5.0f);
     }
 
-    //To kill the monster
-    public void kill()
-    {
-        Destroy(bc2d, 0);
-        speed = 0;
-        updateInterval = -1;
-        attackCooldown = -1;
-        distanceDetection = 0;
-        spriteRenderer.sprite = spriteKill;
-        spriteRenderer.sortingOrder = 1;
-    }
 
     //Player in range
     void OnTriggerEnter2D(Collider2D range)
@@ -74,12 +64,6 @@ public class MonsterAi : MonoBehaviour
     }
 
     //===================================begin AI================================
-    float BasicEstimination(Vector3 currentPosiiton, Vector3 targetPosition)
-    {
-        //pythagore
-        return Vector3.Distance(currentPosiiton, targetPosition);
-    }
-
     bool isRayCastAllObject(RaycastHit2D[] hits, string nameObject)
     {
         //i = 2 because 0,1 are the AI object for some reason dont juge
@@ -109,7 +93,7 @@ public class MonsterAi : MonoBehaviour
 
     int AroundAIFourDirection() //0(forward), 1(right), 3(left)
     {
-        GameObject currentGameObject = GameObject.Find("Monster");
+        GameObject currentGameObject = this.gameObject;
         RaycastHit2D[] hitsRightFront;
         RaycastHit2D[] hitsLeftFront;
         RaycastHit2D[] hitsRight;
@@ -241,11 +225,6 @@ public class MonsterAi : MonoBehaviour
         left = left.normalized;
         right = right.normalized;
 
-        //draw ray (temp) useful for debug
-        Debug.DrawRay(positionLeft, positionForward * 2, Color.red);
-        Debug.DrawRay(positionRight, positionForward * 2, Color.blue);
-        Debug.DrawRay(positionLeft, left * 3, Color.green);
-        Debug.DrawRay(positionRight, right * 3, Color.black);
 
         //make the raycast
         hitsLeftFront = Physics2D.RaycastAll(positionLeft, positionForward, 4);
@@ -317,9 +296,6 @@ public class MonsterAi : MonoBehaviour
             }
             transform.localRotation = Quaternion.Euler(0, 0, angleRotation);
         }
-        Debug.Log("movement : " + movement);
-        Debug.Log("targer   : " + target);
-        Debug.Log("position : " + currentGameObject.transform.position);
 
         //push the AI in the direction of the vector movement
         //rb2d.AddForce(movement * speed * 2f); 
@@ -341,25 +317,25 @@ public class MonsterAi : MonoBehaviour
                 //move forward
                 movement = new Vector2(horizontalAxis, verticalAxis + 10);
                 //do the action of rotation 
-                GameObject.Find("Monster").transform.localRotation = Quaternion.Euler(0, 0, 0);
+                this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 break;
             case 1:
                 //turn right 90
                 movement = new Vector2(horizontalAxis - 10, verticalAxis);
                 //do the action of rotation  
-                GameObject.Find("Monster").transform.localRotation = Quaternion.Euler(0, 0, 270);
+                this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 270);
                 break;
             case 2:
                 //move backward
                 movement = new Vector2(horizontalAxis, verticalAxis - 10);
                 //do the action of rotation  
-                GameObject.Find("Monster").transform.localRotation = Quaternion.Euler(0, 0, 180);
+                this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 180);
                 break;
             case 3:
                 //turn left 90
                 movement = new Vector2(horizontalAxis - 10, verticalAxis);
                 //do the action of rotation   
-                GameObject.Find("Monster").transform.localRotation = Quaternion.Euler(0, 0, 90);
+                this.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 break;
         }
         rb2d.AddForce(movement * speed * 0.5f);
@@ -367,7 +343,7 @@ public class MonsterAi : MonoBehaviour
 
     void MoveToPoint(int direction, Vector2 target)
     {
-        Vector2 movement = Vector2.MoveTowards(GameObject.Find("Monster").transform.position, target, 0.6f);
+        Vector2 movement = Vector2.MoveTowards(this.gameObject.transform.position, target, 0.6f);
 
         switch (direction)
         {
@@ -389,47 +365,50 @@ public class MonsterAi : MonoBehaviour
                 break;
         }
         //do the action of moving  
-        GameObject.Find("Monster").transform.position = movement;
+        this.gameObject.transform.position = movement;
     }
-
-    //==================================================end AI============================
-
+   
     // Update is called once per frame
     void Update()
     {
         GameObject player = GameObject.Find("Player(Clone)");
-        GameObject monstre = GameObject.Find("Monster");
+        GameObject monstre = this.gameObject;
+        //----------------------------------------------------------------ReceiveDamage(get the damage)---------------------------
+        //Debug.Log("Monstre health : " + health);
 
-        //Attack
-        attacktime += Time.deltaTime;
-        //if the player is in range attack 
-        if (Vector2.Distance(player.transform.position, monstre.transform.position) < 3)
-        {
-            if (attacktime >= attackCooldown && attackCooldown != -1 && playerlist.Count > 0)
+
+        
+            //Attack
+            attacktime += Time.deltaTime;
+            //if the player is in range attack 
+            if (Vector2.Distance(player.transform.position, monstre.transform.position) < 3)
             {
-                spriteRenderer.sprite = spriteAttack;
-                attacktime = 0;
-
-                foreach (GameObject target in playerlist)
+                if (attacktime >= attackCooldown && attackCooldown != -1 && playerlist.Count > 0)
                 {
-                    tmpbool = target.GetComponent<Player>().ReceiveDamage(GameObject.Find("Monster").GetComponent<MonsterCore>().CalculateDamage());
-                    if (tmpbool == true)
+                    spriteRenderer.sprite = spriteAttack;
+                    attacktime = 0;
+
+                    foreach (GameObject target in playerlist)
                     {
-                        playerlist.Remove(target);
-                        target.GetComponent<Player>().kill();
+                        tmpbool = target.GetComponent<Player>().ReceiveDamage(this.gameObject.GetComponent<MonsterCore>().CalculateDamage());
+                        if (tmpbool == true)
+                        {
+                            playerlist.Remove(target);
+                            target.GetComponent<Player>().kill();
+                        }
+                        break;
                     }
-                    break;
+                }
+                if (attacktime > (attackCooldown / 2) && attackCooldown != -1) //To put back the default sprite
+                {
+                    spriteRenderer.sprite = spriteDefault;
                 }
             }
-            if (attacktime > (attackCooldown / 2) && attackCooldown != -1) //To put back the default sprite
+            //else move toward the player
+            else if (Vector2.Distance(player.transform.position, monstre.transform.position) < 100)
             {
-                spriteRenderer.sprite = spriteDefault;
+                BasicAI(monstre, player);
             }
         }
-        //else move toward the player
-        else if (Vector2.Distance(player.transform.position, monstre.transform.position) < 100)
-        {
-            BasicAI(monstre, player);
-        }
     }
-}
+ 

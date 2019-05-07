@@ -48,7 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68806726b4c8c5240800573e55e1d4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteKill: {fileID: 0}
+  spriteKill: {fileID: 21300000, guid: 6dad0c255bdb40c4889014dd2a87a6a9, type: 3}
+  spriteLootbag: {fileID: 21300000, guid: 25058e867722f8948b6ed4c04f4a59a7, type: 3}
+  spriteRenderer: {fileID: 4814910149114195714}
+  bc2d: {fileID: 6826390932715865481}
+  lootbag: {fileID: 0}
 --- !u!114 &253128898138245415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +71,8 @@ MonoBehaviour:
   spriteAttack: {fileID: 21300000, guid: 766bb20d5b730e242b923569f8bf21e3, type: 3}
   spriteKill: {fileID: 21300000, guid: 6dad0c255bdb40c4889014dd2a87a6a9, type: 3}
   attackCooldown: 1
-  player: {fileID: 0}
+  health: 0
+  spriteRenderer: {fileID: 4814910149114195714}
 --- !u!50 &105839632668281854
 Rigidbody2D:
   serializedVersion: 4

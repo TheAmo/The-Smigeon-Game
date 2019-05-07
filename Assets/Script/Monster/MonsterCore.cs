@@ -17,9 +17,13 @@ public class MonsterCore : MonoBehaviour
     private int m_damageDice;
     
     public Sprite spriteKill;
-    private SpriteRenderer spriteRenderer;
+    public Sprite spriteLootbag;
+    private SpriteRenderer srLootbag;
+    public SpriteRenderer spriteRenderer;
 
-    private BoxCollider2D bc2d;
+    public BoxCollider2D bc2d;
+
+    public GameObject lootbag;
 
     private bool dead;
 
@@ -32,11 +36,10 @@ public class MonsterCore : MonoBehaviour
     ===================================================================================================================*/
     public void ininitialiseMonster(int monster_id, int positionX, int positionY)
     {
-        //GameObject.Find("DB Monsters Manager").GetComponent<DBMonsterManager>().LoadMonster();
         Debug.Log("Constructeur du Monster");
         m_monster_id = monster_id;
-        //get MonsterEntry
-        //monsterDatabase = GameObject.Find("DB Monsters Manager").GetComponent<DBMonsterManager>().monsterDB;
+        m_hitPoint = 10;
+
 
         //Put monster on good position
         Vector3 temp = new Vector3(positionX, positionY, 0);
@@ -47,15 +50,7 @@ public class MonsterCore : MonoBehaviour
     * 
     ===================================================================================================================*/
     /*
-    public void SavePlayer()
-    {
-        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[0] = GameObject.Find("Player").transform.position.x;
-        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[1] = GameObject.Find("Player").transform.position.y;
-
-        Debug.Log("Saved Position " + GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[0] + "," + GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().playerDB.playerList[m_player_id].position[1] + ")");
-        GameObject.Find("XML Players Manager").GetComponent<XMLPlayerManagement>().SavePlayer();
-        Debug.Log("Saved Player");
-    }
+   
     */
     /*===================================================================================================================
     * Killed
@@ -63,14 +58,24 @@ public class MonsterCore : MonoBehaviour
     ===================================================================================================================*/
     public void kill()
     {
-        Destroy(bc2d, 0);
+        GameObject lootbag = new GameObject();
+        lootbag.name = "loot" + this.name;
+        lootbag.AddComponent<SpriteRenderer>();
+        lootbag.AddComponent<BoxCollider2D>().size = new Vector2(3, 3);
+        lootbag.GetComponent<BoxCollider2D>().isTrigger = true;
+        lootbag.tag = "Lootbag";
+        lootbag.GetComponent<SpriteRenderer>().sprite = spriteLootbag;
+        lootbag.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        lootbag.transform.position = this.transform.position;
+        this.GetComponent<Rigidbody2D>().constraints = 0;
+
+        bc2d.enabled = false;
         spriteRenderer.sprite = spriteKill;
-        spriteRenderer.sortingOrder = 1;
+        spriteRenderer.sortingOrder = 2;
+        this.GetComponent<MonsterAi>().enabled = false;
+      
+        
 
-        //Destroy(this.GetComponent<MonsterAIMovement>(), 0);
-        //Destroy(this.GetComponent<MonsterAIAttack>(), 0);
-
-        Debug.Log("Monster is Dead!!!");
     }
 
     /*===================================================================================================================
@@ -128,6 +133,8 @@ public class MonsterCore : MonoBehaviour
         Debug.Log("Dealt: " + damage + "   HP left: " + m_hitPoint);
         if (m_hitPoint <= 0)
         {
+            kill();
+
             return (true); //Is dead
         }
         else return (false); //Is alive

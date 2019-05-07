@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         Debug.Log("Constructeur du player");
         m_player_id = player_id;
 
-        stats.setGold(5000);
+        stats.setGold(0);
         //get PlayerEntryDB
        // playerDatabase = GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().playerDB;
         //get ClassEntry
@@ -157,7 +157,12 @@ public class Player : MonoBehaviour
 
             if (PlayerCamera.enabled == false) PlayerCamera.enabled = true;
             
-
+            if  (this.GetComponent<Player>().stats.getHitPoint() == 0)
+            {
+                this.GetComponent<Player>().stats.FillHitpoint();
+                this.transform.position = new Vector2(192, 207);
+                this.GetComponent<Player>().stats.changeGoldByValue(-(this.GetComponent<Player>().stats.getGold() / 10));
+            }
 
 
             if (Input.GetKeyDown("escape")) //TO Open Inventory. Doesn't work.

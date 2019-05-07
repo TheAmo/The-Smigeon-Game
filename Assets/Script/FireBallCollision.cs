@@ -17,7 +17,6 @@ public class FireBallCollision : MonoBehaviour
             
             if (!col.gameObject.name.Contains("Collidable"))
             {
-                Debug.Log("HP" + col.gameObject.GetComponent<Stats>().getHitPoint());
                 GameObject canvas = GameObject.Find("HUDCanvas");
                 Debug.Log("Boom");
 
@@ -26,9 +25,13 @@ public class FireBallCollision : MonoBehaviour
                     FindObjectOfType<Player>().ReceiveDamage(1);
                     //canvas.transform.Find("SliderHealth").GetComponent<UnityEngine.UI.Slider>().value = FindObjectOfType<Player>().GetComponent<Stats>().getHitPoint();
                 }
+                 else if (col.gameObject.tag.Contains("Enemy"))
+                {
+                    col.gameObject.GetComponent<MonsterCore>().ReceiveDamage(10); 
+                }
                 else
                 {
-                    col.gameObject.GetComponent<Stats>().setHitPoint(col.gameObject.GetComponent<Stats>().getHitPoint() - 10);
+
                 }
             }
            

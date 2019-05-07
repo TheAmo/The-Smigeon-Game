@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour {
 
     public int attackKnockback;
 
-    public bool isAttacking=false;
+    public bool isAttacking = false;
 
     public SpriteRenderer spriteRenderer;
 
@@ -43,6 +43,16 @@ public class PlayerAttack : MonoBehaviour {
     {
         spriteDefault = player.GetComponent<PlayerChangeEquipment>().spriteDefault;
         spriteAttack = player.GetComponent<PlayerChangeEquipment>().spriteAttack;
+        if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
+        {
+            isAttacking = true;
+            attack();
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isAttacking = false;
+
+        }
         if (isAttacking)
         {
             spriteRenderer.sprite = spriteAttack;//Change sprite to attack animation
@@ -52,22 +62,7 @@ public class PlayerAttack : MonoBehaviour {
             if (this.GetComponent<PlayerInteraction>().isInteracting == false)
                 spriteRenderer.sprite = spriteDefault;//Change the sprite to default one
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift)) //If key is pushed
-        {
-            isAttacking = true;
-            
-            //attack();
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                isAttacking = false;
-               
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isAttacking = false;
-            
-        }
+
     }
 
     /*===================================================================================================================
@@ -94,22 +89,21 @@ public class PlayerAttack : MonoBehaviour {
      * Attack function
      * 
      ===================================================================================================================*/
-    //Vector2 knockbackDirection;
-    //bool tmpbool;
 
-    /*
+    
     public void attack()
     {
+        Vector2 knockbackDirection;
+        bool isHit;
         foreach (GameObject target in enemy)
         {
-            tmpbool = target.GetComponent<Monster>().getAttack(GetComponent<Player>().stats.getAttackBonus());
-            if (tmpbool == true)//Target is hit
+            isHit = target.GetComponent<MonsterCore>().getAttack(GetComponent<Player>().stats.getAttackBonus());
+            if (isHit == true)//Target is hit
             {
-                tmpbool = target.GetComponent<MonsterCore>().ReceiveDamage(GetComponent<Player>().CalculateDamage());
-                if (tmpbool == true)//Target is dead
+                bool isDead = target.GetComponent<MonsterCore>().ReceiveDamage(GetComponent<Player>().CalculateDamage());
+                if (isDead == true)//Target is dead
                 {
                     enemy.Remove(target);
-                    target.GetComponent<MonsterAI>().kill();
                 }
                 else
                 {
@@ -120,5 +114,5 @@ public class PlayerAttack : MonoBehaviour {
             break;
         }
     }
-    */
+    
 }

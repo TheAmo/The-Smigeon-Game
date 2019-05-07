@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3338537e398fb0e4ba648745d6c37969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneys: 
   money: 0
   textm: {fileID: 337495745}
   player: {fileID: 3690426719176018748, guid: 33d57348f3606044a8d120ef6dbe84b3, type: 3}
@@ -1223,6 +1224,7 @@ MonoBehaviour:
   continueButton: {fileID: 963257724}
   player: {fileID: 3690426719176018748, guid: 33d57348f3606044a8d120ef6dbe84b3, type: 3}
   a1: {fileID: 1884994099}
+  m_name: 
 --- !u!4 &1646802668
 Transform:
   m_ObjectHideFlags: 0
