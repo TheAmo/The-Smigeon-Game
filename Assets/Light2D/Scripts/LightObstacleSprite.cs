@@ -44,7 +44,7 @@ namespace Light
             if (GameSpriteRenderer == null && transform.parent != null)
                 GameSpriteRenderer = transform.parent.gameObject.GetComponent<Renderer>();
 
-            gameObject.layer = LightingSystem.Instance.LightObstaclesLayer;
+           // gameObject.layer = LightingSystem.Instance.LightObstaclesLayer;
 
             UpdateMeshData(true);
         }
