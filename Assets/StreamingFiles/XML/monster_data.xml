@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<MonsterDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<monsterList>
+		<MonsterEntry>
+			<name>Goblin</name>
+			<hitpoint>11</hitpoint>
+			<armorclass>13</armorclass>
+			<attackbonus>3</attackbonus>
+			<damagebonus>1</damagebonus>
+			<damagedice>4</damagedice>
+		</MonsterEntry>
+	</monsterList>
+</MonsterDatabase>
