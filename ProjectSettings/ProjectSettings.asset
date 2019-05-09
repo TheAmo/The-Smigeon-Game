@@ -587,10 +587,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: f06d5616-9f79-4ce5-8ae3-27f531c46e1d
+  cloudProjectId: 46194817-93f3-446f-9aec-1be618feba9c
   framebufferDepthMemorylessMode: 0
-  projectName: Smigeon
-  organizationId: unity_7dzzgcgbsnjthq
+  projectName: Smigeon (1)
+  organizationId: dovakin7
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
