@@ -691,10 +691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61930e16e81db5c43a4ecc22422a0953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Color: {r: 0.8490566, g: 0.4982925, b: 0.14017442, a: 1}
-  Sprite: {fileID: 21300000, guid: 0846a06dcf035814d9cee71f4ba273f9, type: 3}
+  Color: {r: 0.8490566, g: 0.4982925, b: 0.14017442, a: 0.39215687}
+  Sprite: {fileID: 21300000, guid: 87425f83688ea0e40a6c869c7fb44f0f, type: 3}
   SortingOrder: 0
-  Material: {fileID: 2100000, guid: eba84647c4f5b25448790591a30ca17e, type: 2}
+  Material: {fileID: 2100000, guid: d534a8972f5bf5347ad20f91b7a21f15, type: 2}
   LightOrigin: {x: 0, y: 0, z: 1}
   Shape: 0
 --- !u!23 &6959892607740767428
