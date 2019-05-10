@@ -212,7 +212,7 @@ public class Player : MonoBehaviour
     //Calculate Damage
     public int CalculateDamage()
     {
-        return (Random.Range(1, stats.getDamageDie()) + stats.getDamageBonus());
+        return (Random.Range(1,stats.getDamageDie() + this.equipement.getWeapon()));
     }
    
 
