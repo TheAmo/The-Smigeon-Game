@@ -159,6 +159,7 @@ public class Player : MonoBehaviour
                 this.GetComponent<Player>().stats.FillHitpoint();
                 this.transform.position = new Vector2(192, 207);
                 this.GetComponent<Player>().stats.changeGoldByValue(-(this.GetComponent<Player>().stats.getGold() / 10));
+                this.GetComponent<Player>().stats.setMana(100);
             }
 
 
