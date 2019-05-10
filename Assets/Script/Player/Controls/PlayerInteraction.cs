@@ -83,7 +83,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     PickLoot(target);
                 }
-                if(target.tag == "Chest" || target.tag == "Chest2" || target.tag == "Chest3" || target.tag == "Chest4" || target.tag == "Chest5")
+                if(target.tag.Contains("Chest"))
                 {
                     Debug.Log("Tag : " + target.tag);
                     Chest(target);

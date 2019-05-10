@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     private bool dead;
 
     private float time;
-
+    private float time2;
 
     private int m_player_id;
 
@@ -48,16 +48,7 @@ public class Player : MonoBehaviour
         m_player_id = player_id;
 
         stats.setGold(0);
-        //get PlayerEntryDB
-       // playerDatabase = GameObject.Find("DB Players Manager").GetComponent<DBPlayerManagement>().playerDB;
-        //get ClassEntry
-        //classDatabase = GameObject.Find("DB Class Manager").GetComponent<DBClassManagement>().classDB;
-
-        //Add Entry's info in Stats
-        //stats = new Stats(playerDatabase.playerList[player_id], classDatabase.classList[class_id]);
-
-        //Calculate everything for player level
-
+       
         //Put player on good position
         Vector3 temp = new Vector3(70,70, 0);
         rb2d.MovePosition(temp);
@@ -85,6 +76,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         time = 0;
+        time2 = 0;
         rb2d = this.GetComponent<Rigidbody2D>();
         initialisePlayer(0, 0);
         isShowing = true;
@@ -117,11 +109,16 @@ public class Player : MonoBehaviour
         {
            
             time = Time.deltaTime + time;
-
+            time2 = Time.deltaTime + time;
 
             if (time >= 1 && stats.getMana()<100)
             {
                 stats.setMana(stats.getMana() + 1);
+                time = 0;
+            }
+            if (time >= 5 && stats.getHitPoint() < 10 + stats.getConstitutionModifier())
+            {
+                stats.setHitPoint(stats.getHitPoint() + 1);
                 time = 0;
             }
             if (sliderHealth) sliderHealth.GetComponent<UnityEngine.UI.Slider>().value = stats.getHitPoint();
@@ -170,11 +167,7 @@ public class Player : MonoBehaviour
                 isShowing = !isShowing;
                 canvas.SetActive(isShowing);
             }
-            if (Input.GetKeyDown(KeyCode.K)) //To smack yourself in the face. Doesn't work.
-            {
-                ReceiveDamage(1);
-                Debug.Log("Damage player test");
-            }
+            
         }       
     }
     /*===================================================================================================================

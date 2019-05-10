@@ -75,7 +75,7 @@ public class Stats : MonoBehaviour
         setAttackBonus(getDexterityModifier());
         setDamageBonus(getStrengthModifier());
 
-        setDamageDie(getDamageDie());
+        setDamageDie(4);
 
         //HitPoint
         setHitPoint(10 + getConstitutionModifier());
