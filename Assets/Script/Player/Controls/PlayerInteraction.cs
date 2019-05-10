@@ -233,7 +233,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         SpriteRenderer spriteRendererChest = target.GetComponent<SpriteRenderer>();
         spriteRendererChest.sprite = Resources.Load<Sprite>("Chest-2");
-        target.tag = "Chest_open";
+        target.tag = "Untagged";
     }
     
 }
